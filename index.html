@@ -133,7 +133,7 @@
 <meta name="description" content="前端杂谈">
 <meta property="og:type" content="website">
 <meta property="og:title" content="前端漫步">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="https://tian0o0.github.io/index.html">
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="前端杂谈">
 <meta property="og:locale" content="zh-Hans">
@@ -169,7 +169,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/"/>
 
 
 
@@ -313,10 +313,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/promise/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/07/promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tian0o0">
+      <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-08T07:56:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-08T22:50:38+08:00">
                 2018-03-08
               </time>
             
@@ -458,23 +458,49 @@
       
         
           
-            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>1.什么是promise？</p>
+            <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>1.什么是promise？</p>
 <p>2.promise有什么用？</p>
 <p>3.什么时候用promise？</p>
-<p>新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目<br>MDN的官方解释是：</p>
+<p>MDN的官方解释是：</p>
 <blockquote>
 <p>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值</p>
 </blockquote>
+<p>新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目</p>
 <p>所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。</p>
 <ul>
 <li>它在<code>异步计算</code>中扮演者重要的角色：它可以将异步操作队列化，按照我们想要的顺序进行执行，并且返回符合预期的结果</li>
 <li>我们可以在对象之间传递和操作promise，帮助我们处理队列</li>
 </ul>
-<h3 id="二、历史"><a href="#二、历史" class="headerlink" title="二、历史"></a>二、历史</h3><p>如果了解JavaScript的历史，可能会帮助我们更好的认识promise。</p>
+<h2 id="二、历史"><a href="#二、历史" class="headerlink" title="二、历史"></a>二、历史</h2><p>如果了解JavaScript的历史，可能会帮助我们更好的认识promise。</p>
 <pre><code>为检查表单而生的JavaScript
 </code></pre><p>在很久很久以前···程序都是后台进行处理的，还没有前端一说。在JavaScript出现以前，用户在填写表单时稍有不慎就得重新填写一遍，毫无用户体验。这时就出现了JavaScript，他天生就是用来检查表单的。那么作为一门浏览器端的语言，就注定了它<code>异步的命运</code>：它的执行不能使页面冻结。</p>
 <p>其实在JavaScript里面异步的问题还不是特别严重，因为JavaScript里的异步主要以DOM操作为主，但是自从出现了Nodejs以后，它对异步的依赖进一步加剧，为什么这么说呢？</p>
 <p>我们知道在Nodejs刚诞生的时候，PHP/Java等后端语言已经十分成熟，那作为后来者的Nodejs如何在后端世界分一杯羹呢？答案就是：<code>无阻塞和高并发</code>，这是nodejs的招牌。想要实现这一招牌，异步操作是重中之重！</p>
+<h2 id="三、promise的基本概念"><a href="#三、promise的基本概念" class="headerlink" title="三、promise的基本概念"></a>三、promise的基本概念</h2><p>使用promise的基本方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    reject()</span><br><span class="line">&#125; )</span><br><span class="line">.then(</span><br><span class="line"><span class="comment">//可以返回一个新的promise对象</span></span><br><span class="line"><span class="comment">//可以返回一个同步的值</span></span><br><span class="line"><span class="comment">//可以抛出一个同步的异常</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line"><span class="comment">//捕获错误</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>promise有三种状态：</p>
+<ul>
+<li>pending：进行中</li>
+<li>fulfilled：成功</li>
+<li>rejected：失败</li>
+</ul>
+<p>而且一旦其状态变为fulfill或reject，就不可继续改变状态</p>
+<p>promise通过引入仅仅一个回调函数来避免所谓的<code>回调地狱</code>，也就是说，在.then()里面不应该出现新的回调。正确的做法是：返回一个新的promise对象来实现.then()的链式调用。</p>
+<h2 id="四、promise陷阱（promise穿透）"><a href="#四、promise陷阱（promise穿透）" class="headerlink" title="四、promise陷阱（promise穿透）"></a>四、promise陷阱（promise穿透）</h2><p>纸上得来终觉浅，直接上代码吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//在promise里面不返回任何值或者返回false，会有什么结果？</span><br><span class="line">console.log(&apos;1&apos;);</span><br><span class="line">new Promise(resolve =&gt; &#123;</span><br><span class="line">    setTimeout( () =&gt; &#123;</span><br><span class="line">        resolve(&apos;2&apos;);</span><br><span class="line">    &#125;, 2000);</span><br><span class="line">&#125;)</span><br><span class="line">    .then( value =&gt; &#123;</span><br><span class="line">        console.log(value);</span><br><span class="line">        console.log(&apos;3&apos;);</span><br><span class="line">        (function () &#123;</span><br><span class="line">            return new Promise(resolve =&gt; &#123;</span><br><span class="line">                setTimeout(() =&gt; &#123;</span><br><span class="line">                    console.log(&apos;4&apos;);</span><br><span class="line">                    resolve(&apos;5&apos;);</span><br><span class="line">                &#125;, 2000);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;());</span><br><span class="line">        return false;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then( value =&gt; &#123;</span><br><span class="line">        console.log(value + &apos;6&apos;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<pre><code>执行顺序：1-2-3-false6-4
+</code></pre><p><strong>解释</strong>：在promise里面不返回任何值或者返回false，他会立刻往下执行。同理，如果去掉<code>return false</code>,结果就是  1-2-3-undefined6-4</p>
+<p>（注意：那个立即执行函数由于不再.then()的直接回调里面，因此它与.then()的回调不处于同一执行栈）</p>
+<hr>
+<p><strong>写出简洁的promise</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Promise( (resolve, reject) =&gt; &#123;</span><br><span class="line">    resolve(something)</span><br><span class="line">&#125;)</span><br><span class="line">.then(/*```*/)</span><br></pre></td></tr></table></figure>
+<p>其实写成下面这种方式更加好看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(something).then(/*```*/)</span><br></pre></td></tr></table></figure>
+<p>那么，我们再来看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(&apos;foo&apos;)</span><br><span class="line">.then(Promise.resolve(&apos;bar&apos;))</span><br><span class="line">.then((res) =&gt; &#123;</span><br><span class="line">    consoe.log(res) // bar</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>结果居然不是‘bar’而是‘foo’，实际上这和前面的例子很相似，<code>如果给.then()传递的不是一个函数，它回直接解析为.then(null)，导致立即执行下一个.then(),发生所谓的promise穿透</code></p>
+<p>如果想要得到‘foo’,可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(&apos;foo&apos;)</span><br><span class="line">.then( () =&gt; &#123;</span><br><span class="line">    return Promise.resolve(&apos;bar&apos;)</span><br><span class="line">&#125;)</span><br><span class="line">.then( (res) =&gt; &#123;</span><br><span class="line">    consoe.log(res)  // foo</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>未完待续···</p>
 
           
         
@@ -523,10 +549,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/06/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tian0o0">
+      <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -747,9 +773,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.jpg"
-                alt="tian0o0" />
+                alt="谢天" />
             
-              <p class="site-author-name" itemprop="name">tian0o0</p>
+              <p class="site-author-name" itemprop="name">谢天</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -839,7 +865,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">tian0o0</span>
+  <span class="author" itemprop="copyrightHolder">谢天</span>
 
   
     <span class="post-meta-divider">|</span>
