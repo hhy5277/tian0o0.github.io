@@ -130,16 +130,17 @@
 
 
 
-<meta name="description" content="前端杂谈">
-<meta property="og:type" content="website">
-<meta property="og:title" content="前端漫步">
-<meta property="og:url" content="https://tian0o0.github.io/index.html">
+<meta name="description" content="1、前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一片文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。 2、完成目标创建一个web服务器，并实现一个简单的路由功能 3、组织结构 index.js              //开启服务器 server.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs：从入门到恍然大悟">
+<meta property="og:url" content="https://tian0o0.github.io/2018/03/12/nodebeginner/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="前端杂谈">
+<meta property="og:description" content="1、前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一片文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。 2、完成目标创建一个web服务器，并实现一个简单的路由功能 3、组织结构 index.js              //开启服务器 server.js">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-12T11:33:02.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端漫步">
-<meta name="twitter:description" content="前端杂谈">
+<meta name="twitter:title" content="Nodejs：从入门到恍然大悟">
+<meta name="twitter:description" content="1、前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一片文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。 2、完成目标创建一个web服务器，并实现一个简单的路由功能 3、组织结构 index.js              //开启服务器 server.js">
 
 
 
@@ -169,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/2018/03/12/nodebeginner/"/>
 
 
 
 
 
-  <title>前端漫步</title>
+  <title>Nodejs：从入门到恍然大悟 | 前端漫步</title>
   
 
 
@@ -194,8 +195,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,9 +298,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -330,9 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/12/nodebeginner/" itemprop="url">Nodejs：从入门到恍然大悟</a></h2>
+          <h2 class="post-title" itemprop="name headline">Nodejs：从入门到恍然大悟</h2>
         
 
         <div class="post-meta">
@@ -457,9 +455,7 @@
       
 
       
-        
-          
-            <h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一片文章（<a href="https://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="noopener">nodeBeginner</a>），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。</p>
+        <h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一片文章（<a href="https://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="noopener">nodeBeginner</a>），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。</p>
 <h3 id="2、完成目标"><a href="#2、完成目标" class="headerlink" title="2、完成目标"></a>2、完成目标</h3><pre><code>创建一个web服务器，并实现一个简单的路由功能
 </code></pre><h3 id="3、组织结构"><a href="#3、组织结构" class="headerlink" title="3、组织结构"></a>3、组织结构</h3><ul>
 <li><strong>index.js</strong>              //开启服务器</li>
@@ -512,8 +508,6 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目的：找到当前目录所有文件，将其返回给浏览器端</span></span><br><span class="line"><span class="comment">//引入child_process模块，方便使用exec这个方法，它是非阻塞的，作用是来执行一个shell命令</span></span><br><span class="line"><span class="comment">//解释：创建了一个新的变量content（初始值为“empty”），执行“ls -lah”命令，将结果赋值给content，最后将content返回</span></span><br><span class="line"><span class="comment">//重启服务器访问start页面显示”empty“，这就是exec()的非阻塞</span></span><br><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Request handler 'start' was called."</span>);</span><br><span class="line">  <span class="keyword">var</span> content = <span class="string">"empty"</span>;</span><br><span class="line"></span><br><span class="line">  exec(<span class="string">"ls -lah"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">    content = stdout;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> content;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Request handler 'upload' was called."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Hello Upload"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start;</span><br><span class="line">exports.upload = upload;</span><br></pre></td></tr></table></figure>
 <p>未完待续···</p>
 
-          
-        
       
     </div>
     
@@ -525,453 +519,63 @@
     
 
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/07/promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="谢天">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端漫步">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/07/promise/" itemprop="url">Promise之不完全解读</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T19:25:00+08:00">
-                2018-03-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-08T22:53:59+08:00">
-                2018-03-08
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/07/promise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/07/promise/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/07/promise/" class="leancloud_visitors" data-flag-title="Promise之不完全解读">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>1.什么是promise？</p>
-<p>2.promise有什么用？</p>
-<p>3.什么时候用promise？</p>
-<p>MDN的官方解释是：</p>
-<blockquote>
-<p>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值</p>
-</blockquote>
-<p>新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目</p>
-<p>所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。</p>
-<ul>
-<li>它在<code>异步计算</code>中扮演者重要的角色：它可以将异步操作队列化，按照我们想要的顺序进行执行，并且返回符合预期的结果</li>
-<li>我们可以在对象之间传递和操作promise，帮助我们处理队列</li>
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2018/03/12/nodebeginner/" title="Nodejs：从入门到恍然大悟">https://tian0o0.github.io/2018/03/12/nodebeginner/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<h2 id="二、历史"><a href="#二、历史" class="headerlink" title="二、历史"></a>二、历史</h2><p>如果了解JavaScript的历史，可能会帮助我们更好的认识promise。</p>
-<pre><code>为检查表单而生的JavaScript
-</code></pre><p>在很久很久以前···程序都是后台进行处理的，还没有前端一说。在JavaScript出现以前，用户在填写表单时稍有不慎就得重新填写一遍，毫无用户体验。这时就出现了JavaScript，他天生就是用来检查表单的。那么作为一门浏览器端的语言，就注定了它<code>异步的命运</code>：它的执行不能使页面冻结。</p>
-<p>其实在JavaScript里面异步的问题还不是特别严重，因为JavaScript里的异步主要以DOM操作为主，但是自从出现了Nodejs以后，它对异步的依赖进一步加剧，为什么这么说呢？</p>
-<p>我们知道在Nodejs刚诞生的时候，PHP/Java等后端语言已经十分成熟，那作为后来者的Nodejs如何在后端世界分一杯羹呢？答案就是：<code>无阻塞和高并发</code>，这是nodejs的招牌。想要实现这一招牌，异步操作是重中之重！</p>
-<h2 id="三、promise的基本概念"><a href="#三、promise的基本概念" class="headerlink" title="三、promise的基本概念"></a>三、promise的基本概念</h2><p>使用promise的基本方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    reject()</span><br><span class="line">&#125; )</span><br><span class="line">.then(</span><br><span class="line"><span class="comment">//可以返回一个新的promise对象</span></span><br><span class="line"><span class="comment">//可以返回一个同步的值</span></span><br><span class="line"><span class="comment">//可以抛出一个同步的异常</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line"><span class="comment">//捕获错误</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>promise有三种状态：</p>
-<ul>
-<li>pending：进行中</li>
-<li>fulfilled：成功</li>
-<li>rejected：失败</li>
-</ul>
-<p>而且一旦其状态变为fulfill或reject，就不可继续改变状态</p>
-<p>promise通过引入仅仅一个回调函数来避免所谓的<code>回调地狱</code>，也就是说，在.then()里面不应该出现新的回调。正确的做法是：返回一个新的promise对象来实现.then()的链式调用。</p>
-<h2 id="四、promise陷阱（promise穿透）"><a href="#四、promise陷阱（promise穿透）" class="headerlink" title="四、promise陷阱（promise穿透）"></a>四、promise陷阱（promise穿透）</h2><p>纸上得来终觉浅，直接上代码吧：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在promise里面不返回任何值或者返回false，会有什么结果？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(<span class="string">'2'</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">    .then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">        (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">                    resolve(<span class="string">'5'</span>);</span><br><span class="line">                &#125;, <span class="number">2000</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value + <span class="string">'6'</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<pre><code>执行顺序：1-2-3-false6-4
-</code></pre><p><strong>解释</strong>：在promise里面不返回任何值或者返回false，他会立刻往下执行。同理，如果去掉<code>return false</code>,结果就是  1-2-3-undefined6-4</p>
-<p>（注意：那个立即执行函数由于不再.then()的直接回调里面，因此它与.then()的回调不处于同一执行栈）</p>
-<hr>
-<p><strong>写出简洁的promise</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(something)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="comment">/*```*/</span>)</span><br></pre></td></tr></table></figure>
-<p>其实写成下面这种方式更加好看</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(something).then(<span class="comment">/*```*/</span>)</span><br></pre></td></tr></table></figure>
-<p>那么，我们再来看一个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then(<span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>))</span><br><span class="line">.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res) <span class="comment">// bar</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>结果居然不是‘bar’而是‘foo’，实际上这和前面的例子很相似，<code>如果给.then()传递的不是一个函数，它回直接解析为.then(null)，导致立即执行下一个.then(),发生所谓的promise穿透</code></p>
-<p>如果想要得到‘foo’,可以这么写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then( <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res)  <span class="comment">// foo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>未完待续···</p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
+      </div>
     
 
     <footer class="post-footer">
       
 
       
-
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/06/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="谢天">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端漫步">
-    </span>
-
-    
-      <header class="post-header">
-
+        <div class="post-widgets">
         
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/hello-world/" itemprop="url">记第一篇博客</a></h2>
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T19:40:00+08:00">
-                2018-03-06
-              </time>
-            
+        
 
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-06T19:59:26+08:00">
-                2018-03-06
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/06/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/06/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/06/hello-world/" class="leancloud_visitors" data-flag-title="记第一篇博客">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
+        
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
       
 
       
-        
-          
-            <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>这是用GitHub Pages + Hexo搭建的博客。(github禁止了百度爬虫，因此本博客内容暂时无法被百度搜素到，请翻墙使用谷歌&gt;.&lt;)</p>
-<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>目的很简单，希望能够记录下工作上遇到的难题，以及我是通过怎样的途径解决的，避免以后犯相同的错误；<br>同时，如果这个博客能够帮助到他人，也将是我的荣幸。</p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>这是前端技术相关的博客，包括但不限于CSS,Javascript,Vue,NodeJS等。</p>
-<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><p>由于博主较懒，本博客将不定期更新，不服你来打我呀～</p>
-<h4 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h4><p><a href="mailto:xietian19941007@gmail.com" target="_blank" rel="noopener">xietian19941007@gmail.com</a></p>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/promise/" rel="next" title="Promise之不完全解读">
+                <i class="fa fa-chevron-left"></i> Promise之不完全解读
+              </a>
+            
+          </div>
 
-          
-        
-      
-    </div>
-    
-    
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -981,10 +585,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -992,6 +597,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1014,8 +633,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1095,6 +723,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、前言"><span class="nav-number">1.</span> <span class="nav-text">1、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、完成目标"><span class="nav-number">2.</span> <span class="nav-text">2、完成目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、组织结构"><span class="nav-number">3.</span> <span class="nav-text">3、组织结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、代码详情"><span class="nav-number">4.</span> <span class="nav-text">4、代码详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-index-js"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 index.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-server-js"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-router-js"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 router.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-request-handler-js"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 request_handler.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-存在的问题"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、nodejs的单线程"><span class="nav-number">5.</span> <span class="nav-text">5、nodejs的单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、改为非阻塞试试"><span class="nav-number">6.</span> <span class="nav-text">6、改为非阻塞试试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-一个错误的非阻塞尝试"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 一个错误的非阻塞尝试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1248,6 +892,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1266,6 +914,18 @@
       <script id="dsq-count-scr" src="https://tian0o0.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://tian0o0.github.io/2018/03/12/nodebeginner/';
+          this.page.identifier = '2018/03/12/nodebeginner/';
+          this.page.title = 'Nodejs：从入门到恍然大悟';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tian0o0.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
@@ -1299,6 +959,34 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'tian0o0',
+            repo: 'gitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1094b0968f3ec3e37e32715be769d7bcebcf7f49',
+            
+                client_id: '75c9eff77fa7eb9723d2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
     
 
 
@@ -1443,6 +1131,23 @@
 
   
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
 
