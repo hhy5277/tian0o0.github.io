@@ -149,7 +149,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.3',
-    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T19:33:02+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T21:59:23+08:00">
                 2018-03-12
               </time>
             
@@ -407,17 +407,6 @@
 
           
           
-             <span id="/2018/03/12/nodebeginner/" class="leancloud_visitors" data-flag-title="Nodejs：从入门到恍然大悟">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -459,60 +448,18 @@
       
         
           
-            <h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一片文章（<a href="https://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="noopener">nodeBeginner</a>），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。</p>
-<h3 id="2、完成目标"><a href="#2、完成目标" class="headerlink" title="2、完成目标"></a>2、完成目标</h3><pre><code>创建一个web服务器，并实现一个简单的路由功能
-</code></pre><h3 id="3、组织结构"><a href="#3、组织结构" class="headerlink" title="3、组织结构"></a>3、组织结构</h3><ul>
-<li><strong>index.js</strong>              //开启服务器</li>
-<li><strong>server.js</strong>             //创建服务器</li>
-<li><strong>router.js</strong>            //路由</li>
-<li><strong>request_handler.js</strong>    //路由处理函数</li>
-</ul>
-<h3 id="4、代码详情"><a href="#4、代码详情" class="headerlink" title="4、代码详情"></a>4、代码详情</h3><h4 id="4-1-index-js"><a href="#4-1-index-js" class="headerlink" title="4.1 index.js"></a>4.1 index.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> server = <span class="built_in">require</span>(<span class="string">'./server'</span>)</span><br><span class="line"><span class="keyword">var</span> router = <span class="built_in">require</span>(<span class="string">'./router'</span>)</span><br><span class="line"><span class="keyword">var</span> requestHandlers = <span class="built_in">require</span>(<span class="string">'./request_handler'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> handle = &#123;&#125;</span><br><span class="line">handle[<span class="string">"/"</span>] = requestHandlers.start</span><br><span class="line">handle[<span class="string">"/start"</span>] = requestHandlers.start</span><br><span class="line">handle[<span class="string">"/upload"</span>] = requestHandlers.upload</span><br><span class="line"></span><br><span class="line">server.start(router.router, handle)</span><br></pre></td></tr></table></figure>
-<h4 id="4-2-server-js"><a href="#4-2-server-js" class="headerlink" title="4.2 server.js"></a>4.2 server.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将router模块与服务器整合</span></span><br><span class="line"><span class="comment">// 在入口文件index.js中引入router模块和router处理程序模块</span></span><br><span class="line"><span class="comment">// 将他们作为参数传递进来</span></span><br><span class="line"><span class="comment">// 注意：我没有将request_handler.js直接与router.js直接关联起来，目的是为了实现松耦合</span></span><br><span class="line"><span class="comment">// 这样就可以将router处理程序模块与router模块关联起来,实现一个松耦合</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">router, handle</span>) </span>&#123;</span><br><span class="line">    http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> path_name = url.parse(req.url).pathname</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (path_name === <span class="string">'/favicon.ico'</span>) &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> content = router(path_name, handle)</span><br><span class="line"></span><br><span class="line">        res.writeHead( <span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">"text/html;charset='utf-8'"</span>&#125; )</span><br><span class="line">        res.write(content)</span><br><span class="line">        res.end()</span><br><span class="line">    &#125;)</span><br><span class="line">    .listen(<span class="number">8000</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'the server is running at 8000'</span> )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start</span><br></pre></td></tr></table></figure>
-<h4 id="4-3-router-js"><a href="#4-3-router-js" class="headerlink" title="4.3 router.js"></a>4.3 router.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果在路由处理模块中定义过相关处理函数，就会对请求进行处理</span></span><br><span class="line"><span class="comment">// 没有的话就返回‘404’</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">router</span>(<span class="params">pathname, handle</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">typeof</span> handle[pathname] === <span class="string">"function"</span> ) &#123;</span><br><span class="line">            <span class="keyword">return</span> handle[pathname]()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'没有'</span> + pathname + <span class="string">'的路由处理函数'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'404'</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.router = router</span><br></pre></td></tr></table></figure>
-<h4 id="4-4-request-handler-js"><a href="#4-4-request-handler-js" class="headerlink" title="4.4 request_handler.js"></a>4.4 request_handler.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 路由模块并不是真正针对请求“采取行动”的模块</span></span><br><span class="line"><span class="comment">// 否则当我们的应用程序变得更为复杂时，将无法很好地扩展</span></span><br><span class="line"><span class="comment">// 因此将路由处理程序的逻辑单独剥离出来</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"请求处理函数start被调用"</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'start'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"请求处理函数upload被调用"</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'upload'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start</span><br><span class="line">exports.upload = upload</span><br></pre></td></tr></table></figure>
-<h4 id="4-5-存在的问题"><a href="#4-5-存在的问题" class="headerlink" title="4.5 存在的问题"></a>4.5 存在的问题</h4><p>上面的代码结构看起来还不错（在我这个水平看来= =），简单的一个路由功能也实现了。你看：</p>
-<blockquote>
-<p>请求<a href="http://localhost:8000/start,浏览器会输出&quot;start&quot;" target="_blank" rel="noopener">http://localhost:8000/start,浏览器会输出&quot;start&quot;</a></p>
-</blockquote>
-<blockquote>
-<p>请求<a href="http://localhost:8000/upload会输出&quot;upload&quot;" target="_blank" rel="noopener">http://localhost:8000/upload会输出&quot;upload&quot;</a></p>
-</blockquote>
-<blockquote>
-<p>而请求<a href="http://localhost:8000/foo" target="_blank" rel="noopener">http://localhost:8000/foo</a> 会输出”404”</p>
-</blockquote>
-<p>可是为什么说它有问题呢？因为：</p>
-<blockquote>
-<p>当未来有请求处理程序需要进行<code>非阻塞</code>的操作的时候，我们的应用就“挂”了</p>
-</blockquote>
-<h3 id="5、nodejs的单线程"><a href="#5、nodejs的单线程" class="headerlink" title="5、nodejs的单线程"></a>5、nodejs的单线程</h3><p>想要更好地解决上面的问题，就需要了解nodejs的单线程</p>
-<blockquote>
-<p>在node中除了代码，所有一切都是并行执行的</p>
-</blockquote>
-<p>这句话的意思是说，Node.js可以在不新增额外线程的情况下，依然可以对任务进行并行处理。它通过事件轮询（event loop）来实现并行操作，对此，我们应该要充分利用这一点 —— 尽可能的避免阻塞操作，取而代之，多使用非阻塞操作。</p>
-<p>然而，要用非阻塞操作，我们需要使用回调，通过将函数作为参数传递给其他需要花时间做处理的函数（比方说，休眠10秒，或者查询数据库，又或者是进行大量的计算）</p>
-<p>对于Node.js来说，它是这样处理的：“嘿，probablyExpensiveFunction()（这里指的就是需要花时间处理的函数），你继续处理你的事情，我（Node.js线程）先不等你了，我继续去处理你后面的代码，请你提供一个callbackFunction()，等你处理完之后我会去调用该回调函数的，谢谢！”</p>
-<p>修改路由处理程序模块：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">unction start() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"请求处理函数start被调用"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">milliSeconds</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() &lt; startTime + milliSeconds);</span><br><span class="line">    &#125;</span><br><span class="line">    sleep(<span class="number">10000</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'start'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"请求处理函数upload被调用"</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'upload'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start</span><br><span class="line">exports.upload = upload</span><br></pre></td></tr></table></figure>
-<p>这里我对start函数进行了一些处理，使其10s过后再返回“start”。让我们来看看法身了什么奇怪的事情吧：</p>
-<ol>
-<li><p>首先，打开两个浏览器窗口或者标签页。在第一个浏览器窗口的地址栏中输入<a href="http://localhost:8888/start，" target="_blank" rel="noopener">http://localhost:8888/start，</a> 但是先不要打开它！</p>
-</li>
-<li><p>在第二个浏览器窗口的地址栏中输入<a href="http://localhost:8888/upload，" target="_blank" rel="noopener">http://localhost:8888/upload，</a> 同样的，先不要打开它！</p>
-</li>
-<li><p>接下来，做如下操作：在第一个窗口中（“/start”）按下回车，然后快速切换到第二个窗口中（“/upload”）按下回车。</p>
-</li>
-</ol>
-<p>注意，发生了什么： /start URL加载花了10秒，这和我们预期的一样。但是，/upload URL居然也花了10秒，而它在对应的请求处理程序中并没有类似于sleep()这样的操作！</p>
-<p><strong>这是因为start()包含了阻塞操作。形象的说就是“它阻塞了所有其他的处理工作”</strong>。</p>
-<h3 id="6、改为非阻塞试试"><a href="#6、改为非阻塞试试" class="headerlink" title="6、改为非阻塞试试"></a>6、改为非阻塞试试</h3><h4 id="6-1-一个错误的非阻塞尝试"><a href="#6-1-一个错误的非阻塞尝试" class="headerlink" title="6.1 一个错误的非阻塞尝试"></a>6.1 一个错误的非阻塞尝试</h4><blockquote>
-<p><a href="http://nodejs.cn/api/child_process.html#child_process_child_process_exec_command_options_callback" target="_blank" rel="noopener">child_process.exec(command[, options][, callback])</a></p>
-</blockquote>
-<p>修改路由处理程序模块:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目的：找到当前目录所有文件，将其返回给浏览器端</span></span><br><span class="line"><span class="comment">//引入child_process模块，方便使用exec这个方法，它是非阻塞的，作用是来执行一个shell命令</span></span><br><span class="line"><span class="comment">//解释：创建了一个新的变量content（初始值为“empty”），执行“ls -lah”命令，将结果赋值给content，最后将content返回</span></span><br><span class="line"><span class="comment">//重启服务器访问start页面显示”empty“，这就是exec()的非阻塞</span></span><br><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Request handler 'start' was called."</span>);</span><br><span class="line">  <span class="keyword">var</span> content = <span class="string">"empty"</span>;</span><br><span class="line"></span><br><span class="line">  exec(<span class="string">"ls -lah"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">    content = stdout;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> content;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Request handler 'upload' was called."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Hello Upload"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start;</span><br><span class="line">exports.upload = upload;</span><br></pre></td></tr></table></figure>
-<p>未完待续···</p>
-
-          
+          前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一篇文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。
+完成目标创建一个web服务器，并实现一个简单的路由功能
+组织结构
+index.j
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/12/nodebeginner/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -653,17 +600,6 @@
 
           
           
-             <span id="/2018/03/07/promise/" class="leancloud_visitors" data-flag-title="Promise之不完全解读">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -705,51 +641,22 @@
       
         
           
-            <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>1.什么是promise？</p>
-<p>2.promise有什么用？</p>
-<p>3.什么时候用promise？</p>
-<p>MDN的官方解释是：</p>
-<blockquote>
-<p>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值</p>
-</blockquote>
-<p>新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目</p>
-<p>所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。</p>
-<ul>
-<li>它在<code>异步计算</code>中扮演者重要的角色：它可以将异步操作队列化，按照我们想要的顺序进行执行，并且返回符合预期的结果</li>
-<li>我们可以在对象之间传递和操作promise，帮助我们处理队列</li>
-</ul>
-<h2 id="二、历史"><a href="#二、历史" class="headerlink" title="二、历史"></a>二、历史</h2><p>如果了解JavaScript的历史，可能会帮助我们更好的认识promise。</p>
-<pre><code>为检查表单而生的JavaScript
-</code></pre><p>在很久很久以前···程序都是后台进行处理的，还没有前端一说。在JavaScript出现以前，用户在填写表单时稍有不慎就得重新填写一遍，毫无用户体验。这时就出现了JavaScript，他天生就是用来检查表单的。那么作为一门浏览器端的语言，就注定了它<code>异步的命运</code>：它的执行不能使页面冻结。</p>
-<p>其实在JavaScript里面异步的问题还不是特别严重，因为JavaScript里的异步主要以DOM操作为主，但是自从出现了Nodejs以后，它对异步的依赖进一步加剧，为什么这么说呢？</p>
-<p>我们知道在Nodejs刚诞生的时候，PHP/Java等后端语言已经十分成熟，那作为后来者的Nodejs如何在后端世界分一杯羹呢？答案就是：<code>无阻塞和高并发</code>，这是nodejs的招牌。想要实现这一招牌，异步操作是重中之重！</p>
-<h2 id="三、promise的基本概念"><a href="#三、promise的基本概念" class="headerlink" title="三、promise的基本概念"></a>三、promise的基本概念</h2><p>使用promise的基本方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    reject()</span><br><span class="line">&#125; )</span><br><span class="line">.then(</span><br><span class="line"><span class="comment">//可以返回一个新的promise对象</span></span><br><span class="line"><span class="comment">//可以返回一个同步的值</span></span><br><span class="line"><span class="comment">//可以抛出一个同步的异常</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line"><span class="comment">//捕获错误</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>promise有三种状态：</p>
-<ul>
-<li>pending：进行中</li>
-<li>fulfilled：成功</li>
-<li>rejected：失败</li>
-</ul>
-<p>而且一旦其状态变为fulfill或reject，就不可继续改变状态</p>
-<p>promise通过引入仅仅一个回调函数来避免所谓的<code>回调地狱</code>，也就是说，在.then()里面不应该出现新的回调。正确的做法是：返回一个新的promise对象来实现.then()的链式调用。</p>
-<h2 id="四、promise陷阱（promise穿透）"><a href="#四、promise陷阱（promise穿透）" class="headerlink" title="四、promise陷阱（promise穿透）"></a>四、promise陷阱（promise穿透）</h2><p>纸上得来终觉浅，直接上代码吧：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在promise里面不返回任何值或者返回false，会有什么结果？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(<span class="string">'2'</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">    .then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">        (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">                    resolve(<span class="string">'5'</span>);</span><br><span class="line">                &#125;, <span class="number">2000</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value + <span class="string">'6'</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<pre><code>执行顺序：1-2-3-false6-4
-</code></pre><p><strong>解释</strong>：在promise里面不返回任何值或者返回false，他会立刻往下执行。同理，如果去掉<code>return false</code>,结果就是  1-2-3-undefined6-4</p>
-<p>（注意：那个立即执行函数由于不再.then()的直接回调里面，因此它与.then()的回调不处于同一执行栈）</p>
-<hr>
-<p><strong>写出简洁的promise</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(something)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="comment">/*```*/</span>)</span><br></pre></td></tr></table></figure>
-<p>其实写成下面这种方式更加好看</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(something).then(<span class="comment">/*```*/</span>)</span><br></pre></td></tr></table></figure>
-<p>那么，我们再来看一个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then(<span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>))</span><br><span class="line">.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res) <span class="comment">// bar</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>结果居然不是‘bar’而是‘foo’，实际上这和前面的例子很相似，<code>如果给.then()传递的不是一个函数，它回直接解析为.then(null)，导致立即执行下一个.then(),发生所谓的promise穿透</code></p>
-<p>如果想要得到‘foo’,可以这么写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then( <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res)  <span class="comment">// foo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>未完待续···</p>
+          一、前言1.什么是promise？
+2.promise有什么用？
+3.什么时候用promise？
+MDN的官方解释是：
 
-          
+Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值
+
+新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/07/promise/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -890,17 +797,6 @@
 
           
           
-             <span id="/2018/03/06/hello-world/" class="leancloud_visitors" data-flag-title="记第一篇博客">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -942,13 +838,16 @@
       
         
           
-            <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>这是用GitHub Pages + Hexo搭建的博客。(github禁止了百度爬虫，因此本博客内容暂时无法被百度搜素到，请翻墙使用谷歌&gt;.&lt;)</p>
-<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>目的很简单，希望能够记录下工作上遇到的难题，以及我是通过怎样的途径解决的，避免以后犯相同的错误；<br>同时，如果这个博客能够帮助到他人，也将是我的荣幸。</p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>这是前端技术相关的博客，包括但不限于CSS,Javascript,Vue,NodeJS等。</p>
-<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><p>由于博主较懒，本博客将不定期更新，不服你来打我呀～</p>
-<h4 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h4><p><a href="mailto:xietian19941007@gmail.com" target="_blank" rel="noopener">xietian19941007@gmail.com</a></p>
-
-          
+          介绍这是用GitHub Pages + Hexo搭建的博客。(github禁止了百度爬虫，因此本博客内容暂时无法被百度搜素到，请翻墙使用谷歌&gt;.&lt;)
+目的目的很简单，希望能够记录下工作上遇到的难题，以及我是通过怎样的途径解决的，避免以后犯相同的错误；同时，如果这个博客能够帮助到他人，也将
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/06/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1181,14 +1080,16 @@
   
 
 
+  
+
+
+
 
 
 
 
   
   
-
-
 
 
 
@@ -1226,12 +1127,17 @@
 
   
   
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
     <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
   
 
 
@@ -1314,113 +1220,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("839862975@qq.com", "Tian940701");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
