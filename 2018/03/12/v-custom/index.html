@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理与（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端漫步">
+<meta property="og:url" content="https://tian0o0.github.io/2018/03/12/v-custom/index.html">
+<meta property="og:site_name" content="前端漫步">
+<meta property="og:description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理与（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-17T13:32:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端漫步">
+<meta name="twitter:description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理与（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tian0o0.github.io/2018/03/12/v-custom/"/>
+
+
+
+
+
+  <title> | 前端漫步</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端漫步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">因为孤独而沉浸 因为沉浸而强大</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/12/v-custom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="谢天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端漫步">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline"></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T18:32:06+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-17T21:32:34+08:00">
+                2018-03-17
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/v-custom/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/12/v-custom/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。</p>
+<h3 id="二、原理与"><a href="#二、原理与" class="headerlink" title="二、原理与"></a>二、原理与</h3><p>（以下默认内容高度超出容器高度。）</p>
+<h4 id="2-1-结构"><a href="#2-1-结构" class="headerlink" title="2.1 结构"></a>2.1 结构</h4><p>需要满足以下HTML结构：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrapper"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--滚动内容--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"scroll-bar"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"scroll-block"</span> <span class="attr">v-scrollY</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2原理"><a href="#2-2原理" class="headerlink" title="2.2原理"></a>2.2原理</h3><blockquote>
+<p>通过<code>拖拽事件</code>和<code>滚轮事件</code>动态改变内容区域的<code>top值</code></p>
+</blockquote>
+<p>因此需要:</p>
+<p>设置容器<code>content-wrapper</code>属性：<code>overflow: hidden;</code></p>
+<p>设置内容<code>content</code>属性：<code>position: absolute;</code></p>
+<p>这样，基础工作就已经ok了，开始写交互事件。</p>
+<h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><h4 id="3-1-拖拽事件"><a href="#3-1-拖拽事件" class="headerlink" title="3.1 拖拽事件"></a>3.1 拖拽事件</h4><p>大的方向上没什么问题，但是需要注意的是，拖动滑块时如果不做==处理==，会出现抖动现象，这是因为拖动时<code>onmousemove</code>事件频繁触发导致，因此加入<code>防抖</code>功能即可：</p>
+<p>加个定时器，每次执行onmousemove时清除定时器防止多次触发，定时器事件设置为20ms是因为浏览器的最大刷新频率为16.7ms/次。</p>
+<p>这样，在滑块<code>scroll-block</code>上加一个自定义指令<code>v-scrollY</code>,就可以实现拖拽效果啦~</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'scrollY'</span>, &#123;</span><br><span class="line">	bind (el, binding) &#123;</span><br><span class="line">		<span class="keyword">let</span> $el = el</span><br><span class="line">		$el.onmousedown = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> disY = e.clientY - $el.offsetTop</span><br><span class="line">			<span class="keyword">let</span> $content = $el.parentNode.parentNode.firstChild</span><br><span class="line">			<span class="keyword">let</span> contentH = $content.clientHeight</span><br><span class="line">			<span class="built_in">document</span>.onmousemove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">				clearTimeout(timer)</span><br><span class="line">				<span class="keyword">let</span> timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">					<span class="comment">// 滚动滑块滚动距离</span></span><br><span class="line">					<span class="keyword">let</span> top = <span class="built_in">Math</span>.min(<span class="built_in">Math</span>.max(e.clientY - disY, <span class="number">0</span>), <span class="number">306</span>)</span><br><span class="line">					<span class="comment">// 内容区域滚动距离</span></span><br><span class="line">					<span class="keyword">let</span> topC = top * (contentH - <span class="number">600</span>) / <span class="number">306</span></span><br><span class="line">					$el.style.top = top + <span class="string">'px'</span></span><br><span class="line">					$content.style.top = -topC +<span class="string">'px'</span></span><br><span class="line">				&#125;, <span class="number">20</span>)</span><br><span class="line">				$el.style.backgroundColor = <span class="string">'#acaaaa'</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">document</span>.onmouseup = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">				<span class="built_in">document</span>.onmousemove = <span class="literal">null</span></span><br><span class="line">				<span class="built_in">document</span>.onmouseup =<span class="literal">null</span></span><br><span class="line">				$el.style.backgroundColor = <span class="string">'#e9e9e9'</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-滚轮事件"><a href="#3-2-滚轮事件" class="headerlink" title="3.2 滚轮事件"></a>3.2 滚轮事件</h4><p>滚轮事件相对来说比较麻烦，这是因为：firefox和其他浏览器的滚轮事件不一样。</p>
+<blockquote>
+<ul>
+<li>在firefox中是<code>DOMMouseScroll</code> ,其他浏览器中则是<code>mousewheel</code></li>
+<li>在firefox中通过<code>e.detail</code>的正负值来判断上下滚动，其他浏览器中则是通过<code>e.wheelDetla</code>来判断上下滚动</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>firefox</th>
+<th>其它浏览器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上滚</td>
+<td>e.detail = 0</td>
+<td>e.wheelDetla &gt; 0</td>
+</tr>
+<tr>
+<td>下滚</td>
+<td>e.detail &gt; 0</td>
+<td>e.wheelDetla &lt; 0</td>
+</tr>
+</tbody>
+</table>
+<p>其它有几点值得说一下：</p>
+<ul>
+<li>滚动式需要阻值默认事件，防止在子滚动区滚动时使父滚动区跟着滚动；</li>
+<li>滚动区内容设置：<code>user-select: none;</code>因为我发现在拖拽的时候鼠标离开滚动滑块会选中滚动内容区文字。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'mousewheel'</span>, &#123;</span><br><span class="line">	bind( el, biding ) &#123;</span><br><span class="line">		<span class="keyword">let</span> num = <span class="number">0</span></span><br><span class="line">		<span class="keyword">let</span> $el = el</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">obj, type, fn, capture</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (obj.addEventListener) &#123;</span><br><span class="line">				<span class="keyword">if</span>( !capture ) &#123;capture = <span class="literal">false</span>&#125;</span><br><span class="line">				obj.addEventListener(type, fn, capture)</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (obj.attachEvent) &#123;</span><br><span class="line">				obj.attachEvent(<span class="string">"on"</span> + type, fn)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">scrollDown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> $block = $el.parentNode.children[<span class="number">1</span>].children[<span class="number">0</span>]</span><br><span class="line">			<span class="keyword">let</span> dis = <span class="built_in">Math</span>.min(<span class="number">20</span> * (num--), $el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$el.style.top = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) + <span class="string">'px'</span></span><br><span class="line">			<span class="keyword">let</span> topB = <span class="built_in">Math</span>.max(<span class="number">0</span>, dis) * <span class="number">306</span> / ($el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$block.style.top = topB + <span class="string">'px'</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">scrollUp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> $block = $el.parentNode.children[<span class="number">1</span>].children[<span class="number">0</span>]</span><br><span class="line">			<span class="keyword">let</span> dis = <span class="built_in">Math</span>.min(<span class="number">20</span> * (num++), $el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$el.style.top = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) + <span class="string">'px'</span></span><br><span class="line">			<span class="keyword">let</span> topB = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) * <span class="number">306</span> / ($el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$block.style.top = -topB + <span class="string">'px'</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">customScroll</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>( e.wheelDelta ) &#123;</span><br><span class="line">				<span class="keyword">if</span> (e.wheelDelta &gt; <span class="number">0</span>) &#123; <span class="comment">//下滚</span></span><br><span class="line">					scrollDown()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;  <span class="comment">//上滚</span></span><br><span class="line">					scrollUp()</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span> ( e.detail ) &#123;  <span class="comment">//兼容火狐</span></span><br><span class="line">				<span class="keyword">if</span> (e.detail &lt; <span class="number">0</span>) &#123; <span class="comment">//下滚</span></span><br><span class="line">					scrollDown()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;  <span class="comment">//上滚</span></span><br><span class="line">					scrollUp()</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		addEvent($el, <span class="string">'mousewheel'</span>, (e) =&gt; &#123;</span><br><span class="line">			e.preventDefault()</span><br><span class="line">			customScroll(e)</span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="comment">// 兼容firefox</span></span><br><span class="line">		addEvent($el, <span class="string">'DOMMouseScroll'</span>, (e) =&gt; &#123;</span><br><span class="line">			e.preventDefault()</span><br><span class="line">			customScroll(e)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="四、小结"><a href="#四、小结" class="headerlink" title="四、小结"></a>四、小结</h3><p>由于使用原生js处理，在兼容性方面可能还有所欠缺考虑的地方，确实还有待提高。同时，由于这么一大段代码都写在了main.js里面，感觉也不够好看，我想，也许可以通过vue提供的mixin来实现相同的功能，毕竟都是为了复用嘛。好了，先写到这吧~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="谢天 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="谢天 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2018/03/12/v-custom/" title="">https://tian0o0.github.io/2018/03/12/v-custom/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/promise/" rel="next" title="Promise之不完全解读">
+                <i class="fa fa-chevron-left"></i> Promise之不完全解读
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/nodebeginner/" rel="prev" title="Nodejs简单入门">
+                Nodejs简单入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="谢天" />
+            
+              <p class="site-author-name" itemprop="name">谢天</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tian0o0" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:xietian19941007@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、原理与"><span class="nav-number">2.</span> <span class="nav-text">二、原理与</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-结构"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2原理"><span class="nav-number">3.</span> <span class="nav-text">2.2原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、代码"><span class="nav-number">4.</span> <span class="nav-text">三、代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-拖拽事件"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 拖拽事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-滚轮事件"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 滚轮事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、小结"><span class="nav-number">5.</span> <span class="nav-text">四、小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">谢天</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://tian0o0.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://tian0o0.github.io/2018/03/12/v-custom/';
+          this.page.identifier = '2018/03/12/v-custom/';
+          this.page.title = '';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tian0o0.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'tian0o0',
+            repo: 'gitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1094b0968f3ec3e37e32715be769d7bcebcf7f49',
+            
+                client_id: '75c9eff77fa7eb9723d2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>
