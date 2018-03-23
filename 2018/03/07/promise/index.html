@@ -104,16 +104,16 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
 
 
 
@@ -135,7 +135,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise之不完全解读">
 <meta property="og:url" content="https://tian0o0.github.io/2018/03/07/promise/index.html">
-<meta property="og:site_name" content="前端漫步">
+<meta property="og:site_name" content="一生懸命頑張る">
 <meta property="og:description" content="一、前言1.什么是promise？ 2.promise有什么用？ 3.什么时候用promise？ MDN的官方解释是：  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值  新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目 所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-16T13:36:41.000Z">
@@ -177,12 +177,22 @@
 
 
 
-  <title>Promise之不完全解读 | 前端漫步</title>
+  <title>Promise之不完全解读 | 一生懸命頑張る</title>
   
 
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0ec34390676b679b4ce481ab68f5c1ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -207,12 +217,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">前端漫步</span>
+        <span class="site-title">一生懸命頑張る</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">因为孤独而沉浸 因为沉浸而强大</h1>
+        <h1 class="site-subtitle" itemprop="description">プレッシャーを感じているときにさえ、楽しいと思える心を持つ人間になりたい</h1>
       
   </div>
 
@@ -323,7 +333,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端漫步">
+      <meta itemprop="name" content="一生懸命頑張る">
     </span>
 
     
@@ -397,8 +407,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/07/promise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/07/promise/" itemprop="commentCount"></span>
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/07/promise/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -628,12 +637,10 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
     </div>
 
   
@@ -785,7 +792,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">谢天</span>
+  <span class="author" itemprop="copyrightHolder">一生懸命頑張るTian0o0</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -803,8 +810,6 @@
 
 
 
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
 
 
 
@@ -831,6 +836,12 @@
     
 
     
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
 
   </div>
 
@@ -852,8 +863,6 @@
 
   
 
-
-  
 
 
 
@@ -900,11 +909,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
@@ -945,26 +949,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://tian0o0.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://tian0o0.github.io/2018/03/07/promise/';
-          this.page.identifier = '2018/03/07/promise/';
-          this.page.title = 'Promise之不完全解读';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://tian0o0.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
@@ -977,6 +961,10 @@
   
 
 
+
+
+
+  
 
 
 
@@ -1058,6 +1046,31 @@
 
 
   
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
   
   <script type="text/javascript">
   wpac_init = window.wpac_init || [];

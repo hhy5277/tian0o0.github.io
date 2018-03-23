@@ -104,16 +104,16 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
 
 
 
@@ -134,7 +134,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nodejs简单入门">
 <meta property="og:url" content="https://tian0o0.github.io/2018/03/12/nodebeginner/index.html">
-<meta property="og:site_name" content="前端漫步">
+<meta property="og:site_name" content="一生懸命頑張る">
 <meta property="og:description" content="前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一篇文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。 完成目标创建一个web服务器，并实现一个简单的路由功能 组织结构 index.js              //开启服务器 server.js             //创建服">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-13T11:44:31.958Z">
@@ -176,12 +176,22 @@
 
 
 
-  <title>Nodejs简单入门 | 前端漫步</title>
+  <title>Nodejs简单入门 | 一生懸命頑張る</title>
   
 
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0ec34390676b679b4ce481ab68f5c1ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -206,12 +216,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">前端漫步</span>
+        <span class="site-title">一生懸命頑張る</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">因为孤独而沉浸 因为沉浸而强大</h1>
+        <h1 class="site-subtitle" itemprop="description">プレッシャーを感じているときにさえ、楽しいと思える心を持つ人間になりたい</h1>
       
   </div>
 
@@ -322,7 +332,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端漫步">
+      <meta itemprop="name" content="一生懸命頑張る">
     </span>
 
     
@@ -396,8 +406,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/12/nodebeginner/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/12/nodebeginner/" itemprop="commentCount"></span>
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/12/nodebeginner/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -641,12 +650,10 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
     </div>
 
   
@@ -798,7 +805,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">谢天</span>
+  <span class="author" itemprop="copyrightHolder">一生懸命頑張るTian0o0</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -816,8 +823,6 @@
 
 
 
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
 
 
 
@@ -844,6 +849,12 @@
     
 
     
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
 
   </div>
 
@@ -865,8 +876,6 @@
 
   
 
-
-  
 
 
 
@@ -913,11 +922,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
@@ -958,26 +962,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://tian0o0.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://tian0o0.github.io/2018/03/12/nodebeginner/';
-          this.page.identifier = '2018/03/12/nodebeginner/';
-          this.page.title = 'Nodejs简单入门';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://tian0o0.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
@@ -990,6 +974,10 @@
   
 
 
+
+
+
+  
 
 
 
@@ -1071,6 +1059,31 @@
 
 
   
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
   
   <script type="text/javascript">
   wpac_init = window.wpac_init || [];

@@ -104,16 +104,16 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
 
 
 
@@ -135,10 +135,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务器折腾小记">
 <meta property="og:url" content="https://tian0o0.github.io/2018/03/22/服务器/index.html">
-<meta property="og:site_name" content="前端漫步">
+<meta property="og:site_name" content="一生懸命頑張る">
 <meta property="og:description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T12:18:51.443Z">
+<meta property="og:updated_time" content="2018-03-23T11:38:32.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务器折腾小记">
 <meta name="twitter:description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
@@ -177,12 +177,22 @@
 
 
 
-  <title>服务器折腾小记 | 前端漫步</title>
+  <title>服务器折腾小记 | 一生懸命頑張る</title>
   
 
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0ec34390676b679b4ce481ab68f5c1ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -207,12 +217,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">前端漫步</span>
+        <span class="site-title">一生懸命頑張る</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">因为孤独而沉浸 因为沉浸而强大</h1>
+        <h1 class="site-subtitle" itemprop="description">プレッシャーを感じているときにさえ、楽しいと思える心を持つ人間になりたい</h1>
       
   </div>
 
@@ -323,7 +333,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端漫步">
+      <meta itemprop="name" content="一生懸命頑張る">
     </span>
 
     
@@ -359,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-22T20:18:51+08:00">
-                2018-03-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T19:38:32+08:00">
+                2018-03-23
               </time>
             
           </span>
@@ -378,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/服务器/" itemprop="url" rel="index">
-                    <span itemprop="name">服务器</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -397,8 +407,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/22/服务器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/22/服务器/" itemprop="commentCount"></span>
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/22/服务器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -496,8 +505,10 @@
 <li><code>pm2 list</code>用于查看开启的node服务列表</li>
 <li><code>pm2 show NAME</code>用于查看某个node服务详情</li>
 <li><code>pm2 stop/start ID/NAME</code>用于开启停止node服务</li>
-<li>···</li>
 </ul>
+<ol>
+<li>具体查看pm2官网：<a href="http://pm2.keymetrics.io/" target="_blank" rel="noopener">http://pm2.keymetrics.io/</a></li>
+</ol>
 <h4 id="五、Nginx实现反向代理"><a href="#五、Nginx实现反向代理" class="headerlink" title="五、Nginx实现反向代理"></a>五、Nginx实现反向代理</h4><p>上面，一个简单的node服务跑在了服务器的8081端口，但是，我需要通过直接访问120.79.143.xx来访问这个node服务的话，就需要用到nginx了</p>
 <p><strong>原理：</strong></p>
 <blockquote>
@@ -515,7 +526,33 @@
 <p><strong>5. 重启nginx服务：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/systemctl restart nginx.service</span><br></pre></td></tr></table></figure>
 <p><strong>6. 直接访问<code>120.79.143.xx</code>就可以访问服务器上8081端口的服务了</strong>。这就是nginx反向代理的简单实现。</p>
-
+<h4 id="六、域名解析"><a href="#六、域名解析" class="headerlink" title="六、域名解析"></a>六、域名解析</h4><p>虽然是在万网上面买的域名，阿里云也提供了域名解析服务，不过我还是把它拿到了DNSPod上进行处理，以后如果买了其它域名服务商的域名都可以在DNSPod进行统一管理。</p>
+<p>这时我的域名<a href="www.tian0o0.top">www.tian0o0.top</a>的首页还是nginx的启动页面，需要将其与服务器ip对应起来的话就要修改nginx的配置，将来自<a href="http://www.tian0o0.top的请求转发到服务器上的其它端口，步骤和上面类似，**需要注意防火墙是否开放了我所需要的端口*" target="_blank" rel="noopener">www.tian0o0.top的请求转发到服务器上的其它端口，步骤和上面类似，**需要注意防火墙是否开放了我所需要的端口*</a>*</p>
+<p><em>修改firstnode-8081.conf</em>：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> firstnode &#123;</span><br><span class="line">  <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span> www.tian0o0.top;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forward-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Nginx-Proxy <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_pass</span> http://firstnode;</span><br><span class="line">    <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样访问<a href="www.tian0o0.top">www.tian0o0.top</a>就能够通过nginx将请求映射到服务器的8081端口，访问到我的node服务</p>
+<h4 id="七、安装mongodb"><a href="#七、安装mongodb" class="headerlink" title="七、安装mongodb"></a>七、安装mongodb</h4><ol>
+<li>创建仓库文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/mongodb-org-3.4.repo</span><br></pre></td></tr></table></figure>
+<p>然后复制下面配置,保存退出</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-3.4]</span><br><span class="line">name=MongoDB Repository</span><br><span class="line">baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc</span><br></pre></td></tr></table></figure>
+<ol>
+<li>yum安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mongodb-org</span><br></pre></td></tr></table></figure>
+<p>这一步耗时比较久，安装好后修改<code>mongod.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/mongod.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改配置文件的 bindIp, 默认是 127.0.0.1 只限于本机连接。所以安装完成后必须把这个修改为 0.0.0.0 ,否则通过别的机器是没法连接的</p>
+</blockquote>
+<ol>
+<li>启动、停止mongodb</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mongod start</span><br><span class="line"></span><br><span class="line">service mongod stop</span><br></pre></td></tr></table></figure>
+<p>通过查看日志看mongodb是否启动成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/log/mongodb/mongod.log</span><br></pre></td></tr></table></figure>
+<p>如果出现下面信息说明启动成功（27017是mongodb的默认端口）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[initandlisten] waiting for connections on port 27017</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -649,12 +686,10 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
     </div>
 
   
@@ -782,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、创建一个node服务"><span class="nav-number">2.</span> <span class="nav-text">二、创建一个node服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、小结一下"><span class="nav-number">3.</span> <span class="nav-text">三、小结一下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、PM2"><span class="nav-number">4.</span> <span class="nav-text">四、PM2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、Nginx实现反向代理"><span class="nav-number">5.</span> <span class="nav-text">五、Nginx实现反向代理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、创建一个node服务"><span class="nav-number">2.</span> <span class="nav-text">二、创建一个node服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、小结一下"><span class="nav-number">3.</span> <span class="nav-text">三、小结一下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、PM2"><span class="nav-number">4.</span> <span class="nav-text">四、PM2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、Nginx实现反向代理"><span class="nav-number">5.</span> <span class="nav-text">五、Nginx实现反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、域名解析"><span class="nav-number">6.</span> <span class="nav-text">六、域名解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、安装mongodb"><span class="nav-number">7.</span> <span class="nav-text">七、安装mongodb</span></a></li></ol></div>
             
 
           </div>
@@ -806,7 +841,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">谢天</span>
+  <span class="author" itemprop="copyrightHolder">一生懸命頑張るTian0o0</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -824,8 +859,6 @@
 
 
 
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
 
 
 
@@ -852,6 +885,12 @@
     
 
     
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
 
   </div>
 
@@ -873,8 +912,6 @@
 
   
 
-
-  
 
 
 
@@ -921,11 +958,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
@@ -966,26 +998,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://tian0o0.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://tian0o0.github.io/2018/03/22/服务器/';
-          this.page.identifier = '2018/03/22/服务器/';
-          this.page.title = '服务器折腾小记';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://tian0o0.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
@@ -998,6 +1010,10 @@
   
 
 
+
+
+
+  
 
 
 
@@ -1079,6 +1095,31 @@
 
 
   
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
   
   <script type="text/javascript">
   wpac_init = window.wpac_init || [];
