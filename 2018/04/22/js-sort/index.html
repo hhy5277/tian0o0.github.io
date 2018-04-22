@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="ES6,promise," />
+  <meta name="keywords" content="排序," />
 
 
 
@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="一、前言1.什么是promise？ 2.promise有什么用？ 3.什么时候用promise？ MDN的官方解释是：  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值  新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目 所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。">
-<meta name="keywords" content="ES6,promise">
+<meta name="description" content="一、前言本文整理了三种js排序方法（升序）  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3">
+<meta name="keywords" content="排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise之不完全解读">
-<meta property="og:url" content="https://tian0o0.github.io/2018/03/07/promise/index.html">
+<meta property="og:title" content="js排序">
+<meta property="og:url" content="https://tian0o0.github.io/2018/04/22/js-sort/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="一、前言1.什么是promise？ 2.promise有什么用？ 3.什么时候用promise？ MDN的官方解释是：  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值  新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目 所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。">
+<meta property="og:description" content="一、前言本文整理了三种js排序方法（升序）  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-16T13:36:41.000Z">
+<meta property="og:updated_time" content="2018-04-22T07:34:22.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise之不完全解读">
-<meta name="twitter:description" content="一、前言1.什么是promise？ 2.promise有什么用？ 3.什么时候用promise？ MDN的官方解释是：  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值  新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目 所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。">
+<meta name="twitter:title" content="js排序">
+<meta name="twitter:description" content="一、前言本文整理了三种js排序方法（升序）  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/2018/03/07/promise/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/2018/04/22/js-sort/"/>
 
 
 
 
 
-  <title>Promise之不完全解读 | 前端漫步</title>
+  <title>js排序 | 前端漫步</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/07/promise/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/04/22/js-sort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Promise之不完全解读</h2>
+          <h2 class="post-title" itemprop="name headline">js排序</h2>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T19:25:00+08:00">
-                2018-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T15:40:00+08:00">
+                2018-04-22
               </time>
             
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-16T21:36:41+08:00">
-                2018-03-16
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-22T15:34:22+08:00">
+                2018-04-22
               </time>
             
           </span>
@@ -406,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/07/promise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/07/promise/" itemprop="commentsCount"></span>
+                <a href="/2018/04/22/js-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/22/js-sort/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,075
+                  424
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  2
                 </span>
               
             </div>
@@ -466,50 +466,22 @@
       
 
       
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>1.什么是promise？</p>
-<p>2.promise有什么用？</p>
-<p>3.什么时候用promise？</p>
-<p>MDN的官方解释是：</p>
-<blockquote>
-<p>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值</p>
+        <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>本文整理了三种js排序方法（升序）</p>
+<ul>
+<li>sort()</li>
+<li>快速排序</li>
+<li>冒泡排序</li>
+</ul>
+<h4 id="二、sort"><a href="#二、sort" class="headerlink" title="二、sort()"></a>二、sort()</h4><p>利用sort function 可以完成一些简单的数组排序</p>
+<h5 id="对数组排序"><a href="#对数组排序" class="headerlink" title="对数组排序"></a>对数组排序</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">3</span>,<span class="number">55</span>,<span class="number">7</span>];</span><br><span class="line">arr.sort();</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">//输出结果[3,7,55]</span></span><br></pre></td></tr></table></figure>
+<h5 id="根据数组对象的某一属性排序"><a href="#根据数组对象的某一属性排序" class="headerlink" title="根据数组对象的某一属性排序"></a>根据数组对象的某一属性排序</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr= [ </span><br><span class="line">    &#123; <span class="string">'rank'</span>: <span class="number">2</span>&#125;,</span><br><span class="line">    &#123; <span class="string">'rank'</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    &#123; <span class="string">'rank'</span>: <span class="number">5</span>&#125;,</span><br><span class="line">    &#123; <span class="string">'rank'</span>: <span class="number">6</span>&#125;</span><br><span class="line">];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.rank - b.rank;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">&#123; <span class="string">'rank'</span>: <span class="number">1</span>&#125;,</span><br><span class="line">&#123; <span class="string">'rank'</span>: <span class="number">2</span>&#125;,</span><br><span class="line">&#123; <span class="string">'rank'</span>: <span class="number">5</span>&#125;,</span><br><span class="line">&#123; <span class="string">'rank'</span>: <span class="number">6</span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三、快速排序"><a href="#三、快速排序" class="headerlink" title="三、快速排序"></a>三、快速排序</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = arr.length</span><br><span class="line">    <span class="keyword">if</span>(len &lt;= <span class="number">1</span>) &#123; <span class="keyword">return</span> arr &#125;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">let</span> num = arr.splice(i, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">let</span> left = [], right = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(arr[i] &lt; num) &#123;</span><br><span class="line">        left.push(arr[i])</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        right.push(arr[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> quickSort(left).concat(num, quickSort(right))</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort([<span class="number">1</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">6</span>]))</span><br><span class="line"><span class="comment">//[1,2,2,6,11]</span></span><br></pre></td></tr></table></figure>
+<p>可以看出，虽然排序是正确的，但是无法取出重复元素2，要实现去重的话用ES6的Set数据结构可以方便的做到：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> newArr = [...new <span class="built_in">Set</span>(arr)]</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="comment">//const newArr = Array.from(new Set(arr))</span></span><br></pre></td></tr></table></figure>
+<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><blockquote>
+<p>利用双层循环来逐个比较数组的每个值</p>
 </blockquote>
-<p>新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目</p>
-<p>所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。</p>
-<ul>
-<li>它在<code>异步计算</code>中扮演者重要的角色：它可以将异步操作队列化，按照我们想要的顺序进行执行，并且返回符合预期的结果</li>
-<li>我们可以在对象之间传递和操作promise，帮助我们处理队列</li>
-</ul>
-<h2 id="二、历史"><a href="#二、历史" class="headerlink" title="二、历史"></a>二、历史</h2><p>如果了解JavaScript的历史，可能会帮助我们更好的认识promise。</p>
-<pre><code>为检查表单而生的JavaScript
-</code></pre><p>在很久很久以前···程序都是后台进行处理的，还没有前端一说。在JavaScript出现以前，用户在填写表单时稍有不慎就得重新填写一遍，毫无用户体验。这时就出现了JavaScript，他天生就是用来检查表单的。那么作为一门浏览器端的语言，就注定了它<code>异步的命运</code>：它的执行不能使页面冻结。</p>
-<p>其实在JavaScript里面异步的问题还不是特别严重，因为JavaScript里的异步主要以DOM操作为主，但是自从出现了Nodejs以后，它对异步的依赖进一步加剧，为什么这么说呢？</p>
-<p>我们知道在Nodejs刚诞生的时候，PHP/Java等后端语言已经十分成熟，那作为后来者的Nodejs如何在后端世界分一杯羹呢？答案就是：<code>无阻塞和高并发</code>，这是nodejs的招牌。想要实现这一招牌，异步操作是重中之重！</p>
-<h2 id="三、promise的基本概念"><a href="#三、promise的基本概念" class="headerlink" title="三、promise的基本概念"></a>三、promise的基本概念</h2><p>使用promise的基本方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    reject()</span><br><span class="line">&#125; )</span><br><span class="line">.then(</span><br><span class="line"><span class="comment">//可以返回一个新的promise对象</span></span><br><span class="line"><span class="comment">//可以返回一个同步的值</span></span><br><span class="line"><span class="comment">//可以抛出一个同步的异常</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line"><span class="comment">//捕获错误</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>promise有三种状态：</p>
-<ul>
-<li>pending：进行中</li>
-<li>fulfilled：成功</li>
-<li>rejected：失败</li>
-</ul>
-<p>而且一旦其状态变为fulfill或reject，就不可继续改变状态</p>
-<p>promise通过引入仅仅一个回调函数来避免所谓的<code>回调地狱</code>，也就是说，在.then()里面不应该出现新的回调。正确的做法是：返回一个新的promise对象来实现.then()的链式调用。</p>
-<h2 id="四、promise陷阱（promise穿透）"><a href="#四、promise陷阱（promise穿透）" class="headerlink" title="四、promise陷阱（promise穿透）"></a>四、promise陷阱（promise穿透）</h2><p>纸上得来终觉浅，直接上代码吧：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在promise里面不返回任何值或者返回false，会有什么结果？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(<span class="string">'2'</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">    .then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">        (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">                    resolve(<span class="string">'5'</span>);</span><br><span class="line">                &#125;, <span class="number">2000</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then( <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value + <span class="string">'6'</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<pre><code>执行顺序：1-2-3-false6-4
-</code></pre><p><strong>解释</strong>：在promise里面不返回任何值或者返回false，他会立刻往下执行。同理，如果去掉<code>return false</code>,结果就是  1-2-3-undefined6-4</p>
-<p>（注意：那个立即执行函数由于不再.then()的直接回调里面，因此它与.then()的回调不处于同一执行栈）</p>
-<hr>
-<p><strong>写出简洁的promise</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(something)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="comment">/*```*/</span>)</span><br></pre></td></tr></table></figure>
-<p>其实写成下面这种方式更加好看</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(something).then(<span class="comment">/*```*/</span>)</span><br></pre></td></tr></table></figure>
-<p>那么，我们再来看一个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then(<span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>))</span><br><span class="line">.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res) <span class="comment">// bar</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>结果居然不是‘bar’而是‘foo’，实际上这和前面的例子很相似，<code>如果给.then()传递的不是一个函数，它回直接解析为.then(null)，导致立即执行下一个.then(),发生所谓的promise穿透</code></p>
-<p>如果想要得到‘foo’,可以这么写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then( <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res)  <span class="comment">// foo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><a href="http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/" target="_blank" rel="noopener">we have a problem with promises</a><br>看了三遍这个文章才算看懂，真为自己的智商感到拙计啊啊啊.<br>等熟悉了promise，接下来就是async/await，以及Rx.js了吧···我不会轻易狗带的···</p>
-
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">            <span class="comment">//let n = 0</span></span><br><span class="line">            <span class="comment">//if(arr[i] &gt; arr[j]) &#123;</span></span><br><span class="line">                <span class="comment">//n = arr[i]</span></span><br><span class="line">                <span class="comment">//arr[i] = arr[j]</span></span><br><span class="line">                <span class="comment">//arr[j] = n</span></span><br><span class="line">            <span class="comment">//&#125;</span></span><br><span class="line">            <span class="comment">//有了ES6的结构赋值，交换数值只要一句话</span></span><br><span class="line">            <span class="keyword">if</span>(arr[i] &gt; arr[j]) &#123;</span><br><span class="line">                [arr[i], arr[j]] = [arr[j], arr[i]]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">1</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">7</span>]))</span><br><span class="line"><span class="comment">//[1,2,7,11]</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -558,7 +530,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2018/03/07/promise/" title="Promise之不完全解读">https://tian0o0.github.io/2018/03/07/promise/</a>
+    <a href="https://tian0o0.github.io/2018/04/22/js-sort/" title="js排序">https://tian0o0.github.io/2018/04/22/js-sort/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -573,9 +545,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
-          
-            <a href="/tags/promise/" rel="tag"><i class="fa fa-tag"></i> promise</a>
+            <a href="/tags/排序/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
           
         </div>
       
@@ -600,8 +570,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/06/hello-world/" rel="next" title="记第一篇博客">
-                <i class="fa fa-chevron-left"></i> 记第一篇博客
+              <a href="/2018/03/22/服务器/" rel="next" title="服务器折腾小记">
+                <i class="fa fa-chevron-left"></i> 服务器折腾小记
               </a>
             
           </div>
@@ -609,10 +579,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/12/nodebeginner/" rel="prev" title="Nodejs简单入门">
-                Nodejs简单入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -779,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、历史"><span class="nav-number">2.</span> <span class="nav-text">二、历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、promise的基本概念"><span class="nav-number">3.</span> <span class="nav-text">三、promise的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、promise陷阱（promise穿透）"><span class="nav-number">4.</span> <span class="nav-text">四、promise陷阱（promise穿透）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、sort"><span class="nav-number">2.</span> <span class="nav-text">二、sort()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对数组排序"><span class="nav-number">2.1.</span> <span class="nav-text">对数组排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根据数组对象的某一属性排序"><span class="nav-number">2.2.</span> <span class="nav-text">根据数组对象的某一属性排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、快速排序"><span class="nav-number">3.</span> <span class="nav-text">三、快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序"><span class="nav-number">4.</span> <span class="nav-text">冒泡排序</span></a></li></ol></div>
             
 
           </div>
