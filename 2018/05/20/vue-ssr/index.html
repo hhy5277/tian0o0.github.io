@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ssr," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每">
+<meta name="keywords" content="ssr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue服务端渲染">
+<meta property="og:url" content="https://tian0o0.github.io/2018/05/20/vue-ssr/index.html">
+<meta property="og:site_name" content="前端漫步">
+<meta property="og:description" content="前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-23T11:52:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue服务端渲染">
+<meta name="twitter:description" content="前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tian0o0.github.io/2018/05/20/vue-ssr/"/>
+
+
+
+
+
+  <title>vue服务端渲染 | 前端漫步</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0ec34390676b679b4ce481ab68f5c1ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/tian0o0" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端漫步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">プレッシャーを感じているときにさえ、楽しいと思える心を持つ人間になりたい</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/05/20/vue-ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="谢天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端漫步">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">vue服务端渲染</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T20:00:00+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-23T19:52:04+08:00">
+                2018-05-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/20/vue-ssr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/20/vue-ssr/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,161
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><blockquote>
+<p><strong>由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同</strong></p>
+</blockquote>
+<h4 id="服务器上的数据响应"><a href="#服务器上的数据响应" class="headerlink" title="服务器上的数据响应"></a>服务器上的数据响应</h4><blockquote>
+<p>在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每个请求应该都是全新的、独立的应用程序实例，以便不会有交叉请求造成的状态污染(cross-request state pollution)。</p>
+</blockquote>
+<blockquote>
+<p>因为实际的渲染过程需要确定性，所以我们也将在服务器上“预取”数据(“pre-fetching” data) - 这意味着在我们开始渲染时，我们的应用程序就已经解析完成其状态。也就是说，将数据进行响应式的过程在服务器上是多余的，所以默认情况下禁用。禁用响应式数据，还可以避免将「数据」转换为「响应式对象」的性能开销。</p>
+</blockquote>
+<h4 id="组件生命周期钩子函数"><a href="#组件生命周期钩子函数" class="headerlink" title="组件生命周期钩子函数"></a>组件生命周期钩子函数</h4><blockquote>
+<p>由于没有动态更新，所有的生命周期钩子函数中，只有 beforeCreate 和 created 会在服务器端渲染(SSR)过程中被调用。这就是说任何其他生命周期钩子函数中的代码（例如 beforeMount 或 mounted），只会在客户端执行。</p>
+</blockquote>
+<blockquote>
+<p>此外还需要注意的是，你应该避免在 beforeCreate 和 created 生命周期时产生全局副作用的代码，例如在其中使用 setInterval 设置 timer。在纯客户端(client-side only)的代码中，我们可以设置一个 timer，然后在 beforeDestroy 或 destroyed 生命周期时将其销毁。但是，由于在 SSR 期间并不会调用销毁钩子函数，所以 timer 将永远保留下来。为了避免这种情况，请将副作用代码移动到 beforeMount 或 mounted 生命周期中。</p>
+</blockquote>
+<h4 id="访问特定平台-Platform-Specific-API"><a href="#访问特定平台-Platform-Specific-API" class="headerlink" title="访问特定平台(Platform-Specific) API"></a>访问特定平台(Platform-Specific) API</h4><blockquote>
+<p>通用代码不可接受特定平台的 API，因此如果你的代码中，直接使用了像 window 或 document，这种仅浏览器可用的全局变量，则会在 Node.js 中执行时抛出错误，反之也是如此。</p>
+</blockquote>
+<blockquote>
+<p>对于共享于服务器和客户端，但用于不同平台 API 的任务(task)，建议将平台特定实现包含在通用 API 中，或者使用为你执行此操作的 library。例如，axios 是一个 HTTP 客户端，可以向服务器和客户端都暴露相同的 API。</p>
+</blockquote>
+<blockquote>
+<p>对于仅浏览器可用的 API，通常方式是，在「纯客户端(client-only)」的生命周期钩子函数中惰性访问(lazily access)它们。</p>
+</blockquote>
+<h4 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h4><p>大多数自定义指令直接操作<br>DOM，因此会在服务器端渲染(SSR)过程中导致错误。有两种方法可以解决这个问题：</p>
+<blockquote>
+<p>推荐使用组件作为抽象机制，并运行在「虚拟 DOM 层级(Virtual-DOM level)」（例如，使用渲染函数(render function)）。</p>
+</blockquote>
+<blockquote>
+<p>如果你有一个自定义指令，但是不是很容易替换为组件，则可以在创建服务器 renderer 时，使用 directives 选项所提供”服务器端版本(server-side version)”。</p>
+</blockquote>
+<h2 id="Let’s-get-it"><a href="#Let’s-get-it" class="headerlink" title="Let’s get it"></a>Let’s get it</h2><h4 id="搭建脚手架"><a href="#搭建脚手架" class="headerlink" title="搭建脚手架"></a>搭建脚手架</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用webpack-simple搭建一个简单的脚手架</span></span><br><span class="line">vue init webpack-simple vue-ssr</span><br></pre></td></tr></table></figure>
+<p>src目录可能需要像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">├── components</span><br><span class="line">│   ├── Foo.vue</span><br><span class="line">│   ├── Bar.vue</span><br><span class="line">│   └── Baz.vue</span><br><span class="line">├── index.template.html # SSR模板</span><br><span class="line">├── App.vue</span><br><span class="line">├── app.js # 通用 entry(universal entry)</span><br><span class="line">├── entry-client.js # 仅运行于浏览器</span><br><span class="line">└── entry-server.js # 仅运行于服务器</span><br></pre></td></tr></table></figure>
+<h4 id="客户端与服务端通用入口：app-js"><a href="#客户端与服务端通用入口：app-js" class="headerlink" title="客户端与服务端通用入口：app.js"></a>客户端与服务端通用入口：app.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出一个工厂函数，用于创建新的</span></span><br><span class="line"><span class="comment">// 应用程序、router 和 store 实例</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createApp</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// 根实例简单的渲染应用程序组件。</span></span><br><span class="line">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> &#123; app &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="客户端入口：entry-client-js"><a href="#客户端入口：entry-client-js" class="headerlink" title="客户端入口：entry-client.js"></a>客户端入口：entry-client.js</h4><blockquote>
+<p>客户端 entry 只需创建应用程序，并且将其挂载到 DOM 中</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'./app'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; app &#125; = createApp()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里假定 App.vue 模板中根元素具有 `id="app"`</span></span><br><span class="line">app.$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="服务端入口：entry-server-js"><a href="#服务端入口：entry-server-js" class="headerlink" title="服务端入口：entry-server.js"></a>服务端入口：entry-server.js</h4><blockquote>
+<p>服务器 entry 使用 default export 导出函数，并在每次渲染中重复调用此函数。此时，除了创建和返回应用程序实例之外，它不会做太多事情 - 但是稍后我们将在此执行服务器端路由匹配(server-side route matching)和数据预取逻辑(data pre-fetching logic)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'./app'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> context =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; app &#125; = createApp()</span><br><span class="line">  <span class="keyword">return</span> app</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构建配置（webpack）"><a href="#构建配置（webpack）" class="headerlink" title="构建配置（webpack）"></a>构建配置（webpack）</h2><p>建议将配置分为三个文件：</p>
+<ul>
+<li><strong>webpack.base.config.js</strong>: 包含在两个环境共享的配置，例如，输出路径(output path)，别名(alias)和 loader。</li>
+<li><strong>webpack.client.config.js</strong></li>
+<li><strong>webpack.server.config.js</strong></li>
+</ul>
+<blockquote>
+<p><strong>webpack.client.config.js</strong>和<strong>webpack.server.config.js</strong>，可以通过使用 <code>webpack-merge</code> 来简单地扩展<strong>webpack.base.config.js</strong></p>
+</blockquote>
+<h4 id="webpack-base-config-js"><a href="#webpack-base-config-js" class="headerlink" title="webpack.base.config.js"></a>webpack.base.config.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'../dist'</span>),</span><br><span class="line">    publicPath: <span class="string">'/dist/'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'vue-style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'vue-style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span>,</span><br><span class="line">          <span class="string">'sass-loader'</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.sass$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'vue-style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span>,</span><br><span class="line">          <span class="string">'sass-loader?indentedSyntax'</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">        loader: <span class="string">'vue-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">            <span class="comment">// Since sass-loader (weirdly) has SCSS as its default parse mode, we map</span></span><br><span class="line">            <span class="comment">// the "scss" and "sass" values for the lang attribute to the right configs here.</span></span><br><span class="line">            <span class="comment">// other preprocessors should work out of the box, no loader config like this necessary.</span></span><br><span class="line">            <span class="string">'scss'</span>: [</span><br><span class="line">              <span class="string">'vue-style-loader'</span>,</span><br><span class="line">              <span class="string">'css-loader'</span>,</span><br><span class="line">              <span class="string">'sass-loader'</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="string">'sass'</span>: [</span><br><span class="line">              <span class="string">'vue-style-loader'</span>,</span><br><span class="line">              <span class="string">'css-loader'</span>,</span><br><span class="line">              <span class="string">'sass-loader?indentedSyntax'</span></span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// other vue-loader options go here</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpg|gif|svg)$/</span>,</span><br><span class="line">        loader: <span class="string">'file-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">'[name].[ext]?[hash]'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">'*'</span>, <span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'#eval-source-map'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">  <span class="built_in">module</span>.exports.devtool = <span class="string">'#source-map'</span></span><br><span class="line">  <span class="comment">// http://vue-loader.vuejs.org/en/workflow/production.html</span></span><br><span class="line">  <span class="built_in">module</span>.exports.plugins = (<span class="built_in">module</span>.exports.plugins || []).concat([</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">'process.env'</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">'"production"'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      sourceMap: <span class="literal">true</span>,</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="webpack-client-config-js"><a href="#webpack-client-config-js" class="headerlink" title="webpack.client.config.js"></a>webpack.client.config.js</h4><blockquote>
+<p>如果你使用 CommonsChunkPlugin(webpack4使用splitChunkPlugin)，请确保仅在客户端配置(client config)中使用，因为服务器包需要单独的入口 chunk<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">const</span> baseConfig = <span class="built_in">require</span>(<span class="string">'./webpack.base.config.js'</span>)</span><br><span class="line"><span class="keyword">const</span> VueSSRClientPlugin = <span class="built_in">require</span>(<span class="string">'vue-server-renderer/client-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(baseConfig, &#123;</span><br><span class="line">  entry: <span class="string">'./src/entry-client.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].client.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 重要信息：这将 webpack 运行时分离到一个引导 chunk 中，</span></span><br><span class="line">    <span class="comment">// 以便可以在之后正确注入异步 chunk。</span></span><br><span class="line">    <span class="comment">// 这也为你的 应用程序/vendor 代码提供了更好的缓存。</span></span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">      name: <span class="string">"manifest"</span>,</span><br><span class="line">      minChunks: <span class="literal">Infinity</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="comment">// 此插件在输出目录中</span></span><br><span class="line">    <span class="comment">// 生成 `vue-ssr-client-manifest.json`。</span></span><br><span class="line">    <span class="comment">// new VueSSRClientPlugin()</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="webpack-client-config-js-1"><a href="#webpack-client-config-js-1" class="headerlink" title="webpack.client.config.js"></a>webpack.client.config.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">const</span> nodeExternals = <span class="built_in">require</span>(<span class="string">'webpack-node-externals'</span>)</span><br><span class="line"><span class="keyword">const</span> baseConfig = <span class="built_in">require</span>(<span class="string">'./webpack.base.config.js'</span>)</span><br><span class="line"><span class="keyword">const</span> VueSSRServerPlugin = <span class="built_in">require</span>(<span class="string">'vue-server-renderer/server-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(baseConfig, &#123;</span><br><span class="line">  <span class="comment">// 将 entry 指向应用程序的 server entry 文件</span></span><br><span class="line">  entry: <span class="string">'/path/to/entry-server.js'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，</span></span><br><span class="line">  <span class="comment">// 并且还会在编译 Vue 组件时，</span></span><br><span class="line">  <span class="comment">// 告知 `vue-loader` 输送面向服务器代码(server-oriented code)。</span></span><br><span class="line">  target: <span class="string">'node'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对 bundle renderer 提供 source map 支持</span></span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    libraryTarget: <span class="string">'commonjs2'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// https://webpack.js.org/configuration/externals/#function</span></span><br><span class="line">  <span class="comment">// https://github.com/liady/webpack-node-externals</span></span><br><span class="line">  <span class="comment">// 外置化应用程序依赖模块。可以使服务器构建速度更快，</span></span><br><span class="line">  <span class="comment">// 并生成较小的 bundle 文件。</span></span><br><span class="line">  externals: nodeExternals(&#123;</span><br><span class="line">    <span class="comment">// 不要外置化 webpack 需要处理的依赖模块。</span></span><br><span class="line">    <span class="comment">// 你可以在这里添加更多的文件类型。例如，未处理 *.vue 原始文件，</span></span><br><span class="line">    <span class="comment">// 你还应该将修改 `global`（例如 polyfill）的依赖模块列入白名单</span></span><br><span class="line">    whitelist: <span class="regexp">/\.css$/</span></span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这是将服务器的整个输出</span></span><br><span class="line">  <span class="comment">// 构建为单个 JSON 文件的插件。</span></span><br><span class="line">  <span class="comment">// 默认文件名为 `vue-ssr-server-bundle.json`</span></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// new VueSSRServerPlugin()</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h4><p>1.执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//生成客户端打包文件</span><br><span class="line">webpack --config ./build/webpack.client.config.js</span><br></pre></td></tr></table></figure></p>
+<p>会在dist目录下生成：</p>
+<blockquote>
+<ul>
+<li>main.client.js</li>
+<li>manifest.client.js</li>
+</ul>
+</blockquote>
+<p>2.执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//生成服务端打包文件</span><br><span class="line">webpack --config ./build/webpack.server.config.js</span><br></pre></td></tr></table></figure></p>
+<p>会在dist目录下生成：</p>
+<blockquote>
+<ul>
+<li>main.server.js</li>
+</ul>
+</blockquote>
+<h4 id="修改server-js"><a href="#修改server-js" class="headerlink" title="修改server.js"></a>修改server.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> server = express()</span><br><span class="line"><span class="keyword">const</span> renderer = <span class="built_in">require</span>(<span class="string">'vue-server-renderer'</span>).createRenderer(&#123;</span><br><span class="line">    template: <span class="built_in">require</span>(<span class="string">'fs'</span>).readFileSync(<span class="string">'./src/index.template.html'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// const createApp = require('./src/app.js')</span></span><br><span class="line"><span class="comment">// 通过服务端打包文件main.server.js来创建app实例</span></span><br><span class="line"><span class="keyword">const</span> createApp = <span class="built_in">require</span>(<span class="string">'./dist/main.server.js'</span>).default</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将dist文件夹作为静态资源目录</span></span><br><span class="line">server.use(<span class="string">'/dist'</span>, express.static(<span class="string">'./dist'</span>))</span><br><span class="line"></span><br><span class="line">server.get(<span class="string">'*'</span>, (req, res) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> context = &#123;</span><br><span class="line">        title: <span class="string">'hello'</span>,</span><br><span class="line">        meta: <span class="string">`</span></span><br><span class="line"><span class="string">            &lt;meta charset="utf-8"&gt;</span></span><br><span class="line"><span class="string">        `</span>,</span><br><span class="line">        url: req.url</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// const app = new Vue(&#123;</span></span><br><span class="line">    <span class="comment">//     data: &#123;</span></span><br><span class="line">    <span class="comment">//         url: req.url</span></span><br><span class="line">    <span class="comment">//     &#125;,</span></span><br><span class="line">    <span class="comment">//     template: `&lt;div&gt;访问的 URL 是： &#123;&#123; url &#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">    <span class="comment">// 不应该直接创建一个应用程序实例，而是应该暴露一个可以重复执行的工厂函数，为每个请求创建新的应用程序实例</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> app = createApp(context)</span><br><span class="line"></span><br><span class="line">    renderer.renderToString(app, context).then(<span class="function"><span class="params">html</span> =&gt;</span> &#123;</span><br><span class="line">        res.end(html)</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">        res.status(<span class="number">500</span>).end(<span class="string">'Internal Server Error'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8081</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="index-template-html中引入client端打包文件"><a href="#index-template-html中引入client端打包文件" class="headerlink" title="index.template.html中引入client端打包文件"></a>index.template.html中引入client端打包文件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    &#123;&#123;&#123;meta&#125;&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--vue-ssr-outlet--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/dist/manifest.client.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/dist/main.client.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="执行以下命令："><a href="#执行以下命令：" class="headerlink" title="执行以下命令："></a>执行以下命令：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node server</span><br><span class="line"><span class="comment"># supervisor server</span></span><br></pre></td></tr></table></figure>
+<p>就可以成功访问到vue欢迎页面了</p>
+<h2 id="路由和代码分割"><a href="#路由和代码分割" class="headerlink" title="路由和代码分割"></a>路由和代码分割</h2><h4 id="在src目录下创建router-js"><a href="#在src目录下创建router-js" class="headerlink" title="在src目录下创建router.js"></a>在src目录下创建router.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createRouter</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    mode: <span class="string">'history'</span>,</span><br><span class="line">    routes: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'/hello/:id'</span>,</span><br><span class="line">        <span class="comment">// 动态导入组件，需要安装babel-preset-stage-2</span></span><br><span class="line">        component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./components/hello'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改通用入口app-js"><a href="#修改通用入口app-js" class="headerlink" title="修改通用入口app.js"></a>修改通用入口app.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;createRouter&#125; <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出一个工厂函数，用于创建新的</span></span><br><span class="line"><span class="comment">// 应用程序、router 和 store 实例</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createApp</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// 根实例简单的渲染应用程序组件。</span></span><br><span class="line">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(App),</span><br><span class="line">    router</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> router = createRouter()</span><br><span class="line">  <span class="keyword">return</span> &#123; app, router &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改entry-client-js"><a href="#修改entry-client-js" class="headerlink" title="修改entry-client.js"></a>修改entry-client.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//挂载 app 之前调用 router.onReady</span></span><br><span class="line"><span class="comment">//因为路由器必须要提前解析路由配置中的异步组件，才能正确地调用组件中可能存在的路由钩子</span></span><br><span class="line">router.onReady(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    app.$mount(<span class="string">'#app'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="在-entry-server-js-中实现服务器端路由逻辑"><a href="#在-entry-server-js-中实现服务器端路由逻辑" class="headerlink" title="在 entry-server.js 中实现服务器端路由逻辑"></a>在 entry-server.js 中实现服务器端路由逻辑</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'./app'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> context =&gt; &#123;</span><br><span class="line">  <span class="comment">// 因为有可能会是异步路由钩子函数或组件，所以我们将返回一个 Promise，</span></span><br><span class="line">  <span class="comment">// 以便服务器能够等待所有的内容在渲染前就已经准备就绪。</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; app, router &#125; = createApp()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置服务器端 router 的位置</span></span><br><span class="line">    router.push(context.url)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等到 router 将可能的异步组件和钩子函数解析完</span></span><br><span class="line">    router.onReady(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> matchedComponents = router.getMatchedComponents()</span><br><span class="line">      <span class="comment">// 匹配不到的路由，执行 reject 函数，并返回 404</span></span><br><span class="line">      <span class="keyword">if</span> (!matchedComponents.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> reject(&#123; <span class="attr">code</span>: <span class="number">404</span> &#125;)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Promise 应该 resolve 应用程序实例，以便它可以渲染</span></span><br><span class="line">      resolve(app)</span><br><span class="line">    &#125;, reject)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改server-js-1"><a href="#修改server-js-1" class="headerlink" title="修改server.js"></a>修改server.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">server.get(<span class="string">'*'</span>, (req, res) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> context = &#123;</span><br><span class="line">        title: <span class="string">'hello'</span>,</span><br><span class="line">        meta: <span class="string">`</span></span><br><span class="line"><span class="string">            &lt;meta charset="utf-8"&gt;</span></span><br><span class="line"><span class="string">        `</span>,</span><br><span class="line">        url: req.url</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// const app = createApp(context)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// renderer.renderToString(app, context).then(html =&gt; &#123;</span></span><br><span class="line">    <span class="comment">//     res.end(html)</span></span><br><span class="line">    <span class="comment">// &#125;).catch(e =&gt; &#123;</span></span><br><span class="line">    <span class="comment">//     res.status(500).end('Internal Server Error')</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">    createApp(context).then(<span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">        renderer.renderToString(app, (err, html) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="keyword">if</span> (err.code === <span class="number">404</span>) &#123;</span><br><span class="line">                    res.status(<span class="number">404</span>).end(<span class="string">'Page not found'</span>)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    res.status(<span class="number">500</span>).end(<span class="string">'Internal Server Error'</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                res.end(html)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="再次打包"><a href="#再次打包" class="headerlink" title="再次打包"></a>再次打包</h4><p>1.执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//生成客户端打包文件</span><br><span class="line">webpack --config ./build/webpack.client.config.js</span><br></pre></td></tr></table></figure></p>
+<p>会在dist目录下生成：</p>
+<blockquote>
+<ul>
+<li>0.client.js</li>
+<li>main.client.js</li>
+<li>manifest.client.js</li>
+</ul>
+</blockquote>
+<p>2.执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//生成服务端打包文件</span><br><span class="line">webpack --config ./build/webpack.server.config.js</span><br></pre></td></tr></table></figure></p>
+<p>会在dist目录下生成：</p>
+<blockquote>
+<ul>
+<li>0.server.js</li>
+<li>main.server.js</li>
+</ul>
+</blockquote>
+<p><strong>上面的<code>0.client.js</code>和<code>0.server.js</code>就是动态加载的组件hello.vue所打包出来的文件，这样就可以按需引用</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="谢天 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="谢天 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2018/05/20/vue-ssr/" title="vue服务端渲染">https://tian0o0.github.io/2018/05/20/vue-ssr/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ssr/" rel="tag"><i class="fa fa-tag"></i> ssr</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/22/js-sort/" rel="next" title="js排序">
+                <i class="fa fa-chevron-left"></i> js排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="谢天" />
+            
+              <p class="site-author-name" itemprop="name">谢天</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tian0o0" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:xietian19941007@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器上的数据响应"><span class="nav-number">2.0.1.</span> <span class="nav-text">服务器上的数据响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件生命周期钩子函数"><span class="nav-number">2.0.2.</span> <span class="nav-text">组件生命周期钩子函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问特定平台-Platform-Specific-API"><span class="nav-number">2.0.3.</span> <span class="nav-text">访问特定平台(Platform-Specific) API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义指令"><span class="nav-number">2.0.4.</span> <span class="nav-text">自定义指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-get-it"><span class="nav-number">3.</span> <span class="nav-text">Let’s get it</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建脚手架"><span class="nav-number">3.0.1.</span> <span class="nav-text">搭建脚手架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端与服务端通用入口：app-js"><span class="nav-number">3.0.2.</span> <span class="nav-text">客户端与服务端通用入口：app.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端入口：entry-client-js"><span class="nav-number">3.0.3.</span> <span class="nav-text">客户端入口：entry-client.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端入口：entry-server-js"><span class="nav-number">3.0.4.</span> <span class="nav-text">服务端入口：entry-server.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建配置（webpack）"><span class="nav-number">4.</span> <span class="nav-text">构建配置（webpack）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-base-config-js"><span class="nav-number">4.0.1.</span> <span class="nav-text">webpack.base.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-client-config-js"><span class="nav-number">4.0.2.</span> <span class="nav-text">webpack.client.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-client-config-js-1"><span class="nav-number">4.0.3.</span> <span class="nav-text">webpack.client.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">4.0.4.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改server-js"><span class="nav-number">4.0.5.</span> <span class="nav-text">修改server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-template-html中引入client端打包文件"><span class="nav-number">4.0.6.</span> <span class="nav-text">index.template.html中引入client端打包文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行以下命令："><span class="nav-number">4.0.7.</span> <span class="nav-text">执行以下命令：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由和代码分割"><span class="nav-number">5.</span> <span class="nav-text">路由和代码分割</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在src目录下创建router-js"><span class="nav-number">5.0.1.</span> <span class="nav-text">在src目录下创建router.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改通用入口app-js"><span class="nav-number">5.0.2.</span> <span class="nav-text">修改通用入口app.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改entry-client-js"><span class="nav-number">5.0.3.</span> <span class="nav-text">修改entry-client.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-entry-server-js-中实现服务器端路由逻辑"><span class="nav-number">5.0.4.</span> <span class="nav-text">在 entry-server.js 中实现服务器端路由逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改server-js-1"><span class="nav-number">5.0.5.</span> <span class="nav-text">修改server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次打包"><span class="nav-number">5.0.6.</span> <span class="nav-text">再次打包</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一生懸命頑張るTian0o0</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">9.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'tian0o0',
+            repo: 'gitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1094b0968f3ec3e37e32715be769d7bcebcf7f49',
+            
+                client_id: '75c9eff77fa7eb9723d2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
