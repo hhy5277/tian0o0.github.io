@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="前言3月初的时候美团开源了mpvue，当时听说能够用vue语法写小程序我就觉得很酷，但是对于国内公司的开源项目我一直是出于观望状态的。最近空闲时间在学习小程序，干脆两个坑一起踩吧&amp;gt;.&amp;lt; 虽说微信小程序给我们提供了免费的腾讯云开发环境，但是每次修改代码都要上传到腾讯云服务器上才能看到效果，这样效率其实很低。因此，搭建一个本地的开发环境能够加快我们的开发效率。 start这里以官方的nod">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T11:55:18.000Z">
+<meta property="og:updated_time" content="2018-05-30T12:11:16.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序本地开发环境搭建">
 <meta name="twitter:description" content="前言3月初的时候美团开源了mpvue，当时听说能够用vue语法写小程序我就觉得很酷，但是对于国内公司的开源项目我一直是出于观望状态的。最近空闲时间在学习小程序，干脆两个坑一起踩吧&amp;gt;.&amp;lt; 虽说微信小程序给我们提供了免费的腾讯云开发环境，但是每次修改代码都要上传到腾讯云服务器上才能看到效果，这样效率其实很低。因此，搭建一个本地的开发环境能够加快我们的开发效率。 start这里以官方的nod">
@@ -222,7 +222,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">プレッシャーを感じているときにさえ、楽しいと思える心を持つ人間になりたい</h1>
+        <h1 class="site-subtitle" itemprop="description">💪To be the only one</h1>
       
   </div>
 
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T19:55:18+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T20:11:16+08:00">
                 2018-05-30
               </time>
             
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  599
+                  600
                 </span>
               
 
@@ -468,16 +468,16 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>3月初的时候美团开源了mpvue，当时听说能够用vue语法写小程序我就觉得很酷，但是对于国内公司的开源项目我一直是出于观望状态的。最近空闲时间在学习小程序，干脆两个坑一起踩吧&gt;.&lt;</p>
 <p>虽说微信小程序给我们提供了免费的腾讯云开发环境，但是每次修改代码都要上传到腾讯云服务器上才能看到效果，这样效率其实很低。因此，搭建一个本地的开发环境能够加快我们的开发效率。</p>
-<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><p>这里以官方的nodejs DEMO为例，修改server/config.js<br>,添加一下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const CONF = &#123;</span><br><span class="line">    serverHost: &apos;localhost&apos;,</span><br><span class="line">    tunnelServerUrl: &apos;&apos;,</span><br><span class="line">    tunnelSignatureKey: &apos;27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89&apos;,</span><br><span class="line">      // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.cloud.tencent.com/capi</span><br><span class="line">    qcloudAppId: &apos;您的腾讯云 AppID&apos;,</span><br><span class="line">    qcloudSecretId: &apos;您的腾讯云 SecretId&apos;,</span><br><span class="line">    qcloudSecretKey: &apos;您的腾讯云 SecretKey&apos;,</span><br><span class="line">    wxMessageToken: &apos;weixinmsgtoken&apos;,</span><br><span class="line">    networkTimeout: 30000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><p>这里以官方的nodejs DEMO为例，修改server/config.js<br>,添加一下配置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CONF = &#123;</span><br><span class="line">    serverHost: <span class="string">'localhost'</span>,</span><br><span class="line">    tunnelServerUrl: <span class="string">''</span>,</span><br><span class="line">    tunnelSignatureKey: <span class="string">'27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89'</span>,</span><br><span class="line">      <span class="comment">// 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.cloud.tencent.com/capi</span></span><br><span class="line">    qcloudAppId: <span class="string">'您的腾讯云 AppID'</span>,</span><br><span class="line">    qcloudSecretId: <span class="string">'您的腾讯云 SecretId'</span>,</span><br><span class="line">    qcloudSecretKey: <span class="string">'您的腾讯云 SecretKey'</span>,</span><br><span class="line">    wxMessageToken: <span class="string">'weixinmsgtoken'</span>,</span><br><span class="line">    networkTimeout: <span class="number">30000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="安装MYSQL"><a href="#安装MYSQL" class="headerlink" title="安装MYSQL"></a>安装MYSQL</h4><p>然后需要本地安装mysql,安装步骤就不说了，我装好后找不到‘mysql’命令，说明环境变量有问题，自己设置一下就好了</p>
 <p>然后需要:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bin</span><br></pre></td></tr></table></figure>
-<p>并分别执行一下命令：</p>
+<p>并分别执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure</span><br><span class="line"></span><br><span class="line">mysqld install</span><br></pre></td></tr></table></figure>
 <p>最后：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
 <p>应该就能启动mysql服务了</p>
-<h4 id="创建一个数据库"><a href="#创建一个数据库" class="headerlink" title="创建一个数据库"></a>创建一个数据库</h4><p>由于我修改了server/config.js,取消了密码</p>
+<h4 id="创建一个数据库"><a href="#创建一个数据库" class="headerlink" title="创建一个数据库"></a>创建一个数据库</h4><p>由于我修改了server/config.js, 取消了密码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql: &#123;</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    port: <span class="number">3306</span>,</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    db: <span class="string">'cAuth'</span>,</span><br><span class="line">    pass: <span class="string">''</span>,</span><br><span class="line">    <span class="comment">// pass: 'wx306f628f4f46ca54',</span></span><br><span class="line">    char: <span class="string">'utf8mb4'</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p>因此可以直接登录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure>
@@ -488,7 +488,7 @@
 <p>说明创建数据库成功</p>
 <h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>在server目录下执行下面命令，初始化数据库：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node tools/initdb.js</span><br></pre></td></tr></table></figure>
-<p>这是报错显示找不到‘knex’模块，这是应为如果是本地的话还是需要安装依赖，之前腾讯云给我们的开发环境是上传代码后自动给我们安装的。那就安装吧：</p>
+<p>这时候报错显示找不到‘knex’模块，这是因为如果是本地的话还是需要安装依赖，之前腾讯云给我们的开发环境是上传代码后自动给我们安装的。那就安装吧：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <p>为了不用每次修改代码都重启服务，还需要全局安装nodemon:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g nodemon</span><br></pre></td></tr></table></figure>
