@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="自定义滚动条,自定义指令," />
+  <meta name="keywords" content="fullpage," />
 
 
 
@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;l">
-<meta name="keywords" content="自定义滚动条,自定义指令">
+<meta name="description" content="前言今天是端午节，祝大家端午节安康～同时作为一个伪阿根廷🇦🇷球迷，表示心疼梅西。不过还好这几天我没有买球，不然我现在可能要站在天台之上了～ 原理原理很简单:  通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改">
+<meta name="keywords" content="fullpage">
 <meta property="og:type" content="article">
-<meta property="og:title" content="做一个自定义滚动条">
-<meta property="og:url" content="https://tian0o0.github.io/2018/03/17/v-custom/index.html">
+<meta property="og:title" content="原生JS简单实现全屏滚动效果">
+<meta property="og:url" content="https://tian0o0.github.io/2018/06/18/全屏滚动/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;l">
+<meta property="og:description" content="前言今天是端午节，祝大家端午节安康～同时作为一个伪阿根廷🇦🇷球迷，表示心疼梅西。不过还好这几天我没有买球，不然我现在可能要站在天台之上了～ 原理原理很简单:  通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T10:25:20.003Z">
+<meta property="og:updated_time" content="2018-06-18T06:26:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="做一个自定义滚动条">
-<meta name="twitter:description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;l">
+<meta name="twitter:title" content="原生JS简单实现全屏滚动效果">
+<meta name="twitter:description" content="前言今天是端午节，祝大家端午节安康～同时作为一个伪阿根廷🇦🇷球迷，表示心疼梅西。不过还好这几天我没有买球，不然我现在可能要站在天台之上了～ 原理原理很简单:  通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/2018/03/17/v-custom/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/2018/06/18/全屏滚动/"/>
 
 
 
 
 
-  <title>做一个自定义滚动条 | 前端漫步</title>
+  <title>原生JS简单实现全屏滚动效果 | 前端漫步</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/17/v-custom/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/06/18/全屏滚动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">做一个自定义滚动条</h2>
+          <h2 class="post-title" itemprop="name headline">原生JS简单实现全屏滚动效果</h2>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T21:40:00+08:00">
-                2018-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T14:25:00+08:00">
+                2018-06-18
               </time>
             
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-18T18:25:20+08:00">
-                2018-03-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-18T14:26:26+08:00">
+                2018-06-18
               </time>
             
           </span>
@@ -406,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/17/v-custom/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/17/v-custom/" itemprop="commentsCount"></span>
+                <a href="/2018/06/18/全屏滚动/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/18/全屏滚动/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,079
+                  431
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  2
                 </span>
               
             </div>
@@ -466,57 +466,16 @@
       
 
       
-        <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。</p>
-<h3 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h3><p>（以下默认内容高度超出容器高度。）</p>
-<h4 id="2-1-结构"><a href="#2-1-结构" class="headerlink" title="2.1 结构"></a>2.1 结构</h4><p>需要满足以下HTML结构：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrapper"</span> <span class="attr">v-mousewheel</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--滚动内容--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"scroll-bar"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"scroll-block"</span> <span class="attr">v-scrollY</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-2原理"><a href="#2-2原理" class="headerlink" title="2.2原理"></a>2.2原理</h4><blockquote>
-<p>通过<code>拖拽事件</code>和<code>滚轮事件</code>动态改变内容区域的<code>top值</code></p>
-</blockquote>
-<p>因此需要:</p>
-<p>设置容器<code>content-wrapper</code>属性：<code>overflow: hidden;</code></p>
-<p>设置内容<code>content</code>属性：<code>position: absolute;</code></p>
-<p>这样，基础工作就已经ok了，开始写交互事件。</p>
-<h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><h4 id="3-1-拖拽事件"><a href="#3-1-拖拽事件" class="headerlink" title="3.1 拖拽事件"></a>3.1 拖拽事件</h4><p>大的方向上没什么问题，但是需要注意的是，拖动滑块时如果不做处理，会出现抖动现象，这是因为拖动时<code>onmousemove</code>事件频繁触发导致，因此加入<code>防抖</code>功能即可：</p>
-<p>加个定时器，每次执行onmousemove时清除定时器防止多次触发，定时器事件设置为20ms是因为浏览器的最大刷新频率为16.7ms/次。</p>
-<p>这样，在滑块<code>scroll-block</code>上加一个自定义指令<code>v-scrollY</code>,就可以实现拖拽效果啦~</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'scrollY'</span>, &#123;</span><br><span class="line">	bind (el, binding) &#123;</span><br><span class="line">		<span class="keyword">let</span> $el = el</span><br><span class="line">		$el.onmousedown = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> disY = e.clientY - $el.offsetTop</span><br><span class="line">			<span class="keyword">let</span> $content = $el.parentNode.parentNode.firstChild</span><br><span class="line">			<span class="keyword">let</span> contentH = $content.clientHeight</span><br><span class="line">			<span class="built_in">document</span>.onmousemove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">				clearTimeout(timer)</span><br><span class="line">				<span class="keyword">let</span> timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">					<span class="comment">// 滚动滑块滚动距离</span></span><br><span class="line">					<span class="keyword">let</span> top = <span class="built_in">Math</span>.min(<span class="built_in">Math</span>.max(e.clientY - disY, <span class="number">0</span>), <span class="number">306</span>)</span><br><span class="line">					<span class="comment">// 内容区域滚动距离</span></span><br><span class="line">					<span class="keyword">let</span> topC = top * (contentH - <span class="number">600</span>) / <span class="number">306</span></span><br><span class="line">					$el.style.top = top + <span class="string">'px'</span></span><br><span class="line">					$content.style.top = -topC +<span class="string">'px'</span></span><br><span class="line">				&#125;, <span class="number">20</span>)</span><br><span class="line">				$el.style.backgroundColor = <span class="string">'#acaaaa'</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">document</span>.onmouseup = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">				<span class="built_in">document</span>.onmousemove = <span class="literal">null</span></span><br><span class="line">				<span class="built_in">document</span>.onmouseup =<span class="literal">null</span></span><br><span class="line">				$el.style.backgroundColor = <span class="string">'#e9e9e9'</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="3-2-滚轮事件"><a href="#3-2-滚轮事件" class="headerlink" title="3.2 滚轮事件"></a>3.2 滚轮事件</h4><p>滚轮事件相对来说比较麻烦，这是因为：firefox和其他浏览器的滚轮事件不一样。</p>
-<blockquote>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天是端午节，祝大家端午节安康～同时作为一个伪阿根廷🇦🇷球迷，表示心疼梅西。不过还好这几天我没有买球，不然我现在可能要站在天台之上了～</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>原理很简单:</p>
 <ul>
-<li>在firefox中是<code>DOMMouseScroll</code> ,其他浏览器中则是<code>mousewheel</code></li>
-<li>在firefox中通过<code>e.detail</code>的正负值来判断上下滚动，其他浏览器中则是通过<code>e.wheelDetla</code>来判断上下滚动</li>
+<li>通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden;</li>
+<li>设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改变其top值。</li>
 </ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>-</th>
-<th>firefox</th>
-<th>其它浏览器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>上滚</td>
-<td>e.detail &lt; 0</td>
-<td>e.wheelDetla &gt; 0</td>
-</tr>
-<tr>
-<td>下滚</td>
-<td>e.detail &gt; 0</td>
-<td>e.wheelDetla &lt; 0</td>
-</tr>
-</tbody>
-</table>
-<p>其它有几点值得说一下：</p>
-<ul>
-<li>滚动时需要阻值默认事件，防止在子滚动区滚动时使父滚动区跟着滚动；</li>
-<li>滚动区内容设置：<code>user-select: none;</code>因为我发现在拖拽的时候鼠标离开滚动滑块会选中滚动内容区文字。</li>
-</ul>
-<p>注意上面几点应该就没问题了，然后在容器<code>content-wrapper</code>上添加<code>v-mousewheel</code>就可以滚动啦～<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'mousewheel'</span>, &#123;</span><br><span class="line">	bind( el, biding ) &#123;</span><br><span class="line">		<span class="keyword">let</span> num = <span class="number">0</span></span><br><span class="line">		<span class="keyword">let</span> $el = el</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">obj, type, fn, capture</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (obj.addEventListener) &#123;</span><br><span class="line">				<span class="keyword">if</span>( !capture ) &#123;capture = <span class="literal">false</span>&#125;</span><br><span class="line">				obj.addEventListener(type, fn, capture)</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (obj.attachEvent) &#123;</span><br><span class="line">				obj.attachEvent(<span class="string">"on"</span> + type, fn)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">scrollDown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> $block = $el.parentNode.children[<span class="number">1</span>].children[<span class="number">0</span>]</span><br><span class="line">			<span class="keyword">let</span> dis = <span class="built_in">Math</span>.min(<span class="number">20</span> * (num--), $el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$el.style.top = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) + <span class="string">'px'</span></span><br><span class="line">			<span class="keyword">let</span> topB = <span class="built_in">Math</span>.max(<span class="number">0</span>, dis) * <span class="number">306</span> / ($el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$block.style.top = topB + <span class="string">'px'</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">scrollUp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> $block = $el.parentNode.children[<span class="number">1</span>].children[<span class="number">0</span>]</span><br><span class="line">			<span class="keyword">let</span> dis = <span class="built_in">Math</span>.min(<span class="number">20</span> * (num++), $el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$el.style.top = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) + <span class="string">'px'</span></span><br><span class="line">			<span class="keyword">let</span> topB = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) * <span class="number">306</span> / ($el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$block.style.top = -topB + <span class="string">'px'</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">customScroll</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>( e.wheelDelta ) &#123;</span><br><span class="line">				<span class="keyword">if</span> (e.wheelDelta &gt; <span class="number">0</span>) &#123; <span class="comment">//下滚</span></span><br><span class="line">					scrollDown()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;  <span class="comment">//上滚</span></span><br><span class="line">					scrollUp()</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span> ( e.detail ) &#123;  <span class="comment">//兼容火狐</span></span><br><span class="line">				<span class="keyword">if</span> (e.detail &lt; <span class="number">0</span>) &#123; <span class="comment">//下滚</span></span><br><span class="line">					scrollDown()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;  <span class="comment">//上滚</span></span><br><span class="line">					scrollUp()</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		addEvent($el, <span class="string">'mousewheel'</span>, (e) =&gt; &#123;</span><br><span class="line">			<span class="keyword">let</span> ev = e || <span class="built_in">window</span>.event</span><br><span class="line">			ev.preventDefault ? ev.preventDefault() : ev.returnvalue = <span class="literal">false</span></span><br><span class="line">			customScroll(e)</span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="comment">// 兼容firefox</span></span><br><span class="line">		addEvent($el, <span class="string">'DOMMouseScroll'</span>, (e) =&gt; &#123;</span><br><span class="line">			<span class="keyword">let</span> ev = e || <span class="built_in">window</span>.event</span><br><span class="line">			ev.preventDefault ? ev.preventDefault() : ev.returnvalue = <span class="literal">false</span></span><br><span class="line">			customScroll(e)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="四、小结"><a href="#四、小结" class="headerlink" title="四、小结"></a>四、小结</h3><p>由于使用原生js处理，在兼容性方面可能还有所欠缺考虑的地方，确实还有待提高。同时，由于这么一大段代码都写在了main.js里面，感觉也不够好看，我想，也许可以通过vue提供的mixin或者做成vue的插件来实现相同的功能，毕竟都是为了复用嘛。好了，先写到这吧~</p>
-
+<h3 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h3><p>首先，HTML结构应该满足下面要求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#wrap</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">transition</span>: all <span class="number">1000ms</span> ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#page1</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#E4E6CE</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#page2</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#6CE26C</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#page3</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#BF4938</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#page4</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#2932E1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="滚轮事件"><a href="#滚轮事件" class="headerlink" title="滚轮事件"></a>滚轮事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pages = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"page"</span>);</span><br><span class="line"><span class="keyword">var</span> wrap = <span class="built_in">document</span>.getElementById(<span class="string">"wrap"</span>);</span><br><span class="line"><span class="keyword">var</span> main = <span class="built_in">document</span>.getElementById(<span class="string">"main"</span>);</span><br><span class="line"><span class="keyword">var</span> len = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line"></span><br><span class="line">wrap.style.height = len + <span class="string">"px"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; pages.length; i++) &#123;</span><br><span class="line">    pages[i].style.height = len + <span class="string">"px"</span>;</span><br><span class="line">&#125;</span><br><span class="line">        <span class="keyword">if</span> (navigator.userAgent.toLowerCase().indexOf(<span class="string">"firefox"</span>) != <span class="number">-1</span>) &#123;<span class="comment">//火狐</span></span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">"DOMMouseScroll"</span>, scrollFun);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.addEventListener) &#123;</span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">"mousewheel"</span>, scrollFun, <span class="literal">false</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent) &#123;<span class="comment">//IE</span></span><br><span class="line">            <span class="built_in">document</span>.attachEvent(<span class="string">"onmousewheel"</span>, scrollFun);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">document</span>.onmousewheel = scrollFun;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> startTime = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> endTime = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">scrollFun</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">var</span> event = e || <span class="built_in">window</span>.event;</span><br><span class="line">            <span class="keyword">var</span> dir = event.detail || -event.wheelDelta; <span class="comment">// &gt;0 向下滚动</span></span><br><span class="line">            <span class="comment">//1s内只能滚动一屏</span></span><br><span class="line">            <span class="keyword">if</span> (startTime - endTime &gt; <span class="number">1000</span>) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(startTime - endTime)</span><br><span class="line">                <span class="keyword">if</span> (dir &gt; <span class="number">0</span> &amp;&amp; now &gt; <span class="number">-3</span> * len) &#123;</span><br><span class="line">                    now -= len;</span><br><span class="line">                    main.style.top = now + <span class="string">"px"</span>;</span><br><span class="line">                    endTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dir &lt; <span class="number">0</span> &amp;&amp; now &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    now += len;</span><br><span class="line">                    main.style.top = now + <span class="string">"px"</span>;</span><br><span class="line">                    endTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(startTime - endTime)</span><br><span class="line">                event.preventDefault();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -565,7 +524,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2018/03/17/v-custom/" title="做一个自定义滚动条">https://tian0o0.github.io/2018/03/17/v-custom/</a>
+    <a href="https://tian0o0.github.io/2018/06/18/全屏滚动/" title="原生JS简单实现全屏滚动效果">https://tian0o0.github.io/2018/06/18/全屏滚动/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -580,9 +539,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自定义滚动条/" rel="tag"><i class="fa fa-tag"></i> 自定义滚动条</a>
-          
-            <a href="/tags/自定义指令/" rel="tag"><i class="fa fa-tag"></i> 自定义指令</a>
+            <a href="/tags/fullpage/" rel="tag"><i class="fa fa-tag"></i> fullpage</a>
           
         </div>
       
@@ -607,8 +564,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/12/nodebeginner/" rel="next" title="Nodejs简单入门">
-                <i class="fa fa-chevron-left"></i> Nodejs简单入门
+              <a href="/2018/05/30/wxapp-dev/" rel="next" title="微信小程序后台本地开发环境搭建">
+                <i class="fa fa-chevron-left"></i> 微信小程序后台本地开发环境搭建
               </a>
             
           </div>
@@ -616,10 +573,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/22/服务器/" rel="prev" title="服务器折腾小记">
-                服务器折腾小记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -786,7 +739,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、原理"><span class="nav-number">2.</span> <span class="nav-text">二、原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-结构"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2原理"><span class="nav-number">2.2.</span> <span class="nav-text">2.2原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、代码"><span class="nav-number">3.</span> <span class="nav-text">三、代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-拖拽事件"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 拖拽事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-滚轮事件"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 滚轮事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、小结"><span class="nav-number">4.</span> <span class="nav-text">四、小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML结构"><span class="nav-number">3.</span> <span class="nav-text">HTML结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">4.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滚轮事件"><span class="nav-number">5.</span> <span class="nav-text">滚轮事件</span></a></li></ol></div>
             
 
           </div>
