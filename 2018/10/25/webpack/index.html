@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack4," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="优化1.缩小文件搜索范围1.1优化loader配置 由于 Loader 对文件的转换操作很耗时，所以需要让尽可能少的文件被 Loader 理。   通过test、include、exclude去确定哪些文件需要被处理123456789101112//以babel-loader为例：module.exports = &amp;#123;    module: &amp;#123;        rules: [">
+<meta name="keywords" content="webpack4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack踩坑踩坑">
+<meta property="og:url" content="https://tian0o0.github.io/2018/10/25/webpack/index.html">
+<meta property="og:site_name" content="前端漫步">
+<meta property="og:description" content="优化1.缩小文件搜索范围1.1优化loader配置 由于 Loader 对文件的转换操作很耗时，所以需要让尽可能少的文件被 Loader 理。   通过test、include、exclude去确定哪些文件需要被处理123456789101112//以babel-loader为例：module.exports = &amp;#123;    module: &amp;#123;        rules: [">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-25T07:28:48.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack踩坑踩坑">
+<meta name="twitter:description" content="优化1.缩小文件搜索范围1.1优化loader配置 由于 Loader 对文件的转换操作很耗时，所以需要让尽可能少的文件被 Loader 理。   通过test、include、exclude去确定哪些文件需要被处理123456789101112//以babel-loader为例：module.exports = &amp;#123;    module: &amp;#123;        rules: [">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tian0o0.github.io/2018/10/25/webpack/"/>
+
+
+
+
+
+  <title>webpack踩坑踩坑 | 前端漫步</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0ec34390676b679b4ce481ab68f5c1ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/tian0o0" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端漫步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">💪To be the only one</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/10/25/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="谢天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端漫步">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">webpack踩坑踩坑</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T15:00:00+08:00">
+                2018-10-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-25T15:28:48+08:00">
+                2018-10-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/25/webpack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/10/25/webpack/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,879
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="1-缩小文件搜索范围"><a href="#1-缩小文件搜索范围" class="headerlink" title="1.缩小文件搜索范围"></a>1.缩小文件搜索范围</h3><h4 id="1-1优化loader配置"><a href="#1-1优化loader配置" class="headerlink" title="1.1优化loader配置"></a>1.1优化loader配置</h4><blockquote>
+<p>由于 Loader 对文件的转换操作很耗时，所以需要让尽可能少的文件被 Loader 理。</p>
+</blockquote>
+<ul>
+<li>通过test、include、exclude去确定哪些文件需要被处理<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以babel-loader为例：</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/.js$/</span>,</span><br><span class="line">                use: [<span class="string">'babel-loader?cacheDirectory'</span>],</span><br><span class="line">                include: path.resolve(__dirname, <span class="string">'src'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="1-2优化resolve-modules配置"><a href="#1-2优化resolve-modules配置" class="headerlink" title="1.2优化resolve.modules配置"></a>1.2优化resolve.modules配置</h4><blockquote>
+<p>resolve.modules用于配置webpack去哪些目录寻找三方模块</p>
+</blockquote>
+<blockquote>
+<p>默认值为：[‘node_modules]。 含义是先去当前目录的 node_modules 目录下去找我们想找的模块，如果没找到 就去上一级目录./node_modules中找，再没有就去 ../../node_modules 中找，以此类推 这和 node.js 的模块寻找机制很相似。</p>
+</blockquote>
+<ul>
+<li>当安装 的第三方模块都放在项目根目录的 node modules 目录下时，就没有必要<br>按照默认 的方式去一层层地寻找，可以指明存放第三方模块的绝对路径，以减少寻找<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        modules: [path.resolve(__dirname, <span class="string">'node_modules'</span>)]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="1-3优化resolve-mainField配置"><a href="#1-3优化resolve-mainField配置" class="headerlink" title="1.3优化resolve.mainField配置"></a>1.3优化resolve.mainField配置</h4><blockquote>
+<p>在安装的第三方模块中都会有一个 package.json 文件，用于描述这个模块的属性<br>其中的某些字段用于描述入口文件在哪里， resolve.mainFields用于配置采用哪个字段作为入口文件的描述</p>
+</blockquote>
+<blockquote>
+<p>可以存在多个字段描述入口文件的原因是，某些模块可以同时用于多个环境中，针对不同的运行环境需要使用不同的代码。以 isomorphic-fetch ( <a href="https://github.corn/matthewandrews/isomorphic-fetch" target="_blank" rel="noopener">https://github.corn/matthewandrews/isomorphic-fetch</a><br>）为例，它是 fetch API ( <a href="https://developer.mozilla.org/zh-CN/docs/Web/" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/</a><br>APl/Fetch_API) 的一个实现，但可同时用于浏览器和 Node.js 环境 在它的 package. jsoη<br>中就有两个入口文件描述字段：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"browser"</span>:”fetch-npm-browserify.js”,</span><br><span class="line"><span class="string">"main"</span>:”fetch-npm-node.js ”</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>isomo hic-fetch 在不同的运行环境下使用不同的代码，是因为 fetch API 的实现机制不<br>样，在浏览器中通过原生的 fetch 或者 XMLHttpRequest 实现，在 Node. j 通过<br>http 模块实现。</p>
+</blockquote>
+<blockquote>
+<p>resolve.mainFields 的默认值和当前的 target 配置有关系，对应的关系如下。</p>
+<ul>
+<li>target web 或者 webworker 时，值是［”browser ”，” module ”，”ma in ］。</li>
+<li>target 为其他情况时，值是［ “module ”，”main ”］。</li>
+</ul>
+</blockquote>
+<p>以target 等于 web 为例， Webpack 会先采用第三方模块中的 browser 宇段去寻找模<br>块的入口 文件，如果不存在，就采用 module 字段，以此类推。<br>为了减少搜索步骤，在明确第 方模块的入口文件描述字段时，我们可以将它设置得尽<br>量少。 由于大多数第三方模块都采用 main 宇段去描述入口文件的位置，所以可以这样配置:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        mainFields: [<span class="string">'main'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-4优化resolve-alias"><a href="#1-4优化resolve-alias" class="headerlink" title="1.4优化resolve.alias"></a>1.4优化resolve.alias</h4><blockquote>
+<p>在默认情况下， Webpack 会从入口文件./node_modules/vue/dist/vue.js开始递<br>归解析和处理依赖的几十个文件，这会是一个很耗时的操作 通过配置 resolve. alias,<br>可以让 Webpack 在处理 vue 时，直接使用单独、完整的 vue.esm.js 文件 ，从而跳<br>过耗时的递归解析操作<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        alias: &#123;</span><br><span class="line">            <span class="string">'vue$'</span>: path.resolve(__dirname, <span class="string">'./node_modules/vue/dist/vue.runtime.esm.js'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>但是，对某些库使用本优化方法后，会影响到后面要讲的使用 Tree-Sharking 去除无效<br>代码的优化，因为打包好的完整文件中有部分代码在我们的项目中可能永远用不上。一般对<br>整体性比较强的库采用本方法优化，因为完整文件中的代码是 个整体，每 行都是不可或<br>缺的 但是对于 些工具类的库如 lodash ，我们的项目中<br>可能只用到了其中几个工具函数，就不能使用本方法去优化了，因为这会导致在我们 的输出<br>代码中包含很多永远不会被执行的代码。</p>
+</blockquote>
+<h4 id="1-5优化resolve-extensions"><a href="#1-5优化resolve-extensions" class="headerlink" title="1.5优化resolve.extensions"></a>1.5优化resolve.extensions</h4><p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extensions :[’ .js ’,’.json ’]</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，当遇到 require ( ‘. /data ’） 这样的导入语句 webpack 会先去寻<br>找.／ data.js 文件，如果该文件不存在，就去寻找 data.json 文件，如果还是找不到就报错。</p>
+<p>如果这个列表越长，或者正确的后缀越往后，就会造成尝试的次数越多，所以<br>resolve .extensions 的配置也会影响到构建的性能 在配置 resolve.extensions<br>时需要遵守 以下几点，以做到尽可能地优化构建性能。</p>
+<ul>
+<li>后缀尝试列表要尽可能小，不要将项目中不可能存在的情况写到后缀尝试列表中。</li>
+<li>频率出现最高的文件后缀要优先放在最前面，以做到尽快退出寻找过程。</li>
+<li>在源码中写导入语句时，要尽可能带上后缀 从而可以避免寻找过程。例如在确定<br>的情况下将 require ( ’. /data ’） 写成 require （’. data.json’）</li>
+</ul>
+<h4 id="1-6优化module-noParse"><a href="#1-6优化module-noParse" class="headerlink" title="1.6优化module.noParse"></a>1.6优化module.noParse</h4><blockquote>
+<p>module.noParse 配置项可 Webpack 忽略对部分没采用模块<br>化的文件的递归解析处理，这样做的好处是能提高构建性能。原因是一些库如 jQuery<br>庞大又没有采用模块化标准，让 Webpack 解析这些文件既耗时又没有意义。</p>
+</blockquote>
+<p>在前面讲解优化 resolve.alias 配置时讲到，单独、完整的 vue.esm.js 文件没有采<br>用模块化，让我们通过配置 module.noParse 忽略对它的递归解析处<br>理，相关的 Webpack 配置如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        noParse: [<span class="regexp">/vue\.runtime\.esm\.js$/</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-使用DllPlugin"><a href="#2-使用DllPlugin" class="headerlink" title="2.使用DllPlugin"></a>2.使用DllPlugin</h3><p>为web项目接入动态链接库（dll）</p>
+<blockquote>
+<p>1.将网页依赖的基础模块抽离出来，打包到一个个单独的动态链接库中 。在一个动态<br>链接库中可以包含多个模块。</p>
+</blockquote>
+<blockquote>
+<p>2.当需要导入的模块存在于某个动态链接库 中时，这个模块不能被再次打包，而是去<br>动态链接库中获取。</p>
+</blockquote>
+<blockquote>
+<p>3由于动态链接库中大多数包含的<br>是常用的第 方模块，例如 vue、vue-router ，所以只要不升级这些模块的版本，动态链接<br>库就不用重新编译。</p>
+</blockquote>
+<p>在webpack中，通过以下两个插件实现dll：</p>
+<ul>
+<li>DllPlugin: 用于打包出一个个单独的动态链接库文件</li>
+<li>DllReferencePlugin: 用于在主要的配置文件中引入 DllPlugin 插件打包好的动<br>态链接库文件。</li>
+</ul>
+<p>实现过程：</p>
+<p><strong>1、动态链接库文件相关的文件需要由 份独立的构建输出，用于为主构建使用。新建webpack.dll.conf.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> DllPlugin = <span class="built_in">require</span>(<span class="string">'webpack/lib/DllPlugin'</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">dir</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> path.join(__dirname, <span class="string">'..'</span>, dir)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        vue: [<span class="string">'vue/dist/vue.runtime.esm.js'</span>, <span class="string">'vue-router'</span>, <span class="string">'vuex'</span>],</span><br><span class="line">        <span class="comment">// vant: ['vant']</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: resolve(<span class="string">'dist'</span>),</span><br><span class="line">        filename: <span class="string">'[name].dll.js'</span>,</span><br><span class="line">        <span class="comment">// 存放动态链接库的全局变量名称，_dll_vue</span></span><br><span class="line">        library: <span class="string">'_dll_[name]'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> DllPlugin(&#123;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             *动态链接库的全局变量名称，需要和 output.library 中的保持一致</span></span><br><span class="line"><span class="comment">             *该字段的值也就是输出的 manifest json 文件中 name 字段的值</span></span><br><span class="line"><span class="comment">             *例如在 react.manifest json 中就有 ”name“：”_dll_vue"</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            name: <span class="string">'_dll_[name]'</span>,</span><br><span class="line">            <span class="comment">//描述动态链接库的 manifest json 文件输出时的路径以及文件名称</span></span><br><span class="line">            path: resolve(<span class="string">'dist/[name].manifest.json'</span>),</span><br><span class="line">            context: __dirname</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、根据webpack.dll.conf.js构建动态链接库文件及其描述文件。创建build.dll.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./check-versions'</span>)()</span><br><span class="line"></span><br><span class="line">process.env.NODE_ENV = <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line"><span class="keyword">const</span> rm = <span class="built_in">require</span>(<span class="string">'rimraf'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../config'</span>)</span><br><span class="line"><span class="keyword">const</span> webpackConfig = <span class="built_in">require</span>(<span class="string">'./webpack.dll.conf'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> spinner = ora(<span class="string">'building for dll...'</span>)</span><br><span class="line">spinner.start()</span><br><span class="line"></span><br><span class="line"><span class="comment">// rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err =&gt; &#123;</span></span><br><span class="line"><span class="comment">//   if (err) throw err</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// &#125;)</span></span><br><span class="line">webpack(webpackConfig, <span class="function"><span class="keyword">function</span> (<span class="params">err, stats</span>) </span>&#123;</span><br><span class="line">    spinner.stop()</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err</span><br><span class="line">    process.stdout.write(stats.toString(&#123;</span><br><span class="line">      colors: <span class="literal">true</span>,</span><br><span class="line">      modules: <span class="literal">false</span>,</span><br><span class="line">      children: <span class="literal">false</span>,</span><br><span class="line">      chunks: <span class="literal">false</span>,</span><br><span class="line">      chunkModules: <span class="literal">false</span></span><br><span class="line">    &#125;) + <span class="string">'\n\n'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (stats.hasErrors()) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(chalk.red(<span class="string">'  Build failed with errors.\n'</span>))</span><br><span class="line">      process.exit(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(chalk.cyan(<span class="string">'  Build complete.\n'</span>))</span><br><span class="line">    </span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这步以后会在dist目录下产生：</p>
+<ul>
+<li>vue.dll.js</li>
+<li>vue.manifest.json (描述vue.dll.js中包含哪些模块)</li>
+</ul>
+<p><strong>3、修改webpack.prod.conf.js，加入DllReferencePlugin</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> DllReferencePlugin = <span class="built_in">require</span>(<span class="string">'webpack/lib/DllReferencePlugin'</span>)</span><br><span class="line"><span class="comment">//告 Webpack 使用了哪些动态链接库</span></span><br><span class="line"><span class="keyword">new</span> DllReferencePlugin(&#123;</span><br><span class="line"><span class="comment">// 描述vue动态链接库的文件内容</span></span><br><span class="line">  manifest: <span class="built_in">require</span>(<span class="string">'../dist/vue.manifest.json'</span>),</span><br><span class="line">  context: __dirname</span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">//如果有多个动态链接库文件</span></span><br><span class="line"><span class="comment">// new DllReferencePlugin(&#123;</span></span><br><span class="line"><span class="comment">//   manifest: ...</span></span><br><span class="line"><span class="comment">// &#125;),</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>4、在根目录index.html中引入vue.dll.js</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- built files will be auto injected --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./vue.dll.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>5、npm run build执行构建，可以发现构建速度有了明显的提升</strong></p>
+<h3 id="3-Tree-Shaking"><a href="#3-Tree-Shaking" class="headerlink" title="3.Tree Shaking"></a>3.Tree Shaking</h3><blockquote>
+<p>要让 Tree Shaking 正常工作的前提是，提交给 Webpack JavaScript 代码必须采用了 ES6 的模块化语法。</p>
+</blockquote>
+<blockquote>
+<p>因为 ES6 模块化语法是静态的（在导入、导出语句中的路径<br>是静态的字符串，而且不能放入其他代码块中），这让 Webpack 可以简单地分析出哪些<br>expo rt 的被 import 了。如果采用了 S5 中的模块化，例如 module.export={ … ｝、<br>require (x+y ）、 if (x) {require （’.／ util ’）｝，则 Webpack 无法分析出可以剔除哪些代码</p>
+</blockquote>
+<p>实现过程:</p>
+<p><strong>1. 修改.babelrc</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"presets"</span>: [</span><br><span class="line">    [<span class="string">"env"</span>, &#123;</span><br><span class="line">      <span class="string">"modules"</span>: <span class="literal">false</span> <span class="comment">//关闭 babel 的模块转换功能，保留原本的 ES6语法。</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2. 以lodash库为例</strong></p>
+<blockquote>
+<p>往往我们在项目中使用lodash只会用到其提供部分方法，如果我们要tree shaking lodash，应该安装lodash-es而不是lodash，因为lodash库本身是commonjs的模块，不支持tree shaking.<br>同时想要使tree shaking生效，还需要两个插件：</p>
+<ul>
+<li>babel-plugin-lodash</li>
+<li>lodash-webpack-plugin</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.prod.conf.js</span></span><br><span class="line"><span class="keyword">const</span> LodashModuleReplacementPlugin = <span class="built_in">require</span>(<span class="string">'lodash-webpack-plugin'</span>);</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> LodashModuleReplacementPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在import时:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import _ from 'lodash-es'</span></span><br><span class="line"><span class="keyword">import</span> &#123; chunk &#125; <span class="keyword">from</span> <span class="string">'lodash-es'</span></span><br></pre></td></tr></table></figure></p>
+<p>这样一来在构建以后lodash就shaking到无影无踪了</p>
+<p><strong>2. 以vant组件库为例</strong><br>查看vant的package.json,发现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"main"</span>: <span class="string">"lib/index.js"</span>, <span class="comment">//commonjs</span></span><br><span class="line"><span class="string">"module"</span>: <span class="string">"es/index.js"</span>, <span class="comment">//esm</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在项目中使用大量的第 方库时，我们会发现 Tree Shaking 似乎不生效了，原因是大部分<br>Npm 中的代码都采用了 CommonJS 语法，这导致 Tree shaking 无法正常工作而降级处理。<br>但幸运的是，有些库考虑到了这 点，这些库在发布到 Npm 上时会同时提供两份代码，一<br>份采 CommonJs 模块化语法，一份采用 ES6 模块化语法。并且在 package json 文件中<br>别指出这两份代码的入口。</p>
+</blockquote>
+<p>之前介绍过 mainFields 用于配置采用哪个字段作为模块的入口描述。为了<br>Tree Shaking vant 生效，需要配置 Webpack 的文件寻找规 如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports= &#123;</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        mainFields: [<span class="string">'module'</span>, <span class="string">'main'</span>, <span class="string">'browser'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上配置的含义是优先使用 module 作为入口，如果不存在，就<br>会采用 browser 或者 main 并将其作为入口</p>
+<blockquote>
+<p>社区约定：用 jsnext:main 作为 ES6 模块化代码的入口</p>
+</blockquote>
+<p>要实现按需导入vant组件，需要一个插件：<code>babel-plugin-import</code>，同时修改.babelrc:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"plugins"</span>: [</span><br><span class="line">        [<span class="string">"import"</span>: &#123;</span><br><span class="line">            <span class="string">"libraryName"</span>: <span class="string">"vant"</span>,</span><br><span class="line">            <span class="string">"libraryDirectory"</span>: <span class="string">"es"</span>,</span><br><span class="line">            <span class="string">"style"</span>: <span class="literal">true</span></span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，build后也能够把vant tree shaking</p>
+<h3 id="4-使用-Scope-Hoisting"><a href="#4-使用-Scope-Hoisting" class="headerlink" title="4. 使用 Scope Hoisting"></a>4. 使用 Scope Hoisting</h3><blockquote>
+<p>scope hoisting减小代码打包后的体积，并且减少函数作用域，减小开销(目前我感觉并没有起作用。。。)</p>
+</blockquote>
+<pre><code>new webpack.optimize.ModuleConcatenationPlugin(),
+</code></pre><p>和tree shaking一样，Scope Hoisting 依赖源码时 需采用 S6 模块化语法，还需要配置mainFields</p>
+<blockquote>
+<p>未完待续···</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="谢天 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="谢天 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2018/10/25/webpack/" title="webpack踩坑踩坑">https://tian0o0.github.io/2018/10/25/webpack/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack4/" rel="tag"><i class="fa fa-tag"></i> webpack4</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/05/array/" rel="next" title="总结一下js里操作数组的方法吧...">
+                <i class="fa fa-chevron-left"></i> 总结一下js里操作数组的方法吧...
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="谢天" />
+            
+              <p class="site-author-name" itemprop="name">谢天</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tian0o0" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:xietian19941007@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">1.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缩小文件搜索范围"><span class="nav-number">1.1.</span> <span class="nav-text">1.缩小文件搜索范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1优化loader配置"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1优化loader配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2优化resolve-modules配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2优化resolve.modules配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3优化resolve-mainField配置"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3优化resolve.mainField配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4优化resolve-alias"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4优化resolve.alias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5优化resolve-extensions"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5优化resolve.extensions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6优化module-noParse"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6优化module.noParse</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用DllPlugin"><span class="nav-number">1.2.</span> <span class="nav-text">2.使用DllPlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Tree-Shaking"><span class="nav-number">1.3.</span> <span class="nav-text">3.Tree Shaking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用-Scope-Hoisting"><span class="nav-number">1.4.</span> <span class="nav-text">4. 使用 Scope Hoisting</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一生懸命頑張るTian0o0</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">16.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'tian0o0',
+            repo: 'gitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1094b0968f3ec3e37e32715be769d7bcebcf7f49',
+            
+                client_id: '75c9eff77fa7eb9723d2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
