@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="优化1.缩小文件搜索范围1.1优化loader配置 由于 Loader 对文件的转换操作很耗时，所以需要让尽可能少的文件被 Loader 理。   通过test、include、exclude去确定哪些文件需要被处理123456789101112//以babel-loader为例：module.exports = &amp;#123;    module: &amp;#123;        rules: [">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-25T07:28:48.735Z">
+<meta property="og:updated_time" content="2018-10-26T01:57:54.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack踩坑踩坑">
 <meta name="twitter:description" content="优化1.缩小文件搜索范围1.1优化loader配置 由于 Loader 对文件的转换操作很耗时，所以需要让尽可能少的文件被 Loader 理。   通过test、include、exclude去确定哪些文件需要被处理123456789101112//以babel-loader为例：module.exports = &amp;#123;    module: &amp;#123;        rules: [">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-25T15:28:48+08:00">
-                2018-10-25
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-26T09:57:54+08:00">
+                2018-10-26
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,879
+                  3,205
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  13
                 </span>
               
             </div>
@@ -579,6 +579,29 @@
 </blockquote>
 <pre><code>new webpack.optimize.ModuleConcatenationPlugin(),
 </code></pre><p>和tree shaking一样，Scope Hoisting 依赖源码时 需采用 S6 模块化语法，还需要配置mainFields</p>
+<h3 id="5-使用compression-webpack-plugin开启gzip"><a href="#5-使用compression-webpack-plugin开启gzip" class="headerlink" title="5. 使用compression-webpack-plugin开启gzip"></a>5. 使用compression-webpack-plugin开启gzip</h3><blockquote>
+<p>利用该插件生成.gz文件，在服务器开启gzip的情况下，会优先返回.gz文件</p>
+</blockquote>
+<p>以vue-cli为例：</p>
+<ul>
+<li><ol>
+<li>在config/index.js中：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Gzip off by default as many popular static hosts such as</span></span><br><span class="line"><span class="comment">// Surge or Netlify already gzip all static assets for you.</span></span><br><span class="line"><span class="comment">// Before setting to `true`, make sure to:</span></span><br><span class="line"><span class="comment">// npm install --save-dev compression-webpack-plugin</span></span><br><span class="line">productionGzip: <span class="literal">true</span>,</span><br><span class="line">productionGzipExtensions: [<span class="string">'js'</span>, <span class="string">'css'</span>, <span class="string">'png'</span>], <span class="comment">//你想要gzip的文件类型</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>在webpack.prod.conf.js中已经有这么一段代码：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (config.build.productionGzip) &#123;</span><br><span class="line">  <span class="keyword">const</span> CompressionWebpackPlugin = <span class="built_in">require</span>(<span class="string">'compression-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line">  webpackConfig.plugins.push(</span><br><span class="line">    <span class="keyword">new</span> CompressionWebpackPlugin(&#123;</span><br><span class="line">      asset: <span class="string">'[path].gz[query]'</span>,</span><br><span class="line">      algorithm: <span class="string">'gzip'</span>,</span><br><span class="line">      test: <span class="keyword">new</span> <span class="built_in">RegExp</span>(</span><br><span class="line">        <span class="string">'\\.('</span> + config.build.productionGzipExtensions.join(<span class="string">'|'</span>) + <span class="string">')$'</span></span><br><span class="line">      ),</span><br><span class="line">      threshold: <span class="number">10240</span>,  <span class="comment">//只处理大于此大小(10k)的资产。以byte为单位 默认为0。</span></span><br><span class="line">      minRatio: <span class="number">0.8</span>  <span class="comment">//只有压缩率比这个值小的资源才会被处理 。默认为0.8.</span></span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>在build后会生成对应的.gz文件</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>值得注意的是并不是所有的文件都会生成对应的gzip文件，因为我们设置了<code>threshold: 10240</code>和<code>minRatio: 0.8</code>,文件大小小于10k的不会被gzip，同时只有压缩率比0.8小的资源才会被处理，否则比起直接使用没有gzip的文件，浏览器会花更多的时间用来unzip这些文件，得不偿失</p>
+</blockquote>
 <blockquote>
 <p>未完待续···</p>
 </blockquote>
@@ -846,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">1.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缩小文件搜索范围"><span class="nav-number">1.1.</span> <span class="nav-text">1.缩小文件搜索范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1优化loader配置"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1优化loader配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2优化resolve-modules配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2优化resolve.modules配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3优化resolve-mainField配置"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3优化resolve.mainField配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4优化resolve-alias"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4优化resolve.alias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5优化resolve-extensions"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5优化resolve.extensions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6优化module-noParse"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6优化module.noParse</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用DllPlugin"><span class="nav-number">1.2.</span> <span class="nav-text">2.使用DllPlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Tree-Shaking"><span class="nav-number">1.3.</span> <span class="nav-text">3.Tree Shaking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用-Scope-Hoisting"><span class="nav-number">1.4.</span> <span class="nav-text">4. 使用 Scope Hoisting</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">1.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缩小文件搜索范围"><span class="nav-number">1.1.</span> <span class="nav-text">1.缩小文件搜索范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1优化loader配置"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1优化loader配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2优化resolve-modules配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2优化resolve.modules配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3优化resolve-mainField配置"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3优化resolve.mainField配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4优化resolve-alias"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4优化resolve.alias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5优化resolve-extensions"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5优化resolve.extensions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6优化module-noParse"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6优化module.noParse</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用DllPlugin"><span class="nav-number">1.2.</span> <span class="nav-text">2.使用DllPlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Tree-Shaking"><span class="nav-number">1.3.</span> <span class="nav-text">3.Tree Shaking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用-Scope-Hoisting"><span class="nav-number">1.4.</span> <span class="nav-text">4. 使用 Scope Hoisting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用compression-webpack-plugin开启gzip"><span class="nav-number">1.5.</span> <span class="nav-text">5. 使用compression-webpack-plugin开启gzip</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -882,7 +905,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.3k</span>
+    <span title="Site words total count">16.6k</span>
   
 </div>
 
