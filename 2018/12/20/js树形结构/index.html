@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="nginx," />
+  <meta name="keywords" content="tree," />
 
 
 
@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
-<meta name="keywords" content="nginx">
+<meta name="description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;">
+<meta name="keywords" content="tree">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器折腾小记">
-<meta property="og:url" content="https://tian0o0.github.io/2018/03/22/服务器/index.html">
+<meta property="og:title" content="js树形结构">
+<meta property="og:url" content="https://tian0o0.github.io/2018/12/20/js树形结构/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
+<meta property="og:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T11:38:32.797Z">
+<meta property="og:updated_time" content="2018-12-20T02:24:37.949Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务器折腾小记">
-<meta name="twitter:description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
+<meta name="twitter:title" content="js树形结构">
+<meta name="twitter:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/2018/03/22/服务器/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/2018/12/20/js树形结构/"/>
 
 
 
 
 
-  <title>服务器折腾小记 | 前端漫步</title>
+  <title>js树形结构 | 前端漫步</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/03/22/服务器/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/12/20/js树形结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">服务器折腾小记</h2>
+          <h2 class="post-title" itemprop="name headline">js树形结构</h2>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T20:00:00+08:00">
-                2018-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T10:24:00+08:00">
+                2018-12-20
               </time>
             
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T19:38:32+08:00">
-                2018-03-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-20T10:24:37+08:00">
+                2018-12-20
               </time>
             
           </span>
@@ -388,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -406,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/22/服务器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/22/服务器/" itemprop="commentsCount"></span>
+                <a href="/2018/12/20/js树形结构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/20/js树形结构/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,355
+                  240
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  1
                 </span>
               
             </div>
@@ -466,105 +466,9 @@
       
 
       
-        <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。</p>
-<h4 id="二、创建一个node服务"><a href="#二、创建一个node服务" class="headerlink" title="二、创建一个node服务"></a>二、创建一个node服务</h4><ol>
-<li><p>创建一个app.js文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch app.js</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用vim打开：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim app.js</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建啥都没有的服务，看下效果：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;)</span><br><span class="line">    res.end(<span class="string">'first node app'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.listen(<span class="number">80</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'your server is running at http://120.79.143.53:8080/'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>保存退出，执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>发现80端口冲突，因此需要修改端口号</p>
-<ol>
-<li><p>将上面对的端口号改成8081后执行<code>node app.js</code>后服务跑了起来，但是打开浏览器依然无法访问，那应该就是防火墙未开通8081的端口号</p>
-</li>
-<li><p>我装的是CENTOS7.3，它使用firewall来代替iptables，执行以下命令查看防火墙开放的端口号：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>显示：<code>80/tcp</code>，显然防火墙只开放了80端口</p>
-<ol>
-<li>执行以下命令来开发新端口：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public(作用域) --add-port=8081/tcp(端口和访问类型) --permanent(永久生效)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>然后重启防火墙：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>执行<code>node app</code>开启node服务，打开浏览器访问120.79.143.53发现还是不行，不过试了下可以看到输出信息<code>first node</code>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:8081</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>这就很费解了，查了好多资料都没找到解决办法，只能先放着了。。。</p>
-<p>然后今天上SF咨询这个问题，因为我买的阿里云ECS，<strong>++需要重新配置一下安全组的规则++</strong>，然后问题神奇地解决了，感谢SF！</p>
-<h4 id="三、小结一下"><a href="#三、小结一下" class="headerlink" title="三、小结一下"></a>三、小结一下</h4><p><strong>只有在安全组配置了端口范围才算是真正的开放了防火墙端口，单单使用<code>firewall-cmd --zone=public --add-port=8081/tcp --permanent</code>是不行的。</strong></p>
-<h4 id="四、PM2"><a href="#四、PM2" class="headerlink" title="四、PM2"></a>四、PM2</h4><p>PM2用来提供一个持久的node服务，即使关闭终端后也能正常提供服务</p>
-<ol>
-<li><p>安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install pm2 -g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>开启：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start app.js （--watch）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>其它命令：</p>
-</li>
-</ol>
-<ul>
-<li><code>pm2 list</code>用于查看开启的node服务列表</li>
-<li><code>pm2 show NAME</code>用于查看某个node服务详情</li>
-<li><code>pm2 stop/start ID/NAME</code>用于开启停止node服务</li>
-</ul>
-<ol>
-<li>具体查看pm2官网：<a href="http://pm2.keymetrics.io/" target="_blank" rel="noopener">http://pm2.keymetrics.io/</a></li>
-</ol>
-<h4 id="五、Nginx实现反向代理"><a href="#五、Nginx实现反向代理" class="headerlink" title="五、Nginx实现反向代理"></a>五、Nginx实现反向代理</h4><p>上面，一个简单的node服务跑在了服务器的8081端口，但是，我需要通过直接访问120.79.143.xx来访问这个node服务的话，就需要用到nginx了</p>
-<p><strong>原理：</strong></p>
-<blockquote>
-<p>通过配置nginx代理来将来自80端口的请求转发到8081端口</p>
-</blockquote>
-<p>好了，下面就开始写配置文件了：</p>
-<p><strong>1. 进入nginx配置文件夹，查看下面的配置文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx</span><br><span class="line"></span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
-<p><strong>2. 创建conf.d文件夹，创建一个配置文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir conf.d</span><br><span class="line"></span><br><span class="line">vim conf.d/firstnode-8081.conf</span><br></pre></td></tr></table></figure>
-<p><strong>3. firstnode-8081.conf</strong></p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意tian0o0这个命名，自己随意取，但是上下要一致</span></span><br><span class="line"><span class="attribute">upstream</span> tian0o0 &#123;</span><br><span class="line">  <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span> <span class="number">120</span>.<span class="number">79</span>.<span class="number">143</span>.xx;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forward-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Nginx-Proxy <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_pass</span> http://tian0o0;</span><br><span class="line">    <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>4. 保存退出，查看配置文件是否有错：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
-<p><strong>5. 重启nginx服务：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/systemctl restart nginx.service</span><br></pre></td></tr></table></figure>
-<p><strong>6. 直接访问<code>120.79.143.xx</code>就可以访问服务器上8081端口的服务了</strong>。这就是nginx反向代理的简单实现。</p>
-<h4 id="六、域名解析"><a href="#六、域名解析" class="headerlink" title="六、域名解析"></a>六、域名解析</h4><p>虽然是在万网上面买的域名，阿里云也提供了域名解析服务，不过我还是把它拿到了DNSPod上进行处理，以后如果买了其它域名服务商的域名都可以在DNSPod进行统一管理。</p>
-<p>这时我的域名<a href="www.tian0o0.top">www.tian0o0.top</a>的首页还是nginx的启动页面，需要将其与服务器ip对应起来的话就要修改nginx的配置，将来自<a href="http://www.tian0o0.top的请求转发到服务器上的其它端口，步骤和上面类似，**需要注意防火墙是否开放了我所需要的端口*" target="_blank" rel="noopener">www.tian0o0.top的请求转发到服务器上的其它端口，步骤和上面类似，**需要注意防火墙是否开放了我所需要的端口*</a>*</p>
-<p><em>修改firstnode-8081.conf</em>：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> firstnode &#123;</span><br><span class="line">  <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span> www.tian0o0.top;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forward-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Nginx-Proxy <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_pass</span> http://firstnode;</span><br><span class="line">    <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样访问<a href="www.tian0o0.top">www.tian0o0.top</a>就能够通过nginx将请求映射到服务器的8081端口，访问到我的node服务</p>
-<h4 id="七、安装mongodb"><a href="#七、安装mongodb" class="headerlink" title="七、安装mongodb"></a>七、安装mongodb</h4><ol>
-<li>创建仓库文件</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/mongodb-org-3.4.repo</span><br></pre></td></tr></table></figure>
-<p>然后复制下面配置,保存退出</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-3.4]</span><br><span class="line">name=MongoDB Repository</span><br><span class="line">baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc</span><br></pre></td></tr></table></figure>
-<ol>
-<li>yum安装</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mongodb-org</span><br></pre></td></tr></table></figure>
-<p>这一步耗时比较久，安装好后修改<code>mongod.conf</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/mongod.conf</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>修改配置文件的 bindIp, 默认是 127.0.0.1 只限于本机连接。所以安装完成后必须把这个修改为 0.0.0.0 ,否则通过别的机器是没法连接的</p>
-</blockquote>
-<ol>
-<li>启动、停止mongodb</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mongod start</span><br><span class="line"></span><br><span class="line">service mongod stop</span><br></pre></td></tr></table></figure>
-<p>通过查看日志看mongodb是否启动成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/log/mongodb/mongod.log</span><br></pre></td></tr></table></figure>
-<p>如果出现下面信息说明启动成功（27017是mongodb的默认端口）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[initandlisten] waiting for connections on port 27017</span><br></pre></td></tr></table></figure>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。</p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    <span class="string">"id"</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">"parent_id"</span>:<span class="number">0</span>,</span><br><span class="line">    <span class="string">"title"</span>:<span class="string">"互联网"</span>,</span><br><span class="line">    <span class="string">"children"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"id"</span>:<span class="number">2</span>,</span><br><span class="line">            <span class="string">"parent_id"</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">"title"</span>:<span class="string">"后端开发"</span>,</span><br><span class="line">            <span class="string">"children"</span>:[</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">3</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">2</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"PHP开发"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">4</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">2</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"销售"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"id"</span>:<span class="number">5</span>,</span><br><span class="line">            <span class="string">"parent_id"</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">"title"</span>:<span class="string">"前端"</span>,</span><br><span class="line">            <span class="string">"children"</span>:[</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">6</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">5</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"开发"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">7</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">5</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"设计"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ids</span><br><span class="line"><span class="keyword">const</span> categoriesId3 = <span class="number">3</span></span><br><span class="line">findParentIds(categories) <span class="comment">// 最后依次拿到ids: [1, 2, 3]</span></span><br><span class="line">findParentIds (arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[i]</span><br><span class="line">        <span class="keyword">if</span> (temp.id === categoriesId3) &#123;</span><br><span class="line">          ids.unshift(temp.id);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (temp.children) &#123;</span><br><span class="line">          <span class="keyword">let</span> t = findParentIds(temp.children)</span><br><span class="line">          <span class="keyword">if</span> (t === <span class="number">1</span>) &#123;</span><br><span class="line">            ids.unshift(temp.id)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -613,7 +517,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2018/03/22/服务器/" title="服务器折腾小记">https://tian0o0.github.io/2018/03/22/服务器/</a>
+    <a href="https://tian0o0.github.io/2018/12/20/js树形结构/" title="js树形结构">https://tian0o0.github.io/2018/12/20/js树形结构/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -628,7 +532,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
+            <a href="/tags/tree/" rel="tag"><i class="fa fa-tag"></i> tree</a>
           
         </div>
       
@@ -653,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/17/v-custom/" rel="next" title="做一个自定义滚动条">
-                <i class="fa fa-chevron-left"></i> 做一个自定义滚动条
+              <a href="/2018/11/22/q/" rel="next" title="活着真不容易">
+                <i class="fa fa-chevron-left"></i> 活着真不容易
               </a>
             
           </div>
@@ -662,10 +566,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/22/js-sort/" rel="prev" title="js排序">
-                js排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -832,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、创建一个node服务"><span class="nav-number">2.</span> <span class="nav-text">二、创建一个node服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、小结一下"><span class="nav-number">3.</span> <span class="nav-text">三、小结一下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、PM2"><span class="nav-number">4.</span> <span class="nav-text">四、PM2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、Nginx实现反向代理"><span class="nav-number">5.</span> <span class="nav-text">五、Nginx实现反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、域名解析"><span class="nav-number">6.</span> <span class="nav-text">六、域名解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、安装mongodb"><span class="nav-number">7.</span> <span class="nav-text">七、安装mongodb</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">3.</span> <span class="nav-text">递归</span></a></li></ol></div>
             
 
           </div>
