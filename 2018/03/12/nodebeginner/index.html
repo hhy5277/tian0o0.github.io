@@ -137,7 +137,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一篇文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。 完成目标创建一个web服务器，并实现一个简单的路由功能 组织结构 index.js              //开启服务器 server.js             //创建服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T11:44:31.958Z">
+<meta property="og:updated_time" content="2019-05-13T03:37:38.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs简单入门">
 <meta name="twitter:description" content="前言开始学习node也有一小段时间了，感觉自己学的情况不是特别好，很多概念都一知半解。今天偶然看到一篇文章（nodeBeginner），虽然是几年前的，但是讲的很好，条理十分清楚，娓娓道来，不失为node入门的好读物。 完成目标创建一个web服务器，并实现一个简单的路由功能 组织结构 index.js              //开启服务器 server.js             //创建服">
@@ -368,8 +368,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-13T19:44:31+08:00">
-                2018-03-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-13T11:37:38+08:00">
+                2019-05-13
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,040
+                  1,959
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  8
                 </span>
               
             </div>
@@ -518,8 +518,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目的：找到当前目录所有文件，将其返回给浏览器端</span></span><br><span class="line"><span class="comment">//引入child_process模块，方便使用exec这个方法，它是非阻塞的，作用是来执行一个shell命令</span></span><br><span class="line"><span class="comment">//解释：创建了一个新的变量content（初始值为“empty”），执行“ls -lah”命令，将结果赋值给content，最后将content返回</span></span><br><span class="line"><span class="comment">//重启服务器访问start页面显示”empty“，这就是exec()的非阻塞</span></span><br><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Request handler 'start' was called."</span>);</span><br><span class="line">  <span class="keyword">var</span> content = <span class="string">"empty"</span>;</span><br><span class="line"></span><br><span class="line">  exec(<span class="string">"ls -lah"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">    content = stdout;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> content;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Request handler 'upload' was called."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Hello Upload"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start;</span><br><span class="line">exports.upload = upload;</span><br></pre></td></tr></table></figure>
 <p>由于代码是同步执行的，而exec()是异步的，这就是说在调用exec()后会立刻执行””return content”，从而返回“empty”。那么，如何才能将当前目录下的文件列表显示给用户呢？</p>
 <h4 id="第二次尝试"><a href="#第二次尝试" class="headerlink" title="第二次尝试"></a>第二次尝试</h4><p>之前我们尝试的错误案例并达不到我们想要的结果。</p>
-<p>之前的过程是：++请求处理程序——请求路由——服务器++</p>
-<p>现在我们尝试：++res对象——请求路由——请求处理程序++</p>
+<p>之前的过程是：+请求处理程序——请求路由——服务器+</p>
+<p>现在我们尝试：+res对象——请求路由——请求处理程序+</p>
 <p>修改server.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">router, handle</span>) </span>&#123;</span><br><span class="line">    http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> path_name = url.parse(req.url).pathname</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (path_name === <span class="string">'/favicon.ico'</span>) &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将res对象通过路由传递到请求处理程序，这样就能将请求响应分开</span></span><br><span class="line">        router( path_name, handle, res )</span><br><span class="line">    &#125;)</span><br><span class="line">    .listen(<span class="number">8000</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'the server is running at 8000'</span> )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.start = start</span><br></pre></td></tr></table></figure>
 <p>修改router.js</p>
@@ -529,7 +529,6 @@
 <p>这样，请求处理程序就可以对请求进行单独的响应:</p>
 <p>当请求<a href="http://localhost:8888/start的时候，会花10秒钟的时间才载入，" target="_blank" rel="noopener">http://localhost:8888/start的时候，会花10秒钟的时间才载入，</a></p>
 <p>而当请求<a href="http://localhost:8888/upload的时候，会立即响应，纵然这个时候/start响应还在处理中。" target="_blank" rel="noopener">http://localhost:8888/upload的时候，会立即响应，纵然这个时候/start响应还在处理中。</a></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>本文作为一个入门的博客，主要探讨了关于如何组织一个良好地代码结构（模块化），对nodejs的异步编程，阻塞与非阻塞等有了更加清晰的认识。虽然内容还很浅显，但是我会不断深入的学习下去的~</p>
 
       
     </div>
@@ -792,7 +791,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完成目标"><span class="nav-number">2.</span> <span class="nav-text">完成目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组织结构"><span class="nav-number">3.</span> <span class="nav-text">组织结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码详情"><span class="nav-number">4.</span> <span class="nav-text">代码详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#index-js"><span class="nav-number">4.1.</span> <span class="nav-text">index.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server-js"><span class="nav-number">4.2.</span> <span class="nav-text">server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-js"><span class="nav-number">4.3.</span> <span class="nav-text">router.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#request-handler-js"><span class="nav-number">4.4.</span> <span class="nav-text">request_handler.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题"><span class="nav-number">4.5.</span> <span class="nav-text">存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs的单线程"><span class="nav-number">5.</span> <span class="nav-text">nodejs的单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改为非阻塞试试"><span class="nav-number">6.</span> <span class="nav-text">改为非阻塞试试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个错误的非阻塞尝试"><span class="nav-number">6.1.</span> <span class="nav-text">一个错误的非阻塞尝试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次尝试"><span class="nav-number">6.2.</span> <span class="nav-text">第二次尝试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完成目标"><span class="nav-number">2.</span> <span class="nav-text">完成目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组织结构"><span class="nav-number">3.</span> <span class="nav-text">组织结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码详情"><span class="nav-number">4.</span> <span class="nav-text">代码详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#index-js"><span class="nav-number">4.1.</span> <span class="nav-text">index.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server-js"><span class="nav-number">4.2.</span> <span class="nav-text">server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-js"><span class="nav-number">4.3.</span> <span class="nav-text">router.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#request-handler-js"><span class="nav-number">4.4.</span> <span class="nav-text">request_handler.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题"><span class="nav-number">4.5.</span> <span class="nav-text">存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs的单线程"><span class="nav-number">5.</span> <span class="nav-text">nodejs的单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改为非阻塞试试"><span class="nav-number">6.</span> <span class="nav-text">改为非阻塞试试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个错误的非阻塞尝试"><span class="nav-number">6.1.</span> <span class="nav-text">一个错误的非阻塞尝试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次尝试"><span class="nav-number">6.2.</span> <span class="nav-text">第二次尝试</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -828,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.9k</span>
+    <span title="Site words total count">16.6k</span>
   
 </div>
 

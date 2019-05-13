@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;">
+<meta name="description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;互联网&quot;,">
 <meta name="keywords" content="tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js树形结构">
 <meta property="og:url" content="https://tian0o0.github.io/2018/12/20/js树形结构/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;">
+<meta property="og:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;互联网&quot;,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T02:24:37.949Z">
+<meta property="og:updated_time" content="2019-05-13T03:34:45.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js树形结构">
-<meta name="twitter:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;">
+<meta name="twitter:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;互联网&quot;,">
 
 
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-20T10:24:37+08:00">
-                2018-12-20
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-13T11:34:45+08:00">
+                2019-05-13
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  240
+                  234
                 </span>
               
 
@@ -466,7 +466,7 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。虽然确定是三级，但必须通过递归来做。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。</p>
 <h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    <span class="string">"id"</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">"parent_id"</span>:<span class="number">0</span>,</span><br><span class="line">    <span class="string">"title"</span>:<span class="string">"互联网"</span>,</span><br><span class="line">    <span class="string">"children"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"id"</span>:<span class="number">2</span>,</span><br><span class="line">            <span class="string">"parent_id"</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">"title"</span>:<span class="string">"后端开发"</span>,</span><br><span class="line">            <span class="string">"children"</span>:[</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">3</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">2</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"PHP开发"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">4</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">2</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"销售"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"id"</span>:<span class="number">5</span>,</span><br><span class="line">            <span class="string">"parent_id"</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">"title"</span>:<span class="string">"前端"</span>,</span><br><span class="line">            <span class="string">"children"</span>:[</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">6</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">5</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"开发"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">7</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">5</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"设计"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ids</span><br><span class="line"><span class="keyword">const</span> categoriesId3 = <span class="number">3</span></span><br><span class="line">findParentIds(categories) <span class="comment">// 最后依次拿到ids: [1, 2, 3]</span></span><br><span class="line">findParentIds (arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[i]</span><br><span class="line">        <span class="keyword">if</span> (temp.id === categoriesId3) &#123;</span><br><span class="line">          ids.unshift(temp.id);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (temp.children) &#123;</span><br><span class="line">          <span class="keyword">let</span> t = findParentIds(temp.children)</span><br><span class="line">          <span class="keyword">if</span> (t === <span class="number">1</span>) &#123;</span><br><span class="line">            ids.unshift(temp.id)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -557,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/25/webpack/" rel="next" title="webpack踩坑踩坑">
-                <i class="fa fa-chevron-left"></i> webpack踩坑踩坑
+              <a href="/2018/10/25/webpack/" rel="next" title="webpack优化之道">
+                <i class="fa fa-chevron-left"></i> webpack优化之道
               </a>
             
           </div>
@@ -768,7 +768,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.9k</span>
+    <span title="Site words total count">16.6k</span>
   
 </div>
 

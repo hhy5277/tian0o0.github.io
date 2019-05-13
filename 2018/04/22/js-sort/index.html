@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="一、前言本文整理了三种js排序方法（升序）  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3">
+<meta name="description" content="一、前言本文整理了几种js排序方法  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3,7,5">
 <meta name="keywords" content="排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js排序">
 <meta property="og:url" content="https://tian0o0.github.io/2018/04/22/js-sort/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="一、前言本文整理了三种js排序方法（升序）  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3">
+<meta property="og:description" content="一、前言本文整理了几种js排序方法  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3,7,5">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T07:34:22.377Z">
+<meta property="og:updated_time" content="2019-05-13T03:35:19.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js排序">
-<meta name="twitter:description" content="一、前言本文整理了三种js排序方法（升序）  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3">
+<meta name="twitter:description" content="一、前言本文整理了几种js排序方法  sort() 快速排序 冒泡排序  二、sort()利用sort function 可以完成一些简单的数组排序 对数组排序1234567var arr = [3,55,7];arr.sort();arr.sort(function(a,b) &amp;#123;    return a - b;&amp;#125;);console.log(arr);//输出结果[3,7,5">
 
 
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-22T15:34:22+08:00">
-                2018-04-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-13T11:35:19+08:00">
+                2019-05-13
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  424
+                  423
                 </span>
               
 
@@ -466,7 +466,7 @@
       
 
       
-        <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>本文整理了三种js排序方法（升序）</p>
+        <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>本文整理了几种js排序方法</p>
 <ul>
 <li>sort()</li>
 <li>快速排序</li>
@@ -478,7 +478,7 @@
 <h4 id="三、快速排序"><a href="#三、快速排序" class="headerlink" title="三、快速排序"></a>三、快速排序</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = arr.length</span><br><span class="line">    <span class="keyword">if</span>(len &lt;= <span class="number">1</span>) &#123; <span class="keyword">return</span> arr &#125;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">let</span> num = arr.splice(i, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">let</span> left = [], right = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(arr[i] &lt; num) &#123;</span><br><span class="line">        left.push(arr[i])</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        right.push(arr[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> quickSort(left).concat(num, quickSort(right))</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort([<span class="number">1</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">6</span>]))</span><br><span class="line"><span class="comment">//[1,2,2,6,11]</span></span><br></pre></td></tr></table></figure>
 <p>可以看出，虽然排序是正确的，但是无法取出重复元素2，要实现去重的话用ES6的Set数据结构可以方便的做到：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> newArr = [...new <span class="built_in">Set</span>(arr)]</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="comment">//const newArr = Array.from(new Set(arr))</span></span><br></pre></td></tr></table></figure>
-<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><blockquote>
+<h4 id="四、冒泡排序"><a href="#四、冒泡排序" class="headerlink" title="四、冒泡排序"></a>四、冒泡排序</h4><blockquote>
 <p>利用双层循环来逐个比较数组的每个值</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">            <span class="comment">//let n = 0</span></span><br><span class="line">            <span class="comment">//if(arr[i] &gt; arr[j]) &#123;</span></span><br><span class="line">                <span class="comment">//n = arr[i]</span></span><br><span class="line">                <span class="comment">//arr[i] = arr[j]</span></span><br><span class="line">                <span class="comment">//arr[j] = n</span></span><br><span class="line">            <span class="comment">//&#125;</span></span><br><span class="line">            <span class="comment">//有了ES6的结构赋值，交换数值只要一句话</span></span><br><span class="line">            <span class="keyword">if</span>(arr[i] &gt; arr[j]) &#123;</span><br><span class="line">                [arr[i], arr[j]] = [arr[j], arr[i]]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">1</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">7</span>]))</span><br><span class="line"><span class="comment">//[1,2,7,11]</span></span><br></pre></td></tr></table></figure>
@@ -749,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、sort"><span class="nav-number">2.</span> <span class="nav-text">二、sort()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对数组排序"><span class="nav-number">2.1.</span> <span class="nav-text">对数组排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根据数组对象的某一属性排序"><span class="nav-number">2.2.</span> <span class="nav-text">根据数组对象的某一属性排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、快速排序"><span class="nav-number">3.</span> <span class="nav-text">三、快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序"><span class="nav-number">4.</span> <span class="nav-text">冒泡排序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、sort"><span class="nav-number">2.</span> <span class="nav-text">二、sort()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对数组排序"><span class="nav-number">2.1.</span> <span class="nav-text">对数组排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根据数组对象的某一属性排序"><span class="nav-number">2.2.</span> <span class="nav-text">根据数组对象的某一属性排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、快速排序"><span class="nav-number">3.</span> <span class="nav-text">三、快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、冒泡排序"><span class="nav-number">4.</span> <span class="nav-text">四、冒泡排序</span></a></li></ol></div>
             
 
           </div>
@@ -785,7 +785,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.9k</span>
+    <span title="Site words total count">16.6k</span>
   
 </div>
 
