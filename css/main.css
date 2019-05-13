@@ -1241,7 +1241,6 @@ pre .javascript .function {
   margin-top: 20px;
   padding-left: 0;
   text-align: center;
-  background: rgba(255,255,255,0.65);
   margin-left: auto;
   margin-right: auto;
   width: 450px;
@@ -2093,7 +2092,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9e2a4d;
+  background: #53e36c;
 }
 .links-of-blogroll {
   font-size: 13px;
