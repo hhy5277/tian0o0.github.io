@@ -1139,7 +1139,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  animation: move 15s linear infinite;
+  animation: move 20s linear infinite;
 }
 .header-inner {
   position: relative;
@@ -1279,58 +1279,142 @@ pre .javascript .function {
 }
 @-moz-keyframes move {
   0% {
-    background: #3998f7;
+    background: #f596aa;
   }
-  33% {
-    background: #ffac02;
+  10% {
+    background: #d0104c;
   }
-  66% {
-    background: #ff523f;
+  20% {
+    background: #eb7a77;
+  }
+  30% {
+    background: #734338;
+  }
+  40% {
+    background: #6e552f;
+  }
+  50% {
+    background: #62592c;
+  }
+  60% {
+    background: #268785;
+  }
+  70% {
+    background: #6a4c9c;
+  }
+  80% {
+    background: #60373e;
+  }
+  90% {
+    background: #5e3d50;
   }
   100% {
-    background: #3998f7;
+    background: #f596aa;
   }
 }
 @-webkit-keyframes move {
   0% {
-    background: #3998f7;
+    background: #f596aa;
   }
-  33% {
-    background: #ffac02;
+  10% {
+    background: #d0104c;
   }
-  66% {
-    background: #ff523f;
+  20% {
+    background: #eb7a77;
+  }
+  30% {
+    background: #734338;
+  }
+  40% {
+    background: #6e552f;
+  }
+  50% {
+    background: #62592c;
+  }
+  60% {
+    background: #268785;
+  }
+  70% {
+    background: #6a4c9c;
+  }
+  80% {
+    background: #60373e;
+  }
+  90% {
+    background: #5e3d50;
   }
   100% {
-    background: #3998f7;
+    background: #f596aa;
   }
 }
 @-o-keyframes move {
   0% {
-    background: #3998f7;
+    background: #f596aa;
   }
-  33% {
-    background: #ffac02;
+  10% {
+    background: #d0104c;
   }
-  66% {
-    background: #ff523f;
+  20% {
+    background: #eb7a77;
+  }
+  30% {
+    background: #734338;
+  }
+  40% {
+    background: #6e552f;
+  }
+  50% {
+    background: #62592c;
+  }
+  60% {
+    background: #268785;
+  }
+  70% {
+    background: #6a4c9c;
+  }
+  80% {
+    background: #60373e;
+  }
+  90% {
+    background: #5e3d50;
   }
   100% {
-    background: #3998f7;
+    background: #f596aa;
   }
 }
 @keyframes move {
   0% {
-    background: #3998f7;
+    background: #f596aa;
   }
-  33% {
-    background: #ffac02;
+  10% {
+    background: #d0104c;
   }
-  66% {
-    background: #ff523f;
+  20% {
+    background: #eb7a77;
+  }
+  30% {
+    background: #734338;
+  }
+  40% {
+    background: #6e552f;
+  }
+  50% {
+    background: #62592c;
+  }
+  60% {
+    background: #268785;
+  }
+  70% {
+    background: #6a4c9c;
+  }
+  80% {
+    background: #60373e;
+  }
+  90% {
+    background: #5e3d50;
   }
   100% {
-    background: #3998f7;
+    background: #f596aa;
   }
 }
 .post-body {
@@ -2092,7 +2176,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #53e36c;
+  background: #ff67ff;
 }
 .links-of-blogroll {
   font-size: 13px;
