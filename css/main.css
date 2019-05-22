@@ -1139,7 +1139,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  animation: move 20s linear infinite;
+  animation: move 30s linear infinite;
 }
 .header-inner {
   position: relative;
@@ -1189,7 +1189,7 @@ pre .javascript .function {
 .site-subtitle {
   margin-top: 10px;
   font-size: 13px;
-  color: #000;
+  color: #fff;
 }
 .use-motion .brand {
   opacity: 0;
@@ -2176,7 +2176,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff67ff;
+  background: #254a49;
 }
 .links-of-blogroll {
   font-size: 13px;
