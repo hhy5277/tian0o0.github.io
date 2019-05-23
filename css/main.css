@@ -1139,7 +1139,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  animation: move 30s linear infinite;
+  animation: move 50s linear infinite;
 }
 .header-inner {
   position: relative;
@@ -1282,10 +1282,10 @@ pre .javascript .function {
     background: #f596aa;
   }
   10% {
-    background: #d0104c;
+    background: #5e3d50;
   }
   20% {
-    background: #eb7a77;
+    background: #60373e;
   }
   30% {
     background: #734338;
@@ -1317,10 +1317,10 @@ pre .javascript .function {
     background: #f596aa;
   }
   10% {
-    background: #d0104c;
+    background: #5e3d50;
   }
   20% {
-    background: #eb7a77;
+    background: #60373e;
   }
   30% {
     background: #734338;
@@ -1352,10 +1352,10 @@ pre .javascript .function {
     background: #f596aa;
   }
   10% {
-    background: #d0104c;
+    background: #5e3d50;
   }
   20% {
-    background: #eb7a77;
+    background: #60373e;
   }
   30% {
     background: #734338;
@@ -1387,10 +1387,10 @@ pre .javascript .function {
     background: #f596aa;
   }
   10% {
-    background: #d0104c;
+    background: #5e3d50;
   }
   20% {
-    background: #eb7a77;
+    background: #60373e;
   }
   30% {
     background: #734338;
@@ -2176,7 +2176,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #254a49;
+  background: #4edaff;
 }
 .links-of-blogroll {
   font-size: 13px;
