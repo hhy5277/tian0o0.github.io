@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
+<meta name="description" content="一、前言准备在上面部署一个简单的node应用。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123;    res.writeHead(200,">
 <meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器折腾小记">
+<meta property="og:title" content="Nginx反向代理">
 <meta property="og:url" content="https://tian0o0.github.io/2018/03/22/服务器/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
+<meta property="og:description" content="一、前言准备在上面部署一个简单的node应用。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123;    res.writeHead(200,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T11:38:32.797Z">
+<meta property="og:updated_time" content="2019-05-24T01:50:44.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务器折腾小记">
-<meta name="twitter:description" content="一、前言在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123">
+<meta name="twitter:title" content="Nginx反向代理">
+<meta name="twitter:description" content="一、前言准备在上面部署一个简单的node应用。 二、创建一个node服务 创建一个app.js文件： 1touch app.js  用vim打开： 1vim app.js  创建啥都没有的服务，看下效果： 1234567var http = require(&apos;http&apos;)http.createServer(function(req,res) &amp;#123;    res.writeHead(200,">
 
 
 
@@ -177,7 +177,7 @@
 
 
 
-  <title>服务器折腾小记 | 前端漫步</title>
+  <title>Nginx反向代理 | 前端漫步</title>
   
 
 
@@ -329,7 +329,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">服务器折腾小记</h2>
+          <h2 class="post-title" itemprop="name headline">Nginx反向代理</h2>
         
 
         <div class="post-meta">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T19:38:32+08:00">
-                2018-03-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T09:50:44+08:00">
+                2019-05-24
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,355
+                  1,322
                 </span>
               
 
@@ -466,7 +466,7 @@
       
 
       
-        <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在服务器上相关配置都弄好以后，想先在上面部署一个简单的node应用，折腾折腾，挺好。</p>
+        <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>准备在上面部署一个简单的node应用。</p>
 <h4 id="二、创建一个node服务"><a href="#二、创建一个node服务" class="headerlink" title="二、创建一个node服务"></a>二、创建一个node服务</h4><ol>
 <li><p>创建一个app.js文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch app.js</span><br></pre></td></tr></table></figure>
@@ -499,8 +499,8 @@
 <li>执行<code>node app</code>开启node服务，打开浏览器访问120.79.143.53发现还是不行，不过试了下可以看到输出信息<code>first node</code>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:8081</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>这就很费解了，查了好多资料都没找到解决办法，只能先放着了。。。</p>
-<p>然后今天上SF咨询这个问题，因为我买的阿里云ECS，<strong>++需要重新配置一下安全组的规则++</strong>，然后问题神奇地解决了，感谢SF！</p>
+<p>这就很费解了，查了好多资料都没找到解决办法，只能先放着了</p>
+<p>然后今天上SF咨询这个问题，因为我买的阿里云ECS，<strong>++需要重新配置一下安全组的规则++</strong>。</p>
 <h4 id="三、小结一下"><a href="#三、小结一下" class="headerlink" title="三、小结一下"></a>三、小结一下</h4><p><strong>只有在安全组配置了端口范围才算是真正的开放了防火墙端口，单单使用<code>firewall-cmd --zone=public --add-port=8081/tcp --permanent</code>是不行的。</strong></p>
 <h4 id="四、PM2"><a href="#四、PM2" class="headerlink" title="四、PM2"></a>四、PM2</h4><p>PM2用来提供一个持久的node服务，即使关闭终端后也能正常提供服务</p>
 <ol>
@@ -613,7 +613,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2018/03/22/服务器/" title="服务器折腾小记">https://tian0o0.github.io/2018/03/22/服务器/</a>
+    <a href="https://tian0o0.github.io/2018/03/22/服务器/" title="Nginx反向代理">https://tian0o0.github.io/2018/03/22/服务器/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -663,8 +663,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/22/js-sort/" rel="prev" title="js排序">
-                js排序 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/22/js-sort/" rel="prev" title="排序">
+                排序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -747,7 +747,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/source/images/avatar.jpg"
+                src="/images/avatar.jpg"
                 alt="谢天" />
             
               <p class="site-author-name" itemprop="name">谢天</p>
@@ -761,7 +761,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -772,7 +772,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -783,7 +783,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -868,7 +868,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 

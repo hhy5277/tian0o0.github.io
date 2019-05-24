@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T03:34:10.523Z">
+<meta property="og:updated_time" content="2019-05-24T01:59:36.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="做一个自定义滚动条">
 <meta name="twitter:description" content="一、前言最近在做的项目需要用到自定义滚动条，既然时间充裕，就自己做了个。由于使用Vue在做开发，因此考虑到可复用性的问题，将其做成了Vue的全局自定义指令，只要满足对应的HTML结构就可以在任意地方调用，相对来说也是很方便的。 二、原理（以下默认内容高度超出容器高度。） 2.1 结构需要满足以下HTML结构： 12345678910&amp;lt;div class=&quot;wrapper&quot;&amp;gt;    &amp;l">
@@ -329,7 +329,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-13T11:34:10+08:00">
-                2019-05-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T09:59:36+08:00">
+                2019-05-24
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,042
+                  1,010
                 </span>
               
 
@@ -515,7 +515,7 @@
 <li>滚动区内容设置：<code>user-select: none;</code>因为我发现在拖拽的时候鼠标离开滚动滑块会选中滚动内容区文字。</li>
 </ul>
 <p>注意上面几点应该就没问题了，然后在容器<code>content-wrapper</code>上添加<code>v-mousewheel</code>就可以滚动啦～<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'mousewheel'</span>, &#123;</span><br><span class="line">	bind( el, biding ) &#123;</span><br><span class="line">		<span class="keyword">let</span> num = <span class="number">0</span></span><br><span class="line">		<span class="keyword">let</span> $el = el</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">obj, type, fn, capture</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (obj.addEventListener) &#123;</span><br><span class="line">				<span class="keyword">if</span>( !capture ) &#123;capture = <span class="literal">false</span>&#125;</span><br><span class="line">				obj.addEventListener(type, fn, capture)</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (obj.attachEvent) &#123;</span><br><span class="line">				obj.attachEvent(<span class="string">"on"</span> + type, fn)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">scrollDown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> $block = $el.parentNode.children[<span class="number">1</span>].children[<span class="number">0</span>]</span><br><span class="line">			<span class="keyword">let</span> dis = <span class="built_in">Math</span>.min(<span class="number">20</span> * (num--), $el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$el.style.top = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) + <span class="string">'px'</span></span><br><span class="line">			<span class="keyword">let</span> topB = <span class="built_in">Math</span>.max(<span class="number">0</span>, dis) * <span class="number">306</span> / ($el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$block.style.top = topB + <span class="string">'px'</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">scrollUp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">let</span> $block = $el.parentNode.children[<span class="number">1</span>].children[<span class="number">0</span>]</span><br><span class="line">			<span class="keyword">let</span> dis = <span class="built_in">Math</span>.min(<span class="number">20</span> * (num++), $el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$el.style.top = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) + <span class="string">'px'</span></span><br><span class="line">			<span class="keyword">let</span> topB = <span class="built_in">Math</span>.min(<span class="number">0</span>, -dis) * <span class="number">306</span> / ($el.clientHeight - <span class="number">600</span>)</span><br><span class="line">			$block.style.top = -topB + <span class="string">'px'</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">customScroll</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>( e.wheelDelta ) &#123;</span><br><span class="line">				<span class="keyword">if</span> (e.wheelDelta &gt; <span class="number">0</span>) &#123; <span class="comment">//下滚</span></span><br><span class="line">					scrollDown()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;  <span class="comment">//上滚</span></span><br><span class="line">					scrollUp()</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span> ( e.detail ) &#123;  <span class="comment">//兼容火狐</span></span><br><span class="line">				<span class="keyword">if</span> (e.detail &lt; <span class="number">0</span>) &#123; <span class="comment">//下滚</span></span><br><span class="line">					scrollDown()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;  <span class="comment">//上滚</span></span><br><span class="line">					scrollUp()</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		addEvent($el, <span class="string">'mousewheel'</span>, (e) =&gt; &#123;</span><br><span class="line">			<span class="keyword">let</span> ev = e || <span class="built_in">window</span>.event</span><br><span class="line">			ev.preventDefault ? ev.preventDefault() : ev.returnvalue = <span class="literal">false</span></span><br><span class="line">			customScroll(e)</span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="comment">// 兼容firefox</span></span><br><span class="line">		addEvent($el, <span class="string">'DOMMouseScroll'</span>, (e) =&gt; &#123;</span><br><span class="line">			<span class="keyword">let</span> ev = e || <span class="built_in">window</span>.event</span><br><span class="line">			ev.preventDefault ? ev.preventDefault() : ev.returnvalue = <span class="literal">false</span></span><br><span class="line">			customScroll(e)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="四、小结"><a href="#四、小结" class="headerlink" title="四、小结"></a>四、小结</h3><p>由于使用原生js处理，在兼容性方面可能还有所欠缺考虑的地方，确实还有待提高。当然可以通过vue提供的mixin或者做成vue的插件来实现相同的功能。好了，先写到这吧~</p>
+<h3 id="四、小结"><a href="#四、小结" class="headerlink" title="四、小结"></a>四、小结</h3><p>考虑到滚轮事件在不同浏览器中的表现不同，处理好兼容性的问题是至关重要的。</p>
 
       
     </div>
@@ -607,8 +607,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/12/nodebeginner/" rel="next" title="Nodejs简单入门">
-                <i class="fa fa-chevron-left"></i> Nodejs简单入门
+              <a href="/2018/03/07/promise/" rel="next" title="Promise之不完全解读">
+                <i class="fa fa-chevron-left"></i> Promise之不完全解读
               </a>
             
           </div>
@@ -617,8 +617,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/22/服务器/" rel="prev" title="服务器折腾小记">
-                服务器折腾小记 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/22/服务器/" rel="prev" title="Nginx反向代理">
+                Nginx反向代理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -701,7 +701,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/source/images/avatar.jpg"
+                src="/images/avatar.jpg"
                 alt="谢天" />
             
               <p class="site-author-name" itemprop="name">谢天</p>
@@ -715,7 +715,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,7 +726,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -737,7 +737,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -822,7 +822,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 

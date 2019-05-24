@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="目的本文试图基于rust构建一个wasm模块并且发布到npm！ 工具 在这之前，我们需要安装好必要的工具   [x] 安装rust 这步不多说了，安装后在终端输入rustc --version如果出现以下提示说明安装成功: 1rustc 1.34.1 (fc50f328b 2019-04-24) 安装rust的同时也会默认安装cargo，这是rust官方的包管理工具，类似node中的npm  [x">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-22T03:40:24.651Z">
+<meta property="og:updated_time" content="2019-05-23T10:15:21.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于rust构建一个wasm模块并且发布到npm">
 <meta name="twitter:description" content="目的本文试图基于rust构建一个wasm模块并且发布到npm！ 工具 在这之前，我们需要安装好必要的工具   [x] 安装rust 这步不多说了，安装后在终端输入rustc --version如果出现以下提示说明安装成功: 1rustc 1.34.1 (fc50f328b 2019-04-24) 安装rust的同时也会默认安装cargo，这是rust官方的包管理工具，类似node中的npm  [x">
@@ -329,7 +329,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-22T11:40:24+08:00">
-                2019-05-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-23T18:15:21+08:00">
+                2019-05-23
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  736
+                  918
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -507,6 +507,11 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span>(<span class="string">"@tian0o0/hello_wasm"</span>).then(<span class="function"><span class="params">module</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">module</span>.greet(<span class="string">"world"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>前端代码写好后：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure></p>
 <p>打开localhost:8080, 看到弹框提示<code>Hello, world</code>，说明已经成功了。</p>
+<h3 id="rust-webpack-template"><a href="#rust-webpack-template" class="headerlink" title="rust-webpack-template"></a>rust-webpack-template</h3><p>前面我们通过一系列操作将rust编译成wasm再发布到npm才能使用，十分不方便，还好rustwasm官方为我们提供了<a href="https://github.com/rustwasm/rust-webpack-template" target="_blank" rel="noopener"><code>rust-webpack-template</code></a></p>
+<h4 id="1-运行下面命令拉取模板"><a href="#1-运行下面命令拉取模板" class="headerlink" title="1. 运行下面命令拉取模板"></a>1. 运行下面命令拉取模板</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init rust-webpack your_app_name</span><br></pre></td></tr></table></figure>
+<p>该项目的初始结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">├── LICENSE-APACHE</span><br><span class="line">├── LICENSE-MIT</span><br><span class="line">├── README.md</span><br><span class="line">├── crate</span><br><span class="line">│   ├── Cargo.lock</span><br><span class="line">│   ├── Cargo.toml</span><br><span class="line">│   ├── pkg</span><br><span class="line">│   ├── src</span><br><span class="line">│   └── target</span><br><span class="line">├── index.html</span><br><span class="line">├── js</span><br><span class="line">│   └── index.js</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">└── webpack.config.js</span><br></pre></td></tr></table></figure></p>
+<p>执行 <code>npm run build</code>将生产dist目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── dist</span><br><span class="line">│   ├── 1.bundle.js</span><br><span class="line">│   ├── 362e0215e53c5653c642.module.wasm</span><br><span class="line">│   ├── bundle.js</span><br><span class="line">│   └── index.html</span><br></pre></td></tr></table></figure></p>
+<p>执行<code>npm start</code>将通过webpack-dev-server开启本地服务，修改src下的rust代码，也可以获得热更新的效果，大大提高了开发效率。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文所做的事情十分简单，wasm适用于需要在前端进行复杂运算的场景，希望以后能有机会在项目中实战。</p>
 
       
@@ -599,7 +604,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/20/chrome-extension/" rel="next" title="做一个chrome扩展吧">
+              <a href="/2019/03/20/chrome-extension/" rel="next" title="做一个chrome扩展吧">
                 <i class="fa fa-chevron-left"></i> 做一个chrome扩展吧
               </a>
             
@@ -693,7 +698,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/source/images/avatar.jpg"
+                src="/images/avatar.jpg"
                 alt="谢天" />
             
               <p class="site-author-name" itemprop="name">谢天</p>
@@ -707,7 +712,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -718,7 +723,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -729,7 +734,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -778,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建项目"><span class="nav-number">3.</span> <span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写点代码"><span class="nav-number">4.</span> <span class="nav-text">写点代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建包"><span class="nav-number">5.</span> <span class="nav-text">构建包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布包到npm"><span class="nav-number">6.</span> <span class="nav-text">发布包到npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用包"><span class="nav-number">7.</span> <span class="nav-text">使用包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建项目"><span class="nav-number">3.</span> <span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写点代码"><span class="nav-number">4.</span> <span class="nav-text">写点代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建包"><span class="nav-number">5.</span> <span class="nav-text">构建包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布包到npm"><span class="nav-number">6.</span> <span class="nav-text">发布包到npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用包"><span class="nav-number">7.</span> <span class="nav-text">使用包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rust-webpack-template"><span class="nav-number">8.</span> <span class="nav-text">rust-webpack-template</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-运行下面命令拉取模板"><span class="nav-number">8.1.</span> <span class="nav-text">1. 运行下面命令拉取模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -814,7 +819,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 

@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="一、前言1.什么是promise？ 2.promise有什么用？ 3.什么时候用promise？ MDN的官方解释是：  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值  新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目 所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-22T05:29:55.392Z">
+<meta property="og:updated_time" content="2019-05-24T02:01:32.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise之不完全解读">
 <meta name="twitter:description" content="一、前言1.什么是promise？ 2.promise有什么用？ 3.什么时候用promise？ MDN的官方解释是：  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值  新学一个新的概念的时候光从字面上其实无法很好的理解其含义，总之让我们带着这三个问题，一步步抽丝剥茧，道出它的真面目 所谓promise，翻译成中文就是：许诺、承诺的意思，表示一种将来的状态。">
@@ -329,7 +329,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-22T13:29:55+08:00">
-                2019-05-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T10:01:32+08:00">
+                2019-05-24
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,050
+                  920
                 </span>
               
 
@@ -482,8 +482,7 @@
 <h2 id="二、历史"><a href="#二、历史" class="headerlink" title="二、历史"></a>二、历史</h2><p>如果了解JavaScript的历史，可能会帮助我们更好的认识promise。</p>
 <pre><code>为检查表单而生的JavaScript
 </code></pre><p>在JavaScript出现以前，用户在填写表单时稍有不慎就得重新填写一遍，毫无用户体验。这时就出现了JavaScript，他天生就是用来检查表单的。那么作为一门浏览器端的语言，就注定了它<code>异步的命运</code>：它的执行不能使页面冻结。</p>
-<p>其实在JavaScript里面异步的问题还不是特别严重，因为JavaScript里的异步主要以DOM操作为主，但是自从出现了Nodejs以后，它对异步的依赖进一步加剧，为什么这么说呢？</p>
-<p>我们知道在Nodejs刚诞生的时候，PHP/Java等后端语言已经十分成熟，那作为后来者的Nodejs如何在后端世界分一杯羹呢？答案就是：<code>无阻塞和高并发</code>，这是nodejs的招牌。想要实现这一招牌，异步操作是重中之重！</p>
+<p>其实在JavaScript里面异步的问题还不是特别严重，因为JavaScript里的异步主要以DOM操作为主，但是自从出现了Nodejs以后，它对异步的依赖进一步加剧。</p>
 <h2 id="三、promise的基本概念"><a href="#三、promise的基本概念" class="headerlink" title="三、promise的基本概念"></a>三、promise的基本概念</h2><p>使用promise的基本方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    reject()</span><br><span class="line">&#125; )</span><br><span class="line">.then(</span><br><span class="line"><span class="comment">//可以返回一个新的promise对象</span></span><br><span class="line"><span class="comment">//可以返回一个同步的值</span></span><br><span class="line"><span class="comment">//可以抛出一个同步的异常</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line"><span class="comment">//捕获错误</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
 <p>promise有三种状态：</p>
 <ul>
@@ -508,7 +507,7 @@
 <p>结果居然不是‘bar’而是‘foo’，实际上这和前面的例子很相似，<code>如果给.then()传递的不是一个函数，它回直接解析为.then(null)，导致立即执行下一个.then(),发生所谓的promise穿透</code></p>
 <p>如果想要得到‘bar’,可以这么写：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">.then( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then( <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    consoe.log(res)  <span class="comment">// bar</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><a href="http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/" target="_blank" rel="noopener">we have a problem with promises</a><br>看了三遍这个文章才算看懂，真为自己的智商感到拙计啊啊啊.<br>等熟悉了promise，接下来就是async/await，以及Rx.js了吧···我不会轻易狗带的···</p>
+<p>最后，推荐这篇文章：<a href="http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/" target="_blank" rel="noopener">we have a problem with promises</a></p>
 
       
     </div>
@@ -610,8 +609,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/12/nodebeginner/" rel="prev" title="Nodejs简单入门">
-                Nodejs简单入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/17/v-custom/" rel="prev" title="做一个自定义滚动条">
+                做一个自定义滚动条 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -694,7 +693,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/source/images/avatar.jpg"
+                src="/images/avatar.jpg"
                 alt="谢天" />
             
               <p class="site-author-name" itemprop="name">谢天</p>
@@ -708,7 +707,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -719,7 +718,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -730,7 +729,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -815,7 +814,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 

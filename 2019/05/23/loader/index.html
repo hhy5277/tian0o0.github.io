@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="什么是loader？Loader可以理解为模块转换器，作用是将原内容按照一定的规则生成新内容 以处理.scss文件为例：  将.scss文件交给scss-loader处理，转化为.css文件 将.css文件交给css-loader处理，找出其中依赖的资源，压缩css等 将css-loader输出的css交给style-loader处理，转换成通过脚本加载的js代码  对应webpack配置如下：1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-23T09:15:47.443Z">
+<meta property="og:updated_time" content="2019-05-24T01:47:37.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="写一个webpack loader吧">
 <meta name="twitter:description" content="什么是loader？Loader可以理解为模块转换器，作用是将原内容按照一定的规则生成新内容 以处理.scss文件为例：  将.scss文件交给scss-loader处理，转化为.css文件 将.css文件交给css-loader处理，找出其中依赖的资源，压缩css等 将css-loader输出的css交给style-loader处理，转换成通过脚本加载的js代码  对应webpack配置如下：1">
@@ -329,7 +329,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-23T17:15:47+08:00">
-                2019-05-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T09:47:37+08:00">
+                2019-05-24
               </time>
             
           </span>
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  746
+                  977
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -490,6 +490,9 @@
 <h4 id="3-同步与异步"><a href="#3-同步与异步" class="headerlink" title="3. 同步与异步"></a>3. 同步与异步</h4><p>前面的示例都是同步的，如果我们要在loader中进行异步操作，那么需要使用<code>this.async</code>API<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">source</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> callback = <span class="keyword">this</span>.async()</span><br><span class="line">    settimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        callback(<span class="literal">null</span>, source, sourceMap)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="4-处理二进制数据"><a href="#4-处理二进制数据" class="headerlink" title="4. 处理二进制数据"></a>4. 处理二进制数据</h4><p>在默认情况下， Webpack 传给 Loader 的原内容都是 UTF-8 格式编码的字符串。但在某些场景下 Loader 不会处理文本文件，而会处理二进制文件如 file-loader ，这时就需要 Wepack为Loader传入二进制格式的数据。为此，我们需要这样编写 Loader:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">source</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(source <span class="keyword">instanceof</span> Buffer) <span class="comment">// true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行代码使loader获取的source为二进制数据</span></span><br><span class="line"><span class="built_in">module</span>.exports.raw = <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
 <p>暂时只介绍这几个api，查看官方文档了解更多吧。</p>
+<h3 id="本地loader的使用"><a href="#本地loader的使用" class="headerlink" title="本地loader的使用"></a>本地loader的使用</h3><p>在开发过程中，我们需要本地加载loader而不是把loader传到npm再使用。如何做到以<code>loader: &#39;xxx-loader&#39;</code>的形式使用而不是<code>loader: path.resolve(__dirname, &#39;./loaders/xxx-loader&#39;)</code>，这时候就需要<code>resolveLoader</code>选项了，它告诉webpack怎么去查找loader：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    resolveLoader: &#123;</span><br><span class="line">        <span class="comment">// 在哪里查找loader，有先后顺序</span></span><br><span class="line">        modules: [<span class="string">'node_modules'</span>, <span class="string">'./loaders'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，除了上面的方式，通过<code>npm  link</code>将本地loader目录建立一个软连接到<code>node_modules</code>，也可以达到相同的目的。</p>
+<h3 id="loader的应用场景"><a href="#loader的应用场景" class="headerlink" title="loader的应用场景"></a>loader的应用场景</h3><p>根据上面所说的，我们假设有这样一个需求：在现有业务下加上一套错误监控与处理机制。我们可以尝试编写这样一个loader，为相应的代码块外面加上try…catch，这样在不修改原有代码的基础上还能实现我们的需求，简直再合适不过了。</p>
 
       
     </div>
@@ -589,6 +592,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/05/24/webpack-plugin/" rel="prev" title="写一个webpack plugin吧">
+                写一个webpack plugin吧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -669,7 +676,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/source/images/avatar.jpg"
+                src="/images/avatar.jpg"
                 alt="谢天" />
             
               <p class="site-author-name" itemprop="name">谢天</p>
@@ -683,7 +690,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -694,7 +701,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -705,7 +712,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -754,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是loader？"><span class="nav-number">1.</span> <span class="nav-text">什么是loader？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader的本质"><span class="nav-number">2.</span> <span class="nav-text">loader的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader-API"><span class="nav-number">3.</span> <span class="nav-text">loader API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-获取loader的options"><span class="nav-number">3.1.</span> <span class="nav-text">1. 获取loader的options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-返回其它结果"><span class="nav-number">3.2.</span> <span class="nav-text">2. 返回其它结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同步与异步"><span class="nav-number">3.3.</span> <span class="nav-text">3. 同步与异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-处理二进制数据"><span class="nav-number">3.4.</span> <span class="nav-text">4. 处理二进制数据</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是loader？"><span class="nav-number">1.</span> <span class="nav-text">什么是loader？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader的本质"><span class="nav-number">2.</span> <span class="nav-text">loader的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader-API"><span class="nav-number">3.</span> <span class="nav-text">loader API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-获取loader的options"><span class="nav-number">3.1.</span> <span class="nav-text">1. 获取loader的options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-返回其它结果"><span class="nav-number">3.2.</span> <span class="nav-text">2. 返回其它结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同步与异步"><span class="nav-number">3.3.</span> <span class="nav-text">3. 同步与异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-处理二进制数据"><span class="nav-number">3.4.</span> <span class="nav-text">4. 处理二进制数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地loader的使用"><span class="nav-number">4.</span> <span class="nav-text">本地loader的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader的应用场景"><span class="nav-number">5.</span> <span class="nav-text">loader的应用场景</span></a></li></ol></div>
             
 
           </div>
@@ -790,7 +797,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 

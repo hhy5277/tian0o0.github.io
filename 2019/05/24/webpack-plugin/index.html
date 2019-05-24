@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="tree," />
+  <meta name="keywords" content="webpack4," />
 
 
 
@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;互联网&quot;,">
-<meta name="keywords" content="tree">
+<meta name="description" content="什么是plugin？webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。 copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再具体介绍相关内容。  这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件  1234567891011121314151">
+<meta name="keywords" content="webpack4">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js树形结构">
-<meta property="og:url" content="https://tian0o0.github.io/2018/12/20/js树形结构/index.html">
+<meta property="og:title" content="写一个webpack plugin吧">
+<meta property="og:url" content="https://tian0o0.github.io/2019/05/24/webpack-plugin/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;互联网&quot;,">
+<meta property="og:description" content="什么是plugin？webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。 copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再具体介绍相关内容。  这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件  1234567891011121314151">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T03:34:45.913Z">
+<meta property="og:updated_time" content="2019-05-24T06:36:19.956Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js树形结构">
-<meta name="twitter:description" content="前言有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。 结构1234567891011121314151617181920212223242526272829303132333435363738394041[&amp;#123;    &quot;id&quot;:1,    &quot;parent_id&quot;:0,    &quot;title&quot;:&quot;互联网&quot;,">
+<meta name="twitter:title" content="写一个webpack plugin吧">
+<meta name="twitter:description" content="什么是plugin？webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。 copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再具体介绍相关内容。  这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件  1234567891011121314151">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/2018/12/20/js树形结构/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/2019/05/24/webpack-plugin/"/>
 
 
 
 
 
-  <title>js树形结构 | 前端漫步</title>
+  <title>写一个webpack plugin吧 | 前端漫步</title>
   
 
 
@@ -324,12 +324,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/12/20/js树形结构/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2019/05/24/webpack-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">js树形结构</h2>
+          <h2 class="post-title" itemprop="name headline">写一个webpack plugin吧</h2>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T10:24:00+08:00">
-                2018-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-24T15:00:00+08:00">
+                2019-05-24
               </time>
             
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-13T11:34:45+08:00">
-                2019-05-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T14:36:19+08:00">
+                2019-05-24
               </time>
             
           </span>
@@ -388,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
                   </a>
                 </span>
 
@@ -406,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/20/js树形结构/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/20/js树形结构/" itemprop="commentsCount"></span>
+                <a href="/2019/05/24/webpack-plugin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/24/webpack-plugin/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  234
+                  863
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -466,9 +466,43 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有一个三级的树形结构，里面是岗位信息（如：互联网/开发/前端开发），已知前端开发的id，需要逐个拿到其父id。通过递归来做比较方便。</p>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    <span class="string">"id"</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">"parent_id"</span>:<span class="number">0</span>,</span><br><span class="line">    <span class="string">"title"</span>:<span class="string">"互联网"</span>,</span><br><span class="line">    <span class="string">"children"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"id"</span>:<span class="number">2</span>,</span><br><span class="line">            <span class="string">"parent_id"</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">"title"</span>:<span class="string">"后端开发"</span>,</span><br><span class="line">            <span class="string">"children"</span>:[</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">3</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">2</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"PHP开发"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">4</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">2</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"销售"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"id"</span>:<span class="number">5</span>,</span><br><span class="line">            <span class="string">"parent_id"</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">"title"</span>:<span class="string">"前端"</span>,</span><br><span class="line">            <span class="string">"children"</span>:[</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">6</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">5</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"开发"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"id"</span>:<span class="number">7</span>,</span><br><span class="line">                    <span class="string">"parent_id"</span>:<span class="number">5</span>,</span><br><span class="line">                    <span class="string">"title"</span>:<span class="string">"设计"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ids</span><br><span class="line"><span class="keyword">const</span> categoriesId3 = <span class="number">3</span></span><br><span class="line">findParentIds(categories) <span class="comment">// 最后依次拿到ids: [1, 2, 3]</span></span><br><span class="line">findParentIds (arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[i]</span><br><span class="line">        <span class="keyword">if</span> (temp.id === categoriesId3) &#123;</span><br><span class="line">          ids.unshift(temp.id);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (temp.children) &#123;</span><br><span class="line">          <span class="keyword">let</span> t = findParentIds(temp.children)</span><br><span class="line">          <span class="keyword">if</span> (t === <span class="number">1</span>) &#123;</span><br><span class="line">            ids.unshift(temp.id)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="什么是plugin？"><a href="#什么是plugin？" class="headerlink" title="什么是plugin？"></a>什么是plugin？</h3><p>webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。</p>
+<h3 id="copyright-webpack-plugin"><a href="#copyright-webpack-plugin" class="headerlink" title="copyright-webpack-plugin"></a>copyright-webpack-plugin</h3><p>先写个简单的plugin，有个直观的印象后再具体介绍相关内容。</p>
+<blockquote>
+<p>这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// plugins/copyright-webpack-plugin.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CopyrightWebpackPlugin</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(options) &#123;</span><br><span class="line">        <span class="keyword">this</span>.content = options.content</span><br><span class="line">    &#125;</span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">        compiler.hooks.compile.tap(<span class="string">'CopyrightWebpackPlugin'</span>, (compilation) =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'compile'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">        compiler.hooks.emit.tapAsync(<span class="string">'CopyrightWebpackPlugin'</span>, (compilation, cb) =&gt; &#123;</span><br><span class="line">            <span class="comment">// compilation: 本次打包的内容</span></span><br><span class="line">            <span class="comment">// compilation.assets： 本次打包生成的文件</span></span><br><span class="line">            <span class="comment">// debugger</span></span><br><span class="line">            compilation.assets[<span class="string">'copyright.txt'</span>] = &#123;</span><br><span class="line">                source: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.content,</span><br><span class="line">                size: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.content.length</span><br><span class="line">            &#125;</span><br><span class="line">            cb()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = CopyrightWebpackPlugin</span><br></pre></td></tr></table></figure>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// webpack.config.js</span><br><span class="line">const CopyrightWebpackPlugin = require(&apos;./plugins/copyright-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        new CopyrightWebpackPlugin(&#123;</span><br><span class="line">            content: &apos;Copyright by xietian&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Webpack 启动后，在读取配置的过程中会先执行 new CopyrightWebpackPlugin(options），初始化 CopyrightWebpackPlugin 并获得其实例。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>在初始化 compiler 对象后，再调用 CopyrightWebpackPlugin.<br>apply (compiler）为插件实例传入 compiler 对象。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>插件实例在获取到 compiler 对象后，就可以通过 compiler.hooks.eventName.tap（插件名称，回调函数）监听到 Webpack 广播的事件，并且可以通过 compiler 对象去操作 Webpack</li>
+</ol>
+</blockquote>
+<h3 id="compiler和compilation"><a href="#compiler和compilation" class="headerlink" title="compiler和compilation"></a>compiler和compilation</h3><p>在开发 Plugin 时最常用的两个对象就是 <code>Compiler</code> 和 <code>Compilation</code> ，它们是 Plugin 和 Webpack<br>之间的桥梁。<code>Compiler</code> 和 <code>Compilation</code> 的含义如下:</p>
+<ul>
+<li><strong>Compiler 对象包含了 Webpack 环境的所有配置信息</strong>，包含 options loaders plugins等信息。这个对象在Webpack启动时被实例化，它是全局唯一的，可以简单地将<br>它理解为 Webpack 实例</li>
+<li><strong>Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等</strong>。当 Webpack以开发模式运行时，每当检测到一个文件发生变化，便有一次新的 Compilation创建。Compilation 对象也提供了很多事件回调供插件进行扩展。通过 Compilation也能读取到 Compiler 对象。</li>
+<li><code>Compiler</code> 和 <code>Compilation</code>都继承自<code>Tapable</code></li>
+</ul>
+<p>++Compiler Compilation 的区别在于： Compiler 代表了整个 Webpack 从启动到关闭的生命周期，而 Compilation 只代表一次新的编译++。</p>
+<h3 id="Plugin-API"><a href="#Plugin-API" class="headerlink" title="Plugin API"></a>Plugin API</h3><p>这里只介绍一些常用的Plugin ApI</p>
+<h4 id="读取输出资源、代码块、模块及其依赖"><a href="#读取输出资源、代码块、模块及其依赖" class="headerlink" title="读取输出资源、代码块、模块及其依赖"></a>读取输出资源、代码块、模块及其依赖</h4><p><code>emit hook</code>表示资源编译完毕，生成资源到 output 目录之前，在这里可以修改输出内容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Plugin</span> </span>&#123;</span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">        compiler.hooks.emit.tapAsync(<span class="string">'Plugin'</span>, (compilation, cb) =&gt; &#123;</span><br><span class="line">            <span class="comment">// compilation.chunks是一个数组，用于存放所有代码块</span></span><br><span class="line">            cimpilation.chunks.forEach(<span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="comment">// 一个代码块由多个模块组成，chunk.forEachModule遍历其中的模块</span></span><br><span class="line">                chunk.forEachModule(<span class="function"><span class="params">module</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// module.fileDependencies是一个数组, 存放当前模块的所有依赖的文件路径</span></span><br><span class="line">                    <span class="built_in">module</span>.fileDependencies.forEach(<span class="function"><span class="params">filePath</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">                &#125;)</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// Webpack会根据Chunk生成输出的文件资源，每个 Chunk 都对应 一个及以上的输出文件, 例如在 Chunk 中包含 css 模块并且使用了 ExtractTextPlugin 时，该 Chunk 就会生成 js/css两个文件</span></span><br><span class="line">                </span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="监听文件变化"><a href="#监听文件变化" class="headerlink" title="监听文件变化"></a>监听文件变化</h4><p>Webpack 会从配置的入口模块出发，依次找出所有依赖模块， 当入<br>口模块或者其依赖的模块发生变化时 就会触发一次新的 Compilation</p>
+<p><code>watchRun hook</code>: 一个新的编译(compilation)触发之后，执行一个插件，但是是在实际编译开始之前</p>
+<blockquote>
+<p>待续…</p>
+</blockquote>
+
       
     </div>
     
@@ -517,7 +551,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2018/12/20/js树形结构/" title="js树形结构">https://tian0o0.github.io/2018/12/20/js树形结构/</a>
+    <a href="https://tian0o0.github.io/2019/05/24/webpack-plugin/" title="写一个webpack plugin吧">https://tian0o0.github.io/2019/05/24/webpack-plugin/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -532,7 +566,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tree/" rel="tag"><i class="fa fa-tag"></i> tree</a>
+            <a href="/tags/webpack4/" rel="tag"><i class="fa fa-tag"></i> webpack4</a>
           
         </div>
       
@@ -557,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/25/webpack/" rel="next" title="webpack优化之道">
-                <i class="fa fa-chevron-left"></i> webpack优化之道
+              <a href="/2019/05/23/loader/" rel="next" title="写一个webpack loader吧">
+                <i class="fa fa-chevron-left"></i> 写一个webpack loader吧
               </a>
             
           </div>
@@ -566,10 +600,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/20/chrome-extension/" rel="prev" title="做一个chrome扩展吧">
-                做一个chrome扩展吧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -651,7 +681,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/source/images/avatar.jpg"
+                src="/images/avatar.jpg"
                 alt="谢天" />
             
               <p class="site-author-name" itemprop="name">谢天</p>
@@ -665,7 +695,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -676,7 +706,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -687,7 +717,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -736,7 +766,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">3.</span> <span class="nav-text">递归</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是plugin？"><span class="nav-number">1.</span> <span class="nav-text">什么是plugin？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copyright-webpack-plugin"><span class="nav-number">2.</span> <span class="nav-text">copyright-webpack-plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compiler和compilation"><span class="nav-number">3.</span> <span class="nav-text">compiler和compilation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plugin-API"><span class="nav-number">4.</span> <span class="nav-text">Plugin API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读取输出资源、代码块、模块及其依赖"><span class="nav-number">4.1.</span> <span class="nav-text">读取输出资源、代码块、模块及其依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听文件变化"><span class="nav-number">4.2.</span> <span class="nav-text">监听文件变化</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -772,7 +802,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
