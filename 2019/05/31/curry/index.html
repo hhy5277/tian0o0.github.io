@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="webpack4," />
+  <meta name="keywords" content="rust," />
 
 
 
@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="什么是plugin？webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。 copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再具体介绍相关内容。  这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件  1234567891011121314151">
-<meta name="keywords" content="webpack4">
+<meta name="description" content="Function Apply在一些存粹的函数式编程语言中，函数并不是被描述为called或invoked，而是描述为applied。在js里面，通过Function.prototype.apply()可以实现Function Apply。 下面是一个函数应用的例子： 1234567function say(s) &amp;#123;	return &quot;Hello&quot; + s;&amp;#125;//调用函数say(&quot;">
+<meta name="keywords" content="rust">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写一个webpack plugin吧">
-<meta property="og:url" content="https://tian0o0.github.io/2019/05/24/webpack-plugin/index.html">
+<meta property="og:title" content="Javascript函数柯里化">
+<meta property="og:url" content="https://tian0o0.github.io/2019/05/31/curry/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="什么是plugin？webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。 copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再具体介绍相关内容。  这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件  1234567891011121314151">
+<meta property="og:description" content="Function Apply在一些存粹的函数式编程语言中，函数并不是被描述为called或invoked，而是描述为applied。在js里面，通过Function.prototype.apply()可以实现Function Apply。 下面是一个函数应用的例子： 1234567function say(s) &amp;#123;	return &quot;Hello&quot; + s;&amp;#125;//调用函数say(&quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-24T06:36:19.956Z">
+<meta property="og:updated_time" content="2019-05-31T09:50:51.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写一个webpack plugin吧">
-<meta name="twitter:description" content="什么是plugin？webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。 copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再具体介绍相关内容。  这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件  1234567891011121314151">
+<meta name="twitter:title" content="Javascript函数柯里化">
+<meta name="twitter:description" content="Function Apply在一些存粹的函数式编程语言中，函数并不是被描述为called或invoked，而是描述为applied。在js里面，通过Function.prototype.apply()可以实现Function Apply。 下面是一个函数应用的例子： 1234567function say(s) &amp;#123;	return &quot;Hello&quot; + s;&amp;#125;//调用函数say(&quot;">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/2019/05/24/webpack-plugin/"/>
+  <link rel="canonical" href="https://tian0o0.github.io/2019/05/31/curry/"/>
 
 
 
 
 
-  <title>写一个webpack plugin吧 | 前端漫步</title>
+  <title>Javascript函数柯里化 | 前端漫步</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2019/05/24/webpack-plugin/">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2019/05/31/curry/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢天">
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">写一个webpack plugin吧</h2>
+          <h2 class="post-title" itemprop="name headline">Javascript函数柯里化</h2>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-24T15:00:00+08:00">
-                2019-05-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-31T05:50:00+08:00">
+                2019-05-31
               </time>
             
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T14:36:19+08:00">
-                2019-05-24
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-31T17:50:51+08:00">
+                2019-05-31
               </time>
             
           </span>
@@ -388,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">Webpack</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -406,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/05/24/webpack-plugin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/24/webpack-plugin/" itemprop="commentsCount"></span>
+                <a href="/2019/05/31/curry/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/31/curry/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  863
+                  903
                 </span>
               
 
@@ -466,41 +466,25 @@
       
 
       
-        <h3 id="什么是plugin？"><a href="#什么是plugin？" class="headerlink" title="什么是plugin？"></a>什么是plugin？</h3><p>webpack在运行过程中会广播许多事件，plugin可以监听这些事件，以在一定的时机去执行一些事情去改变输出结果。</p>
-<h3 id="copyright-webpack-plugin"><a href="#copyright-webpack-plugin" class="headerlink" title="copyright-webpack-plugin"></a>copyright-webpack-plugin</h3><p>先写个简单的plugin，有个直观的印象后再具体介绍相关内容。</p>
+        <h3 id="Function-Apply"><a href="#Function-Apply" class="headerlink" title="Function Apply"></a>Function Apply</h3><p>在一些存粹的函数式编程语言中，函数并不是被描述为called或invoked，而是描述为applied。在js里面，通过Function.prototype.apply()可以实现Function Apply。</p>
+<p>下面是一个函数应用的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"Hello"</span> + s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用函数</span></span><br><span class="line">say(<span class="string">"world"</span>);</span><br><span class="line"><span class="comment">//应用函数</span></span><br><span class="line">say.apply(<span class="literal">null</span>, [<span class="string">"world"</span>])</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，invoking和applying可以得到相同的结果。apply()接受两个参数：第一个参数为将要绑定到该函数体内this的一个对象，第二个参数为一个数组。如果第一个参数为空，那么this指向全局。</p>
+<p>除了apply()以外，还有call()方法，它仅仅只是apply()的语法糖。当函数仅有一个参数时，推荐使用call代替apply，因为可以避免创建只有一个元素的数组，减小内存开销。</p>
 <blockquote>
-<p>这个plugin会在webpack打包输出资源到目标文件夹之前生成一个copyright.txt文件</p>
+<p>为了达到最佳新能，Node的Event模块就在三个参数以下用call否则用apply</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// plugins/copyright-webpack-plugin.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CopyrightWebpackPlugin</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(options) &#123;</span><br><span class="line">        <span class="keyword">this</span>.content = options.content</span><br><span class="line">    &#125;</span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">        compiler.hooks.compile.tap(<span class="string">'CopyrightWebpackPlugin'</span>, (compilation) =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'compile'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">        compiler.hooks.emit.tapAsync(<span class="string">'CopyrightWebpackPlugin'</span>, (compilation, cb) =&gt; &#123;</span><br><span class="line">            <span class="comment">// compilation: 本次打包的内容</span></span><br><span class="line">            <span class="comment">// compilation.assets： 本次打包生成的文件</span></span><br><span class="line">            <span class="comment">// debugger</span></span><br><span class="line">            compilation.assets[<span class="string">'copyright.txt'</span>] = &#123;</span><br><span class="line">                source: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.content,</span><br><span class="line">                size: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.content.length</span><br><span class="line">            &#125;</span><br><span class="line">            cb()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = CopyrightWebpackPlugin</span><br></pre></td></tr></table></figure>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// webpack.config.js</span><br><span class="line">const CopyrightWebpackPlugin = require(&apos;./plugins/copyright-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        new CopyrightWebpackPlugin(&#123;</span><br><span class="line">            content: &apos;Copyright by xietian&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://note.youdao.com/" target="_blank" rel="noopener">（我写了一篇文章，如何从0实现call/apply）</a></p>
+<h3 id="Curry"><a href="#Curry" class="headerlink" title="Curry"></a>Curry</h3><p>curry化就是将完全应用函数变为部分应用函数的过程（简单来说就是通过改变传递给函数参数的个数来达到改变函数返回结果）</p>
+<p>先举个简单点的🌰：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//部分应用</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> y === <span class="string">"undefined"</span>) &#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> x + y</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//完全应用</span></span><br><span class="line">  <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>)(<span class="number">2</span>) <span class="comment">// 3（部分应用）</span></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3（完全应用）</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码比较容易理解：如果同时传递x和y，会走直接return x+y；但如果只传一个x，那会返回一个新的函数，并将之前传递的x保存起来供下次函数应用</p>
+<p>然后实现一个通用的curry函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">  <span class="keyword">let</span> savedArgs = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);<span class="comment">//剔除第一个参数（fn）, 将类数组对象转化为数组</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  	<span class="keyword">let</span> newArgs = slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">let</span> args = [...savedArgs, ...newArgs];</span><br><span class="line">    <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, rags);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个普通函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y + z</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//curry化</span></span><br><span class="line">curry(add, <span class="number">1</span>)(<span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="何时使用Curry化"><a href="#何时使用Curry化" class="headerlink" title="何时使用Curry化"></a>何时使用Curry化</h3><p>当正在调用同一个函数，并且传递的参数大多都是相同的，那么该函数可能是用于curry化的一个很好的候选参数。可以通过将一个函数集合部分应用到函数中，从而动态创建一个新函数。</p>
+<p>举个简单的🌰：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">func, args = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arity = func.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">..._args</span>) </span>&#123;</span><br><span class="line">        _args.unshift(...args);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(_args.length &lt; arity) &#123;</span><br><span class="line">            <span class="keyword">return</span> curry.call(<span class="literal">null</span>, func, _args);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> func(..._args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFun</span>(<span class="params">reg, str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> reg.test(str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> check = curry(checkFun);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> checkPhone = check(<span class="regexp">/^1[34578]\d&#123;9&#125;$/</span>);</span><br><span class="line"><span class="built_in">console</span>.log(checkPhone(<span class="string">'13997603799'</span>)) <span class="comment">//true</span></span><br><span class="line"><span class="keyword">let</span> checkEmail = check(<span class="regexp">/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/</span>);</span><br><span class="line"><span class="built_in">console</span>.log(checkEmail(<span class="string">'839862975@qq.com'</span>)) <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p>在vue源码里面也有大量函数curry化的应用。比如vue在将VNode进行patch生成真实DOM的过程中，为了抹平平台差异（web和weex），将平台差异化的参数提前固化，这样不用每次调用patch方法的时候都传递nodeOps和modules了</p>
 <blockquote>
-<ol>
-<li>Webpack 启动后，在读取配置的过程中会先执行 new CopyrightWebpackPlugin(options），初始化 CopyrightWebpackPlugin 并获得其实例。</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>在初始化 compiler 对象后，再调用 CopyrightWebpackPlugin.<br>apply (compiler）为插件实例传入 compiler 对象。</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>插件实例在获取到 compiler 对象后，就可以通过 compiler.hooks.eventName.tap（插件名称，回调函数）监听到 Webpack 广播的事件，并且可以通过 compiler 对象去操作 Webpack</li>
-</ol>
-</blockquote>
-<h3 id="compiler和compilation"><a href="#compiler和compilation" class="headerlink" title="compiler和compilation"></a>compiler和compilation</h3><p>在开发 Plugin 时最常用的两个对象就是 <code>Compiler</code> 和 <code>Compilation</code> ，它们是 Plugin 和 Webpack<br>之间的桥梁。<code>Compiler</code> 和 <code>Compilation</code> 的含义如下:</p>
-<ul>
-<li><strong>Compiler 对象包含了 Webpack 环境的所有配置信息</strong>，包含 options loaders plugins等信息。这个对象在Webpack启动时被实例化，它是全局唯一的，可以简单地将<br>它理解为 Webpack 实例</li>
-<li><strong>Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等</strong>。当 Webpack以开发模式运行时，每当检测到一个文件发生变化，便有一次新的 Compilation创建。Compilation 对象也提供了很多事件回调供插件进行扩展。通过 Compilation也能读取到 Compiler 对象。</li>
-<li><code>Compiler</code> 和 <code>Compilation</code>都继承自<code>Tapable</code></li>
-</ul>
-<p>++Compiler Compilation 的区别在于： Compiler 代表了整个 Webpack 从启动到关闭的生命周期，而 Compilation 只代表一次新的编译++。</p>
-<h3 id="Plugin-API"><a href="#Plugin-API" class="headerlink" title="Plugin API"></a>Plugin API</h3><p>这里只介绍一些常用的Plugin ApI</p>
-<h4 id="读取输出资源、代码块、模块及其依赖"><a href="#读取输出资源、代码块、模块及其依赖" class="headerlink" title="读取输出资源、代码块、模块及其依赖"></a>读取输出资源、代码块、模块及其依赖</h4><p><code>emit hook</code>表示资源编译完毕，生成资源到 output 目录之前，在这里可以修改输出内容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Plugin</span> </span>&#123;</span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">        compiler.hooks.emit.tapAsync(<span class="string">'Plugin'</span>, (compilation, cb) =&gt; &#123;</span><br><span class="line">            <span class="comment">// compilation.chunks是一个数组，用于存放所有代码块</span></span><br><span class="line">            cimpilation.chunks.forEach(<span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="comment">// 一个代码块由多个模块组成，chunk.forEachModule遍历其中的模块</span></span><br><span class="line">                chunk.forEachModule(<span class="function"><span class="params">module</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// module.fileDependencies是一个数组, 存放当前模块的所有依赖的文件路径</span></span><br><span class="line">                    <span class="built_in">module</span>.fileDependencies.forEach(<span class="function"><span class="params">filePath</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">                &#125;)</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// Webpack会根据Chunk生成输出的文件资源，每个 Chunk 都对应 一个及以上的输出文件, 例如在 Chunk 中包含 css 模块并且使用了 ExtractTextPlugin 时，该 Chunk 就会生成 js/css两个文件</span></span><br><span class="line">                </span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="监听文件变化"><a href="#监听文件变化" class="headerlink" title="监听文件变化"></a>监听文件变化</h4><p>Webpack 会从配置的入口模块出发，依次找出所有依赖模块， 当入<br>口模块或者其依赖的模块发生变化时 就会触发一次新的 Compilation</p>
-<p><code>watchRun hook</code>: 一个新的编译(compilation)触发之后，执行一个插件，但是是在实际编译开始之前</p>
-<blockquote>
-<p>待续…</p>
+<p>nodeOps 表示对 “平台 DOM” 的一些操作方法，modules 表示平台的一些模块，它们会在整个 patch 过程的不同阶段执行相应的钩子函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//plantforms/web/runtime/patch.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> nodeOps <span class="keyword">from</span> <span class="string">'web/runtime/node-ops'</span></span><br><span class="line"><span class="keyword">import</span> &#123; createPatchFunction &#125; <span class="keyword">from</span> <span class="string">'core/vdom/patch'</span></span><br><span class="line"><span class="keyword">import</span> baseModules <span class="keyword">from</span> <span class="string">'core/vdom/modules/index'</span></span><br><span class="line"><span class="keyword">import</span> platformModules <span class="keyword">from</span> <span class="string">'web/runtime/modules/index'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// the directive module should be applied last, after all</span></span><br><span class="line"><span class="comment">// built-in modules have been applied.</span></span><br><span class="line"><span class="keyword">const</span> modules = platformModules.concat(baseModules)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> patch: <span class="built_in">Function</span> = createPatchFunction(&#123; nodeOps, modules &#125;)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
       
@@ -551,7 +535,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2019/05/24/webpack-plugin/" title="写一个webpack plugin吧">https://tian0o0.github.io/2019/05/24/webpack-plugin/</a>
+    <a href="https://tian0o0.github.io/2019/05/31/curry/" title="Javascript函数柯里化">https://tian0o0.github.io/2019/05/31/curry/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -566,7 +550,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/webpack4/" rel="tag"><i class="fa fa-tag"></i> webpack4</a>
+            <a href="/tags/rust/" rel="tag"><i class="fa fa-tag"></i> rust</a>
           
         </div>
       
@@ -591,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/23/loader/" rel="next" title="写一个webpack loader吧">
-                <i class="fa fa-chevron-left"></i> 写一个webpack loader吧
+              <a href="/2019/05/24/webpack-plugin/" rel="next" title="写一个webpack plugin吧">
+                <i class="fa fa-chevron-left"></i> 写一个webpack plugin吧
               </a>
             
           </div>
@@ -600,10 +584,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/31/curry/" rel="prev" title="Javascript函数柯里化">
-                Javascript函数柯里化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是plugin？"><span class="nav-number">1.</span> <span class="nav-text">什么是plugin？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copyright-webpack-plugin"><span class="nav-number">2.</span> <span class="nav-text">copyright-webpack-plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compiler和compilation"><span class="nav-number">3.</span> <span class="nav-text">compiler和compilation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plugin-API"><span class="nav-number">4.</span> <span class="nav-text">Plugin API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读取输出资源、代码块、模块及其依赖"><span class="nav-number">4.1.</span> <span class="nav-text">读取输出资源、代码块、模块及其依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听文件变化"><span class="nav-number">4.2.</span> <span class="nav-text">监听文件变化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Apply"><span class="nav-number">1.</span> <span class="nav-text">Function Apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Curry"><span class="nav-number">2.</span> <span class="nav-text">Curry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时使用Curry化"><span class="nav-number">3.</span> <span class="nav-text">何时使用Curry化</span></a></li></ol></div>
             
 
           </div>
