@@ -517,7 +517,7 @@
 </li>
 </ol>
 <p>发现80端口冲突，因此需要修改端口号</p>
-<ol>
+<ol start="5">
 <li><p>将上面对的端口号改成8081后执行<code>node app.js</code>后服务跑了起来，但是打开浏览器依然无法访问，那应该就是防火墙未开通8081的端口号</p>
 </li>
 <li><p>我装的是CENTOS7.3，它使用firewall来代替iptables，执行以下命令查看防火墙开放的端口号：</p>
@@ -525,12 +525,12 @@
 </li>
 </ol>
 <p>显示：<code>80/tcp</code>，显然防火墙只开放了80端口</p>
-<ol>
+<ol start="7">
 <li>执行以下命令来开发新端口：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public(作用域) --add-port=8081/tcp(端口和访问类型) --permanent(永久生效)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>然后重启防火墙：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
-<ol>
+<ol start="8">
 <li>执行<code>node app</code>开启node服务，打开浏览器访问120.79.143.53发现还是不行，不过试了下可以看到输出信息<code>first node</code>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:8081</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -553,7 +553,7 @@
 <li><code>pm2 show NAME</code>用于查看某个node服务详情</li>
 <li><code>pm2 stop/start ID/NAME</code>用于开启停止node服务</li>
 </ul>
-<ol>
+<ol start="4">
 <li>具体查看pm2官网：<a href="http://pm2.keymetrics.io/" target="_blank" rel="noopener">http://pm2.keymetrics.io/</a></li>
 </ol>
 <h4 id="五、Nginx实现反向代理"><a href="#五、Nginx实现反向代理" class="headerlink" title="五、Nginx实现反向代理"></a>五、Nginx实现反向代理</h4><p>上面，一个简单的node服务跑在了服务器的8081端口，但是，我需要通过直接访问120.79.143.xx来访问这个node服务的话，就需要用到nginx了</p>
@@ -583,7 +583,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/mongodb-org-3.4.repo</span><br></pre></td></tr></table></figure>
 <p>然后复制下面配置,保存退出</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-3.4]</span><br><span class="line">name=MongoDB Repository</span><br><span class="line">baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="2">
 <li>yum安装</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mongodb-org</span><br></pre></td></tr></table></figure>
@@ -592,7 +592,7 @@
 <blockquote>
 <p>修改配置文件的 bindIp, 默认是 127.0.0.1 只限于本机连接。所以安装完成后必须把这个修改为 0.0.0.0 ,否则通过别的机器是没法连接的</p>
 </blockquote>
-<ol>
+<ol start="3">
 <li>启动、停止mongodb</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mongod start</span><br><span class="line"></span><br><span class="line">service mongod stop</span><br></pre></td></tr></table></figure>

@@ -514,12 +514,12 @@
 </ol>
 </blockquote>
 <blockquote>
-<ol>
+<ol start="2">
 <li>在初始化 compiler 对象后，再调用 CopyrightWebpackPlugin.<br>apply (compiler）为插件实例传入 compiler 对象。</li>
 </ol>
 </blockquote>
 <blockquote>
-<ol>
+<ol start="3">
 <li>插件实例在获取到 compiler 对象后，就可以通过 compiler.hooks.eventName.tap（插件名称，回调函数）监听到 Webpack 广播的事件，并且可以通过 compiler 对象去操作 Webpack</li>
 </ol>
 </blockquote>
