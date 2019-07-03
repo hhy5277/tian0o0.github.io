@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="原理原理很简单:  通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改变其top值。  HTML结构首先，HTML结构应该满足下面要求 12345678&amp;lt;div id=&quot;wrap&quot;&amp;gt;    &amp;lt;di">
+<meta name="description" content="原理原理很简单:  通过js设置外层div wrapper(#wrap)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(#main)为position:relative，然后通过滚轮事件改变其top值。  HTML结构首先，HTML结构应该满足下面要求 12345678&amp;lt;div id=&quot;wrap&quot;&amp;gt;    &amp;lt;div id=&quot;ma">
 <meta name="keywords" content="fullpage">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原生JS简单实现全屏滚动效果">
+<meta property="og:title" content="原生Javascript实现全屏滚动效果">
 <meta property="og:url" content="https://tian0o0.github.io/2018/06/18/全屏滚动/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="原理原理很简单:  通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改变其top值。  HTML结构首先，HTML结构应该满足下面要求 12345678&amp;lt;div id=&quot;wrap&quot;&amp;gt;    &amp;lt;di">
+<meta property="og:description" content="原理原理很简单:  通过js设置外层div wrapper(#wrap)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(#main)为position:relative，然后通过滚轮事件改变其top值。  HTML结构首先，HTML结构应该满足下面要求 12345678&amp;lt;div id=&quot;wrap&quot;&amp;gt;    &amp;lt;div id=&quot;ma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T03:32:01.180Z">
+<meta property="og:updated_time" content="2019-07-03T13:43:51.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原生JS简单实现全屏滚动效果">
-<meta name="twitter:description" content="原理原理很简单:  通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改变其top值。  HTML结构首先，HTML结构应该满足下面要求 12345678&amp;lt;div id=&quot;wrap&quot;&amp;gt;    &amp;lt;di">
+<meta name="twitter:title" content="原生Javascript实现全屏滚动效果">
+<meta name="twitter:description" content="原理原理很简单:  通过js设置外层div wrapper(#wrap)的高度为浏览器可视区的高度，并设置overflow:hidden; 设置内层div wrapper(#main)为position:relative，然后通过滚轮事件改变其top值。  HTML结构首先，HTML结构应该满足下面要求 12345678&amp;lt;div id=&quot;wrap&quot;&amp;gt;    &amp;lt;div id=&quot;ma">
 
 
 
@@ -177,7 +177,7 @@
 
 
 
-  <title>原生JS简单实现全屏滚动效果 | 前端漫步</title>
+  <title>原生Javascript实现全屏滚动效果 | 前端漫步</title>
   
 
 
@@ -376,7 +376,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">原生JS简单实现全屏滚动效果</h2>
+          <h2 class="post-title" itemprop="name headline">原生Javascript实现全屏滚动效果</h2>
         
 
         <div class="post-meta">
@@ -442,7 +442,7 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="page-pv">pv
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -485,8 +485,8 @@
       
         <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>原理很简单:</p>
 <ul>
-<li>通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden;</li>
-<li>设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改变其top值。</li>
+<li>通过js设置外层div wrapper(<code>#wrap</code>)的高度为浏览器可视区的高度，并设置<code>overflow:hidden</code>;</li>
+<li>设置内层div wrapper(<code>#main</code>)为<code>position:relative</code>，然后通过滚轮事件改变其top值。</li>
 </ul>
 <h3 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h3><p>首先，HTML结构应该满足下面要求</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page page4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -540,7 +540,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tian0o0.github.io/2018/06/18/全屏滚动/" title="原生JS简单实现全屏滚动效果">https://tian0o0.github.io/2018/06/18/全屏滚动/</a>
+    <a href="https://tian0o0.github.io/2018/06/18/全屏滚动/" title="原生Javascript实现全屏滚动效果">https://tian0o0.github.io/2018/06/18/全屏滚动/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -693,7 +693,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +704,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +715,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -790,8 +790,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
@@ -806,16 +805,10 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.0k</span>
+    <span title="Site words total count">13.6k</span>
   
 </div>
 
-
-  <div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_pv"></span>
-</span>
-</div>
 
 
 
@@ -828,11 +821,10 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      uv
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -840,7 +832,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      pv
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

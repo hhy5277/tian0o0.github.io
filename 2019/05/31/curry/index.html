@@ -137,7 +137,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="Function Apply在一些存粹的函数式编程语言中，函数并不是被描述为called或invoked，而是描述为applied。在js里面，通过Function.prototype.apply()可以实现Function Apply。 下面是一个函数应用的例子： 1234567function say(s) &amp;#123;	return &quot;Hello&quot; + s;&amp;#125;//调用函数say(&quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-31T09:54:06.851Z">
+<meta property="og:updated_time" content="2019-07-03T13:40:56.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript函数柯里化">
 <meta name="twitter:description" content="Function Apply在一些存粹的函数式编程语言中，函数并不是被描述为called或invoked，而是描述为applied。在js里面，通过Function.prototype.apply()可以实现Function Apply。 下面是一个函数应用的例子： 1234567function say(s) &amp;#123;	return &quot;Hello&quot; + s;&amp;#125;//调用函数say(&quot;">
@@ -441,7 +441,7 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="page-pv">pv
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -490,7 +490,7 @@
 <blockquote>
 <p>为了达到最佳新能，Node的Event模块就在三个参数以下用call否则用apply</p>
 </blockquote>
-<p><a href="https://note.youdao.com/" target="_blank" rel="noopener">（我写了一篇文章，如何从0实现call/apply）</a></p>
+<p><a href="https://www.yuque.com/docs/share/3c9d99f2-8142-4812-9d26-e3a09f8e73cb" target="_blank" rel="noopener">（我写了一篇文章，如何从0实现call/apply）</a></p>
 <h3 id="Curry"><a href="#Curry" class="headerlink" title="Curry"></a>Curry</h3><p>curry化就是将完全应用函数变为部分应用函数的过程（简单来说就是通过改变传递给函数参数的个数来达到改变函数返回结果）</p>
 <p>先举个简单点的🌰：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//部分应用</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> y === <span class="string">"undefined"</span>) &#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> x + y</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//完全应用</span></span><br><span class="line">  <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>)(<span class="number">2</span>) <span class="comment">// 3（部分应用）</span></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3（完全应用）</span></span><br></pre></td></tr></table></figure>
@@ -694,7 +694,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -705,7 +705,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -716,7 +716,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -791,8 +791,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
@@ -807,16 +806,10 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.0k</span>
+    <span title="Site words total count">13.6k</span>
   
 </div>
 
-
-  <div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_pv"></span>
-</span>
-</div>
 
 
 
@@ -829,11 +822,10 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      uv
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -841,7 +833,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      pv
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

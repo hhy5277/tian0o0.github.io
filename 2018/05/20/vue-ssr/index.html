@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每">
+<meta name="description" content="前言鉴于SPA的明显的缺点：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每个请求应该都是全新的、独立的应用程序实例，以">
 <meta name="keywords" content="ssr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue服务端渲染">
 <meta property="og:url" content="https://tian0o0.github.io/2018/05/20/vue-ssr/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每">
+<meta property="og:description" content="前言鉴于SPA的明显的缺点：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每个请求应该都是全新的、独立的应用程序实例，以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-23T11:52:04.000Z">
+<meta property="og:updated_time" content="2019-07-03T13:34:41.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue服务端渲染">
-<meta name="twitter:description" content="前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每">
+<meta name="twitter:description" content="前言鉴于SPA的明显的缺点：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。 注意事项 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同  服务器上的数据响应 在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每个请求应该都是全新的、独立的应用程序实例，以">
 
 
 
@@ -442,7 +442,7 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="page-pv">pv
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -458,7 +458,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,161
+                  3,207
                 </span>
               
 
@@ -483,7 +483,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>鉴于SPA的明显的缺点：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。</p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><blockquote>
 <p><strong>由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同</strong></p>
 </blockquote>
@@ -515,7 +515,7 @@
 <blockquote>
 <p>如果你有一个自定义指令，但是不是很容易替换为组件，则可以在创建服务器 renderer 时，使用 directives 选项所提供”服务器端版本(server-side version)”。</p>
 </blockquote>
-<h2 id="Let’s-get-it"><a href="#Let’s-get-it" class="headerlink" title="Let’s get it"></a>Let’s get it</h2><h4 id="搭建脚手架"><a href="#搭建脚手架" class="headerlink" title="搭建脚手架"></a>搭建脚手架</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用webpack-simple搭建一个简单的脚手架</span></span><br><span class="line">vue init webpack-simple vue-ssr</span><br></pre></td></tr></table></figure>
+<h2 id="Let’s-go"><a href="#Let’s-go" class="headerlink" title="Let’s go"></a>Let’s go</h2><h4 id="搭建脚手架"><a href="#搭建脚手架" class="headerlink" title="搭建脚手架"></a>搭建脚手架</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用webpack-simple搭建一个简单的脚手架</span></span><br><span class="line">vue init webpack-simple vue-ssr</span><br></pre></td></tr></table></figure>
 <p>src目录可能需要像下面这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">├── components</span><br><span class="line">│   ├── Foo.vue</span><br><span class="line">│   ├── Bar.vue</span><br><span class="line">│   └── Baz.vue</span><br><span class="line">├── index.template.html # SSR模板</span><br><span class="line">├── App.vue</span><br><span class="line">├── app.js # 通用 entry(universal entry)</span><br><span class="line">├── entry-client.js # 仅运行于浏览器</span><br><span class="line">└── entry-server.js # 仅运行于服务器</span><br></pre></td></tr></table></figure>
 <h4 id="客户端与服务端通用入口：app-js"><a href="#客户端与服务端通用入口：app-js" class="headerlink" title="客户端与服务端通用入口：app.js"></a>客户端与服务端通用入口：app.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出一个工厂函数，用于创建新的</span></span><br><span class="line"><span class="comment">// 应用程序、router 和 store 实例</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createApp</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// 根实例简单的渲染应用程序组件。</span></span><br><span class="line">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> &#123; app &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -583,6 +583,7 @@
 </ul>
 </blockquote>
 <p><strong>上面的<code>0.client.js</code>和<code>0.server.js</code>就是动态加载的组件hello.vue所打包出来的文件，这样就可以按需引用</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面的代码只是完成了很小的一部分，真正想要投入到生产工作量比这个大太多，因此如果不是必要，推荐使用现有的服务端渲染框架：next.js/nuxt.jsd等。</p>
 
       
     </div>
@@ -689,8 +690,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/18/全屏滚动/" rel="prev" title="原生JS简单实现全屏滚动效果">
-                原生JS简单实现全屏滚动效果 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/18/全屏滚动/" rel="prev" title="原生Javascript实现全屏滚动效果">
+                原生Javascript实现全屏滚动效果 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -785,7 +786,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -796,7 +797,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -807,7 +808,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -862,7 +863,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器上的数据响应"><span class="nav-number">2.0.1.</span> <span class="nav-text">服务器上的数据响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件生命周期钩子函数"><span class="nav-number">2.0.2.</span> <span class="nav-text">组件生命周期钩子函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问特定平台-Platform-Specific-API"><span class="nav-number">2.0.3.</span> <span class="nav-text">访问特定平台(Platform-Specific) API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义指令"><span class="nav-number">2.0.4.</span> <span class="nav-text">自定义指令</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-get-it"><span class="nav-number">3.</span> <span class="nav-text">Let’s get it</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建脚手架"><span class="nav-number">3.0.1.</span> <span class="nav-text">搭建脚手架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端与服务端通用入口：app-js"><span class="nav-number">3.0.2.</span> <span class="nav-text">客户端与服务端通用入口：app.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端入口：entry-client-js"><span class="nav-number">3.0.3.</span> <span class="nav-text">客户端入口：entry-client.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端入口：entry-server-js"><span class="nav-number">3.0.4.</span> <span class="nav-text">服务端入口：entry-server.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建配置（webpack）"><span class="nav-number">4.</span> <span class="nav-text">构建配置（webpack）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-base-config-js"><span class="nav-number">4.0.1.</span> <span class="nav-text">webpack.base.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-client-config-js"><span class="nav-number">4.0.2.</span> <span class="nav-text">webpack.client.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-client-config-js-1"><span class="nav-number">4.0.3.</span> <span class="nav-text">webpack.client.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">4.0.4.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改server-js"><span class="nav-number">4.0.5.</span> <span class="nav-text">修改server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-template-html中引入client端打包文件"><span class="nav-number">4.0.6.</span> <span class="nav-text">index.template.html中引入client端打包文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行以下命令："><span class="nav-number">4.0.7.</span> <span class="nav-text">执行以下命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由和代码分割"><span class="nav-number">5.</span> <span class="nav-text">路由和代码分割</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在src目录下创建router-js"><span class="nav-number">5.0.1.</span> <span class="nav-text">在src目录下创建router.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改通用入口app-js"><span class="nav-number">5.0.2.</span> <span class="nav-text">修改通用入口app.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改entry-client-js"><span class="nav-number">5.0.3.</span> <span class="nav-text">修改entry-client.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-entry-server-js-中实现服务器端路由逻辑"><span class="nav-number">5.0.4.</span> <span class="nav-text">在 entry-server.js 中实现服务器端路由逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改server-js-1"><span class="nav-number">5.0.5.</span> <span class="nav-text">修改server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次打包"><span class="nav-number">5.0.6.</span> <span class="nav-text">再次打包</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器上的数据响应"><span class="nav-number">2.0.1.</span> <span class="nav-text">服务器上的数据响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件生命周期钩子函数"><span class="nav-number">2.0.2.</span> <span class="nav-text">组件生命周期钩子函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问特定平台-Platform-Specific-API"><span class="nav-number">2.0.3.</span> <span class="nav-text">访问特定平台(Platform-Specific) API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义指令"><span class="nav-number">2.0.4.</span> <span class="nav-text">自定义指令</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-go"><span class="nav-number">3.</span> <span class="nav-text">Let’s go</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建脚手架"><span class="nav-number">3.0.1.</span> <span class="nav-text">搭建脚手架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端与服务端通用入口：app-js"><span class="nav-number">3.0.2.</span> <span class="nav-text">客户端与服务端通用入口：app.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端入口：entry-client-js"><span class="nav-number">3.0.3.</span> <span class="nav-text">客户端入口：entry-client.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端入口：entry-server-js"><span class="nav-number">3.0.4.</span> <span class="nav-text">服务端入口：entry-server.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建配置（webpack）"><span class="nav-number">4.</span> <span class="nav-text">构建配置（webpack）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-base-config-js"><span class="nav-number">4.0.1.</span> <span class="nav-text">webpack.base.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-client-config-js"><span class="nav-number">4.0.2.</span> <span class="nav-text">webpack.client.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-client-config-js-1"><span class="nav-number">4.0.3.</span> <span class="nav-text">webpack.client.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">4.0.4.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改server-js"><span class="nav-number">4.0.5.</span> <span class="nav-text">修改server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-template-html中引入client端打包文件"><span class="nav-number">4.0.6.</span> <span class="nav-text">index.template.html中引入client端打包文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行以下命令："><span class="nav-number">4.0.7.</span> <span class="nav-text">执行以下命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由和代码分割"><span class="nav-number">5.</span> <span class="nav-text">路由和代码分割</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在src目录下创建router-js"><span class="nav-number">5.0.1.</span> <span class="nav-text">在src目录下创建router.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改通用入口app-js"><span class="nav-number">5.0.2.</span> <span class="nav-text">修改通用入口app.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改entry-client-js"><span class="nav-number">5.0.3.</span> <span class="nav-text">修改entry-client.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-entry-server-js-中实现服务器端路由逻辑"><span class="nav-number">5.0.4.</span> <span class="nav-text">在 entry-server.js 中实现服务器端路由逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改server-js-1"><span class="nav-number">5.0.5.</span> <span class="nav-text">修改server.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次打包"><span class="nav-number">5.0.6.</span> <span class="nav-text">再次打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
@@ -882,8 +883,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
@@ -898,16 +898,10 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.0k</span>
+    <span title="Site words total count">13.6k</span>
   
 </div>
 
-
-  <div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_pv"></span>
-</span>
-</div>
 
 
 
@@ -920,11 +914,10 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      uv
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -932,7 +925,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      pv
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

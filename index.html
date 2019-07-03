@@ -1134,7 +1134,7 @@ copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3
+                  14
                 </span>
               
 
@@ -1161,7 +1161,8 @@ copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再�
       
         
           
-          待完成
+          TO DO还没有好的点子，有灵感再说
+
           
           <!--noindex-->
           <div class="post-button text-center">
@@ -1575,7 +1576,7 @@ copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/18/全屏滚动/" itemprop="url">原生JS简单实现全屏滚动效果</a></h2>
+                <a class="post-title-link" href="/2018/06/18/全屏滚动/" itemprop="url">原生Javascript实现全屏滚动效果</a></h2>
         
 
         <div class="post-meta">
@@ -1671,10 +1672,10 @@ copyright-webpack-plugin先写个简单的plugin，有个直观的印象后再�
           
           原理原理很简单:
 
-通过js设置外层div wrapper(==#wrap==)的高度为浏览器可视区的高度，并设置overflow:hidden;
-设置内层div wrapper(==#main==)为position:relative，然后通过滚轮事件改变其top值。
+通过js设置外层div wrapper(#wrap)的高度为浏览器可视区的高度，并设置overflow:hidden;
+设置内层div wrapper(#main)为position:relative，然后通过滚轮事件改变其top值。
 
-HTML结构首先，HTML
+HTML结构首先，HTML结构应该满足下面
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1815,7 +1816,7 @@ HTML结构首先，HTML
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,161
+                  3,207
                 </span>
               
 
@@ -1842,12 +1843,12 @@ HTML结构首先，HTML
       
         
           
-          前言目前已近用vue全家桶做了几个SPA应用了，但是SPA的缺点很明显：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。
+          前言鉴于SPA的明显的缺点：首屏白屏时间较长以及SEO不友好，因此在上述需求下，SSR十分有必要。
 注意事项
 由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同
 
 服务器上的数据响应
-在纯客户端应用程序(client-only 
+在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2118,7 +2119,7 @@ sort()
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2129,7 +2130,7 @@ sort()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2140,7 +2141,7 @@ sort()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2199,8 +2200,7 @@ sort()
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
@@ -2215,16 +2215,10 @@ sort()
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.0k</span>
+    <span title="Site words total count">13.6k</span>
   
 </div>
 
-
-  <div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_pv"></span>
-</span>
-</div>
 
 
 
@@ -2237,11 +2231,10 @@ sort()
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      uv
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -2249,7 +2242,7 @@ sort()
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      pv
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>
