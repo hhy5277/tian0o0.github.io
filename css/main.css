@@ -2278,7 +2278,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #69ff93;
+  background: #ff5e50;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2838,11 +2838,6 @@ pre .javascript .function {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #ccc;
-}
-.site-uv,
-.site-pv,
-.page-pv {
-  display: inline-block;
 }
 .site-uv .busuanzi-value,
 .site-pv .busuanzi-value,
