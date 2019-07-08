@@ -130,17 +130,17 @@
 
 
 
-<meta name="description" content="前端杂谈">
-<meta property="og:type" content="website">
-<meta property="og:title" content="All categories">
-<meta property="og:url" content="https://tian0o0.github.io/categories/index.html">
+<meta name="description" content="call()/apply()在工作中有着诸多的应用，本着知其然知其所以然的原则，现在我们从0来实现call/apply/bind。其实也很简单，思路很重要。 call()想要实现call，我们得先了解其核心原理：改变函数体内的this指向(查看MDN官方解释)。因此从一下几点入手：  将函数设置为对象的属性fn 拿到arguments传给fn并执行 删除fn，还原对象  1234567891011">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从0实现call()&#x2F;apply()&#x2F;bind()">
+<meta property="og:url" content="https://tian0o0.github.io/2018/06/05/bind/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="前端杂谈">
+<meta property="og:description" content="call()/apply()在工作中有着诸多的应用，本着知其然知其所以然的原则，现在我们从0来实现call/apply/bind。其实也很简单，思路很重要。 call()想要实现call，我们得先了解其核心原理：改变函数体内的this指向(查看MDN官方解释)。因此从一下几点入手：  将函数设置为对象的属性fn 拿到arguments传给fn并执行 删除fn，还原对象  1234567891011">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-09T14:04:45.600Z">
+<meta property="og:updated_time" content="2019-07-08T14:16:13.124Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="All categories">
-<meta name="twitter:description" content="前端杂谈">
+<meta name="twitter:title" content="从0实现call()&#x2F;apply()&#x2F;bind()">
+<meta name="twitter:description" content="call()/apply()在工作中有着诸多的应用，本着知其然知其所以然的原则，现在我们从0来实现call/apply/bind。其实也很简单，思路很重要。 call()想要实现call，我们得先了解其核心原理：改变函数体内的this指向(查看MDN官方解释)。因此从一下几点入手：  将函数设置为对象的属性fn 拿到arguments传给fn并执行 删除fn，还原对象  1234567891011">
 
 
 
@@ -170,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/categories/">
+  <link rel="canonical" href="https://tian0o0.github.io/2018/06/05/bind/">
 
 
 
 
 
-  <title>All categories | 前端漫步</title>
+  <title>从0实现call()/apply()/bind() | 前端漫步</title>
   
 
 
@@ -342,40 +342,286 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2018/06/05/bind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="谢天">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端漫步">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">All categories</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 5 个分类
+          <h2 class="post-title" itemprop="name headline">从0实现call()/apply()/bind()</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T21:40:00+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/05/bind/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/05/bind/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">pv
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  527
+                </span>
+              
+
+              
+
+              
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wasm/">wasm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>call()/apply()在工作中有着诸多的应用，本着知其然知其所以然的原则，现在我们从0来实现call/apply/bind。其实也很简单，思路很重要。</p>
+<h2 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h2><p>想要实现call，我们得先了解其核心原理：改变函数体内的this指向(<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">查看MDN官方解释</a>)。因此从一下几点入手：</p>
+<ul>
+<li>将函数设置为对象的属性fn</li>
+<li>拿到arguments传给fn并执行</li>
+<li>删除fn，还原对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype.mycall !== <span class="string">'function'</span>) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.mycall = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> args;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Object</span>.prototype.toString.call(obj) !== <span class="string">'[object Object]'</span>) &#123;</span><br><span class="line">      obj = <span class="built_in">window</span>; <span class="comment">// if in node: obj = global;</span></span><br><span class="line">    &#125;</span><br><span class="line">    args = [...arguments].slice(<span class="number">1</span>); <span class="comment">// 获取参数</span></span><br><span class="line">    obj.fn = <span class="keyword">this</span>; <span class="comment">// 将函数设置为对象的属性fn</span></span><br><span class="line">    obj.fn(...args); <span class="comment">// 传入参数并执行fn</span></span><br><span class="line">    <span class="keyword">delete</span> obj.fn; <span class="comment">// 删除属性fn</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> value = <span class="string">'global value'</span>;</span><br><span class="line"><span class="keyword">var</span> bar = &#123; <span class="attr">value</span>: <span class="string">'local value'</span> &#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a, b)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.value)</span><br><span class="line">&#125;</span><br><span class="line">foo.mycall(bar, <span class="number">1</span>, <span class="number">2</span>) <span class="comment">//1，2，'local value'</span></span><br><span class="line">foo.mycall(<span class="literal">null</span>, <span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 1, 2, 'global value'</span></span><br></pre></td></tr></table></figure>
+<h2 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h2><p>那么对于apply，除了参数的传递形式不同外，原理同call：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype.myapply !== <span class="string">'function'</span>) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.myapply = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Object</span>.prototype.toString.call(obj) !== <span class="string">'[object Object]'</span>) &#123;</span><br><span class="line">      obj = <span class="built_in">window</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    obj.fn = <span class="keyword">this</span>;</span><br><span class="line">    obj.fn(...arguments[<span class="number">1</span>]); <span class="comment">// 因为第二个参数是array，直接获取第二个参数并传入fn调用</span></span><br><span class="line">    <span class="keyword">delete</span> obj.fn;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><blockquote>
+<p>bind()方法创建一个新的函数，在调用时设置this关键字为提供的值。并在调用新函数时将给定参数列表作为原函数的参数序列的前若干项</p>
+</blockquote>
+<p>MDN示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">  x: <span class="number">42</span>,</span><br><span class="line">  getX: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> unboundGetX = <span class="built_in">module</span>.getX;</span><br><span class="line"><span class="built_in">console</span>.log(unboundGetX()); <span class="comment">// The function gets invoked at the global scope</span></span><br><span class="line"><span class="comment">// expected output: undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> boundGetX = unboundGetX.bind(<span class="built_in">module</span>);</span><br><span class="line"><span class="built_in">console</span>.log(boundGetX());</span><br><span class="line"><span class="comment">// expected output: 42</span></span><br><span class="line"><span class="comment">// this equal to unboundGetX.call(module)</span></span><br></pre></td></tr></table></figure></p>
+<p>简单实现的话，我们可以在mybind()内返回一个匿名函数，该函数内部通过call()来改变this指向，从而模拟出bind()方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype.mybind !== <span class="string">'[object Object]'</span>) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> fn = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> fn.call(obj);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="谢天 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="谢天 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2018/06/05/bind/" title="从0实现call()/apply()/bind()">https://tian0o0.github.io/2018/06/05/bind/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/vue-ssr/" rel="next" title="vue服务端渲染">
+                <i class="fa fa-chevron-left"></i> vue服务端渲染
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/18/全屏滚动/" rel="prev" title="原生Javascript实现全屏滚动效果">
+                原生Javascript实现全屏滚动效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
   </div>
 
 
@@ -417,8 +663,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,6 +757,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#call"><span class="nav-number">1.</span> <span class="nav-text">call()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apply"><span class="nav-number">2.</span> <span class="nav-text">apply()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind"><span class="nav-number">3.</span> <span class="nav-text">bind</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1116,6 +1387,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
 
