@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目标 90%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 90%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大，所以我将90%当作测试达标线。测试工具的话有许多可供选择：jest、 mocha、karma等，我使用jest，相对其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="探索组件库的最佳实践">
+<meta property="og:url" content="https://tian0o0.github.io/2019/08/22/vue-component-library/index.html">
+<meta property="og:site_name" content="前端漫步">
+<meta property="og:description" content="目标 90%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 90%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大，所以我将90%当作测试达标线。测试工具的话有许多可供选择：jest、 mocha、karma等，我使用jest，相对其他">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-28T15:51:25.683Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="探索组件库的最佳实践">
+<meta name="twitter:description" content="目标 90%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 90%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大，所以我将90%当作测试达标线。测试工具的话有许多可供选择：jest、 mocha、karma等，我使用jest，相对其他">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tian0o0.github.io/2019/08/22/vue-component-library/">
+
+
+
+
+
+  <title>探索组件库的最佳实践 | 前端漫步</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0ec34390676b679b4ce481ab68f5c1ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/tian0o0" class="github-corner" style="position:absolute;top:0;right:0;z-index:100;" aria-label="fork me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端漫步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">总想搞点事情</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2019/08/22/vue-component-library/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="谢天">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端漫步">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">探索组件库的最佳实践</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T11:51:00+08:00">
+                2019-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/22/vue-component-library/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/08/22/vue-component-library/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">pv
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,279
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+<li>90%+测试覆盖率</li>
+<li>不使用template</li>
+<li>尽可能小的打包体积</li>
+<li>支持按需加载</li>
+<li>支持主题定制</li>
+<li>支持VSCode Vetur</li>
+<li>不刻意堆砌功能</li>
+</ul>
+<p>以上便是我对该组件库的期望，带着以上需求，开始着手分析</p>
+<h2 id="目标拆解"><a href="#目标拆解" class="headerlink" title="目标拆解"></a>目标拆解</h2><h4 id="1-90-测试覆盖率"><a href="#1-90-测试覆盖率" class="headerlink" title="1. 90%+测试覆盖率"></a>1. 90%+测试覆盖率</h4><p>对于UI组件而言，过分最求测试覆盖率意义不大，所以我将90%当作测试达标线。测试工具的话有许多可供选择：<code>jest</code>、 <code>mocha</code>、<code>karma</code>等，我使用<code>jest</code>，相对其他测试框架，它的一大特点就是内置了常用的测试工具，比如自带断言、测试覆盖率工具，实现了开箱即用。</p>
+<h4 id="2-不使用template"><a href="#2-不使用template" class="headerlink" title="2.不使用template"></a>2.不使用template</h4><p>相较于template，jsx在编写复杂基础组件时往往更具优势，不使用template不是因为它不好（编写业务组件时更推荐使用template），而是我希望简化组件的编译与构建流程</p>
+<h4 id="3-尽可能小的打包体积"><a href="#3-尽可能小的打包体积" class="headerlink" title="3.尽可能小的打包体积"></a>3.尽可能小的打包体积</h4><p>我使用webpack进行打包，因此需要从webpack配置着手分析。对于使用template编写的vue组件，最普通的编译方式就是<code>webpack</code> + <code>vue-loader</code>，这样做的问题在于容易引入大量冗余代码，比如：webpack内置的模块化代码、vue-loader 内置的 normalize 函数、重复引入的 babel helper 等等，而我不希望在组件的编译结果中引入这些冗余代码，那么这种情况最好使用比<code>vue-loader</code>更底层的一个工具: <code>vue-template-compiler</code>, 通过它结合<code>babel</code>来编译可以得到比较理想的效果。</p>
+<p>当然我没有使用模版，而是tsx，情况就变得更加简单了, 只需要将tsx编译成js不就行了吗，值得注意的是<code>babel</code>，需要使用<code>@babel/plugin-transform-runtime</code>避免重复引入helper函数(<a href="https://babeljs.io/docs/en/babel-plugin-transform-runtime" target="_blank" rel="noopener">A plugin that enables the re-use of Babel’s injected helper code to save on codesize</a>)</p>
+<h4 id="4-支持按需加载"><a href="#4-支持按需加载" class="headerlink" title="4.支持按需加载"></a>4.支持按需加载</h4><p>这个是组件库的基本功能，一般通过配置<code>babel-plugin-import</code> 来做，它会在编译过程中将 import 的写法自动转换为按需引入的方式。当然，不闲麻烦手动引入所需组件也是可以的。</p>
+<blockquote>
+<p>如果你的项目基于Typescript,那么用<a href="https://github.com/Brooooooklyn/ts-import-plugin" target="_blank" rel="noopener"><code>ts-import-plugin</code></a>代替</p>
+</blockquote>
+<h4 id="5-主题定制"><a href="#5-主题定制" class="headerlink" title="5.主题定制"></a>5.主题定制</h4><p>我希望可以对组件样式做全局修改，而不是在使用时去覆盖组件内部类，这块可以通过<code>less</code>和<code>less-loader</code>配合<code>babel-plugin-import</code>来做</p>
+<blockquote>
+<p>如果是使用.vue的组件开发方式，一般需要将样式单独抽出来而不是写在<style></style>中，否则需要用到<strong>后编译</strong>。（<a href="https://github.com/DDFE/DDFE-blog/issues/31" target="_blank" rel="noopener">参考cube-ui</a>）</p>
+</blockquote>
+<h4 id="6-支持VSCode-Vetur"><a href="#6-支持VSCode-Vetur" class="headerlink" title="6.支持VSCode Vetur"></a>6.支持VSCode Vetur</h4><p>我希望在VSCode中使用该组件时会有自动提示，这块可以借助第三方插件生成对应的vetur json文件。</p>
+<h2 id="期望组件目录结构"><a href="#期望组件目录结构" class="headerlink" title="期望组件目录结构"></a>期望组件目录结构</h2><p>组件统一放在src/components目录下管理，每个组件的结构大致如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">button</span><br><span class="line"> - demo // 组件demo</span><br><span class="line"> - test // 单元测试</span><br><span class="line"> - index.less</span><br><span class="line"> - index.tsx</span><br><span class="line"> - README.md</span><br><span class="line">其它组件</span><br><span class="line"> - demo // 组件demo</span><br><span class="line"> - test // 单元测试</span><br><span class="line"> - index.less</span><br><span class="line"> - index.tsx</span><br><span class="line"> - README.md</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2 id="期望打包结果"><a href="#期望打包结果" class="headerlink" title="期望打包结果"></a>期望打包结果</h2><p>按照目前主流的做法，输出2种格式的代码：<code>ES Module</code> 和 <code>UMD</code></p>
+<blockquote>
+<p>所谓<code>UMD（Universal Module Definition）</code>指的是：</p>
+</blockquote>
+<ul>
+<li>先判断是否支持Node.js模块格式（exports是否存在），存在则使用Node.js模块格式。</li>
+<li>再判断是否支持AMD（define是否存在），存在则使用AMD方式加载模块。</li>
+<li>前两个都不存在，则将模块公开到全局（window或global）。</li>
+</ul>
+<p>在<code>package.json</code>中，设置这2种模块的入口：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"main"</span>: <span class="string">"lib/index.js"</span>, <span class="comment">// UMD</span></span><br><span class="line">    <span class="string">"module"</span>: <span class="string">"es/index.js"</span>, <span class="comment">// ES Module, import时默认加载的模块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="期望使用方式"><a href="#期望使用方式" class="headerlink" title="期望使用方式"></a>期望使用方式</h2><h4 id="一、按需引入（推荐）"><a href="#一、按需引入（推荐）" class="headerlink" title="一、按需引入（推荐）"></a>一、按需引入（推荐）</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Button &#125; <span class="keyword">from</span> <span class="string">'@findx/uix'</span>;</span><br><span class="line">Vue.use(Button)</span><br></pre></td></tr></table></figure>
+<h4 id="二、全部引入（不推荐）"><a href="#二、全部引入（不推荐）" class="headerlink" title="二、全部引入（不推荐）"></a>二、全部引入（不推荐）</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Uix <span class="keyword">from</span> <span class="string">'@findx/uix'</span>;</span><br><span class="line">Vue.use(Uix)</span><br></pre></td></tr></table></figure>
+<h4 id="三、CDN引入"><a href="#三、CDN引入" class="headerlink" title="三、CDN引入"></a>三、CDN引入</h4><blockquote>
+<p>通常不会使用这种方式，但某些时候还是有必要的<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/@findx/uix@0.x/lib/index.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/@findx/uix@0.x/lib/uix.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="根据期望输入与输出构建脚本"><a href="#根据期望输入与输出构建脚本" class="headerlink" title="根据期望输入与输出构建脚本"></a>根据期望输入与输出构建脚本</h2><p>有了输入（期望组件目录结构）和输出（期望打包结果），以及使用方式，就可以着手编写构建脚本了。</p>
+<blockquote>
+<p>1.我期望使用Vue.use(Uix)的方式注册组件，那么Uix必须实现<code>install</code> 方法，入口index.ts文件大概这样：<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; VueConstructor &#125; <span class="keyword">from</span> <span class="string">'vue/types'</span>;</span><br><span class="line"><span class="keyword">import</span> Button <span class="keyword">from</span> <span class="string">'./components/button'</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> components: <span class="built_in">any</span>[] = [</span><br><span class="line">  Button</span><br><span class="line">  ...</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> install = <span class="function">(<span class="params">Vue: VueConstructor</span>) =&gt;</span> &#123;</span><br><span class="line">  components.forEach(<span class="function"><span class="params">Component</span> =&gt;</span> &#123;</span><br><span class="line">    Vue.use(Component);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 浏览器环境</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">window</span>.Vue) &#123;</span><br><span class="line">  install(<span class="built_in">window</span>.Vue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// import &#123; Button &#125; from '@findx/uix'</span></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">    install,</span><br><span class="line">    Button</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// import Uix from '@findx/uix'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    install</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>由此可见，每个组件内部如:Button，也都需要实现<code>install</code>方法。为了方便，写一个自动构建<code>index.ts</code>的脚本，以免每次新增组件的时候手动修改<code>index.ts</code>。</p>
+<p>构建脚本统一在<code>build</code>目录下管理，新建<code>build/build-entry.js</code>, 它需要去遍历<code>src/components</code>目录来生成<code>index.ts</code>:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs-extra'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> uppercamelize = <span class="built_in">require</span>(<span class="string">'uppercamelcase'</span>);</span><br><span class="line"><span class="keyword">const</span> Components = <span class="built_in">require</span>(<span class="string">'./get-components'</span>)();</span><br><span class="line"><span class="keyword">const</span> packageJson = <span class="built_in">require</span>(<span class="string">'../package.json'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> version = process.env.VERSION || packageJson.version;</span><br><span class="line"><span class="keyword">const</span> tips = <span class="string">`/* eslint-disable */`</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildEntry</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> importList = Components.map(<span class="function"><span class="params">name</span> =&gt;</span> <span class="string">`import <span class="subst">$&#123;uppercamelize(name)&#125;</span> from './components/<span class="subst">$&#123;name&#125;</span>';`</span>);</span><br><span class="line">  <span class="keyword">const</span> exportList = Components.map(<span class="function"><span class="params">name</span> =&gt;</span> <span class="string">`<span class="subst">$&#123;uppercamelize(name)&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> content = <span class="string">`<span class="subst">$&#123;tips&#125;</span></span></span><br><span class="line"><span class="string">import &#123; VueConstructor &#125; from 'vue/types';</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;importList.join(<span class="string">'\n'</span>)&#125;</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">declare global &#123;</span></span><br><span class="line"><span class="string">  interface Window &#123;</span></span><br><span class="line"><span class="string">    Vue?: VueConstructor;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const components: any[] = [</span></span><br><span class="line"><span class="string">  <span class="subst">$&#123;exportList.join(<span class="string">',\n  '</span>)&#125;</span></span></span><br><span class="line"><span class="string">];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const install = (Vue: VueConstructor) =&gt; &#123;</span></span><br><span class="line"><span class="string">  components.forEach(Component =&gt; &#123;</span></span><br><span class="line"><span class="string">    Vue.use(Component);</span></span><br><span class="line"><span class="string">  &#125;);</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">/* istanbul ignore if */</span></span><br><span class="line"><span class="string">if (typeof window !== 'undefined' &amp;&amp; window.Vue) &#123;</span></span><br><span class="line"><span class="string">  install(window.Vue);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export &#123;</span></span><br><span class="line"><span class="string">  install,</span></span><br><span class="line"><span class="string">  <span class="subst">$&#123;exportList.join(<span class="string">',\n  '</span>)&#125;</span></span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  install</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 输出内容到index.ts</span></span><br><span class="line">  fs.writeFileSync(path.join(__dirname, <span class="string">'../src/index.ts'</span>), content);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">buildEntry();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>2.处理了入口文件，接下来需要编译组件了</p>
+</blockquote>
+<p>新建<code>build/build-components.js</code>, 它需要递归地去编译<code>src</code>目录下的所有<code>js|ts|tsx</code>文件，并最终生成<code>es</code>和<code>lib</code>两个编译后的目录，使用<code>babel</code>来进行编译：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs-extra'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">'@babel/core'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> esDir = path.join(__dirname, <span class="string">'../es'</span>);</span><br><span class="line"><span class="keyword">const</span> libDir = path.join(__dirname, <span class="string">'../lib'</span>);</span><br><span class="line"><span class="keyword">const</span> srcDir = path.join(__dirname, <span class="string">'../src'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> babelConfig = &#123;</span><br><span class="line">  configFile: path.join(__dirname, <span class="string">'../babel.config.js'</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> scriptRegExp = <span class="regexp">/\.(js|ts|tsx)$/</span>;</span><br><span class="line"><span class="keyword">const</span> isDir = <span class="function"><span class="params">dir</span> =&gt;</span> fs.lstatSync(dir).isDirectory();</span><br><span class="line"><span class="keyword">const</span> isCode = <span class="function"><span class="params">path</span> =&gt;</span> !<span class="regexp">/(demo|test|\.md)$/</span>.test(path);</span><br><span class="line"><span class="keyword">const</span> isScript = <span class="function"><span class="params">path</span> =&gt;</span> scriptRegExp.test(path);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分别编译es/lib两个目录</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compile</span>(<span class="params">dir</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> files = fs.readdirSync(dir);</span><br><span class="line"></span><br><span class="line">  files.forEach(<span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> filePath = path.join(dir, file);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 除了js|ts|tsx文件一律不管</span></span><br><span class="line">    <span class="keyword">if</span> (!isCode(file)) &#123;</span><br><span class="line">      <span class="keyword">return</span> fs.removeSync(filePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归编译</span></span><br><span class="line">    <span class="keyword">if</span> (isDir(filePath)) &#123;</span><br><span class="line">      <span class="keyword">return</span> compile(filePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// compile</span></span><br><span class="line">    <span class="keyword">if</span> (isScript(file)) &#123;</span><br><span class="line">      <span class="comment">// 根据定义的babel规则生成code</span></span><br><span class="line">      <span class="comment">// 移除原文件（js|ts|tsx）</span></span><br><span class="line">      <span class="comment">// 生成新文件（js）</span></span><br><span class="line">      <span class="keyword">const</span> &#123; code &#125; = babel.transformFileSync(filePath, babelConfig);</span><br><span class="line">      fs.removeSync(filePath);</span><br><span class="line">      fs.outputFileSync(filePath.replace(scriptRegExp, <span class="string">'.js'</span>), code);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clear dir</span></span><br><span class="line">fs.emptyDirSync(esDir);</span><br><span class="line">fs.emptyDirSync(libDir);</span><br><span class="line"></span><br><span class="line"><span class="comment">// compile es dir</span></span><br><span class="line">fs.copySync(srcDir, esDir);</span><br><span class="line">compile(esDir);</span><br><span class="line"></span><br><span class="line"><span class="comment">// compile lib dir</span></span><br><span class="line"><span class="comment">// 设置环境变量，在babel.config.js里会根据该环境变量输出不同的模块</span></span><br><span class="line">process.env.BABEL_MODULE = <span class="string">'commonjs'</span>;</span><br><span class="line">fs.copySync(srcDir, libDir);</span><br><span class="line">compile(libDir);</span><br></pre></td></tr></table></figure></p>
+<p>上面的构建脚本是根据<code>babel.config.js</code>的配置而来，那么它大概需要如下配置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; BABEL_MODULE, NODE_ENV &#125; = process.env;</span><br><span class="line">  <span class="keyword">const</span> useESModules = BABEL_MODULE !== <span class="string">'commonjs'</span> &amp;&amp; NODE_ENV !== <span class="string">'test'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    presets: [</span><br><span class="line">      [</span><br><span class="line">        <span class="string">'@babel/preset-env'</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          loose: <span class="literal">true</span>,</span><br><span class="line">          modules: useESModules ? <span class="literal">false</span> : <span class="string">'cjs'</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      [</span><br><span class="line">        <span class="string">'@vue/babel-preset-jsx'</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          functional: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="string">'@babel/preset-typescript'</span></span><br><span class="line">    ],</span><br><span class="line">    plugins: [</span><br><span class="line">      [</span><br><span class="line">        <span class="string">'@babel/plugin-transform-runtime'</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          corejs: <span class="literal">false</span>,</span><br><span class="line">          helpers: <span class="literal">true</span>,</span><br><span class="line">          regenerator: <span class="literal">false</span>,</span><br><span class="line">          useESModules</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="string">'@babel/plugin-transform-object-assign'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>除了配置一些presets和plugins外，还需要根据环境变量改变打包的模块格式。这里的插件<code>@babel/plugin-transform-runtime</code>前面也提到过，注意<code>regenerator: false</code>这个选项，表示不重复生成helper函数，否则打包后会多出许多冗余代码</p>
+<blockquote>
+<p>3.接下来需要编译组件样式，这块需要注意的是生成样式目录的结构，因为我需要组件在使用时能够结合<code>babel-plugin-import</code>来做<strong>样式的按需加载</strong>和<strong>主题定制</strong></p>
+</blockquote>
+<p>通过<code>babel-plugin-import</code>的<a href="https://github.com/ant-design/babel-plugin-import" target="_blank" rel="noopener">示例说明</a>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123; "libraryName": "antd", style: true &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Button &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Button</span>&gt;</span>xxxx<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span>);</span><br><span class="line"></span><br><span class="line">      ↓ ↓ ↓ ↓ ↓ ↓</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _button = <span class="built_in">require</span>(<span class="string">'antd/lib/button'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'antd/lib/button/style'</span>);</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">_button</span>&gt;</span>xxxx<span class="tag">&lt;/<span class="name">_button</span>&gt;</span></span>);</span><br></pre></td></tr></table></figure></p>
+<p>可以发现，其实通过设置<code>style: true</code>，在按需引入组件Button时就能自动帮我们引入对应的样式，因此何不模仿antd，在对应组件下生成<code>style.js</code>:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'xxx.css'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>当然这样不够，因为前面我说过要做主题定制，我还需要生成一个<code>less.js</code>，至于为什么，后面再具体解释。</p>
+<p>到这里最终的编译生成的组件样式结构应该是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">style</span><br><span class="line"> - index.js // 用于结合babel-plugin-import做组件样式的自动按需加载</span><br><span class="line"> - less.js // 用于结合babel-plugin-import做主题定制</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="谢天 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="谢天 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2019/08/22/vue-component-library/" title="探索组件库的最佳实践">https://tian0o0.github.io/2019/08/22/vue-component-library/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/05/bind/" rel="next" title="从0实现call()/apply()/bind()">
+                <i class="fa fa-chevron-left"></i> 从0实现call()/apply()/bind()
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="谢天">
+            
+              <p class="site-author-name" itemprop="name">谢天</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tian0o0" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:whut_xietian@163.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/tian0o02" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标拆解"><span class="nav-number">2.</span> <span class="nav-text">目标拆解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-90-测试覆盖率"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 90%+测试覆盖率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-不使用template"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.不使用template</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-尽可能小的打包体积"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.尽可能小的打包体积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-支持按需加载"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.支持按需加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-主题定制"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.主题定制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-支持VSCode-Vetur"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.支持VSCode Vetur</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期望组件目录结构"><span class="nav-number">3.</span> <span class="nav-text">期望组件目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望打包结果"><span class="nav-number">4.</span> <span class="nav-text">期望打包结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望使用方式"><span class="nav-number">5.</span> <span class="nav-text">期望使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、按需引入（推荐）"><span class="nav-number">5.0.1.</span> <span class="nav-text">一、按需引入（推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、全部引入（不推荐）"><span class="nav-number">5.0.2.</span> <span class="nav-text">二、全部引入（不推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、CDN引入"><span class="nav-number">5.0.3.</span> <span class="nav-text">三、CDN引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据期望输入与输出构建脚本"><span class="nav-number">6.</span> <span class="nav-text">根据期望输入与输出构建脚本</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一生懸命頑張るTian0o0</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">16.9k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      uv
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      pv
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'tian0o0',
+            repo: 'gitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1094b0968f3ec3e37e32715be769d7bcebcf7f49',
+            
+                client_id: '75c9eff77fa7eb9723d2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "vertical";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 时间 -->
+<!-- <script type="text/javascript" src="/js/src/time.js"></script> -->
+
