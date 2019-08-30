@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="俗话说：写个组件库简单，写好组件库很难  目标 80%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 80%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大（它会导致我们过分关注组件的内部实现细节，从而导致琐碎的测试），所以我将80%">
+<meta name="description" content="俗话说：写个组件库简单，写好组件库很难  不做标题党，撸起袖子就是干。 目标 80%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 80%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大（它会导致我们过分关注组件的内部实现细节，从而导">
 <meta name="keywords" content="webpack4">
 <meta property="og:type" content="article">
 <meta property="og:title" content="探索组件库的最佳实践">
 <meta property="og:url" content="https://tian0o0.github.io/2019/08/22/vue-component-library/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="俗话说：写个组件库简单，写好组件库很难  目标 80%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 80%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大（它会导致我们过分关注组件的内部实现细节，从而导致琐碎的测试），所以我将80%">
+<meta property="og:description" content="俗话说：写个组件库简单，写好组件库很难  不做标题党，撸起袖子就是干。 目标 80%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 80%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大（它会导致我们过分关注组件的内部实现细节，从而导">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-29T15:13:05.273Z">
+<meta property="og:updated_time" content="2019-08-30T14:45:24.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="探索组件库的最佳实践">
-<meta name="twitter:description" content="俗话说：写个组件库简单，写好组件库很难  目标 80%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 80%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大（它会导致我们过分关注组件的内部实现细节，从而导致琐碎的测试），所以我将80%">
+<meta name="twitter:description" content="俗话说：写个组件库简单，写好组件库很难  不做标题党，撸起袖子就是干。 目标 80%+测试覆盖率 不使用template 尽可能小的打包体积 支持按需加载 支持主题定制 支持VSCode Vetur 不刻意堆砌功能  以上便是我对该组件库的期望，带着以上需求，开始着手分析 目标拆解1. 80%+测试覆盖率对于UI组件而言，过分最求测试覆盖率意义不大（它会导致我们过分关注组件的内部实现细节，从而导">
 
 
 
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,070
+                  3,082
                 </span>
               
 
@@ -482,6 +482,7 @@
         <blockquote>
 <p>俗话说：写个组件库简单，写好组件库很难</p>
 </blockquote>
+<p>不做标题党，撸起袖子就是干。</p>
 <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
 <li>80%+测试覆盖率</li>
 <li>不使用template</li>
@@ -556,7 +557,7 @@
 </blockquote>
 <p>对应的webpack配置就简单许多了：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Object</span>.assign(config, &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    xpre: <span class="string">'./es/index.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'../lib'</span>),</span><br><span class="line">    library: <span class="string">'xpre'</span>,</span><br><span class="line">    <span class="comment">// 暴露为所有的模块定义下都可运行的方式。它将在 CommonJS, AMD 环境下运行，或将模块导出到 global 下的变量</span></span><br><span class="line">    libraryTarget: <span class="string">'umd'</span>,</span><br><span class="line">    filename: isMinify ? <span class="string">'[name].min.js'</span> : <span class="string">'[name].js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 防止将vue打到bundle中</span></span><br><span class="line">  externals: &#123;</span><br><span class="line">    vue: &#123;</span><br><span class="line">      root: <span class="string">'Vue'</span>,</span><br><span class="line">      commonjs: <span class="string">'vue'</span>,</span><br><span class="line">      commonjs2: <span class="string">'vue'</span>,</span><br><span class="line">      amd: <span class="string">'vue'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  performance: <span class="literal">false</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: isMinify</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>这一步后会在<code>lib</code>目录下生成<code>xpre.js</code>和<code>xpre.min.js</code></p>
-<h5 id="到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。"><a href="#到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。" class="headerlink" title="到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。"></a>到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。</h5><h2 id="关于组件库命名"><a href="#关于组件库命名" class="headerlink" title="关于组件库命名"></a>关于组件库命名</h2><p>之前我给组件库的命名是带scope的，比如：<code>@scope/xxx</code>, 后来我发现通过以下方式无法引入组件库：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Xpre <span class="keyword">from</span> <span class="string">'@scope/xxx'</span></span><br><span class="line"><span class="comment">// Xpre is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这种情况需要手动指定路径才能正确导入，如下：</span></span><br><span class="line"><span class="keyword">import</span> Xpre <span class="keyword">from</span> <span class="string">'@scope/xxx/lib'</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。"><a href="#到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。" class="headerlink" title="到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。"></a>到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。</h4><h2 id="关于组件库命名"><a href="#关于组件库命名" class="headerlink" title="关于组件库命名"></a>关于组件库命名</h2><p>之前我给组件库的命名是带scope的，比如：<code>@scope/xxx</code>, 后来我发现通过以下方式无法引入组件库：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Xpre <span class="keyword">from</span> <span class="string">'@scope/xxx'</span></span><br><span class="line"><span class="comment">// Xpre is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这种情况需要手动指定路径才能正确导入，如下：</span></span><br><span class="line"><span class="keyword">import</span> Xpre <span class="keyword">from</span> <span class="string">'@scope/xxx/lib'</span></span><br></pre></td></tr></table></figure></p>
 <p>这个诡异的bug，我目前也找不到原因，索性重新命名，去掉scope就好了。因此组件库的包名最好不要带上scope</p>
 
       
@@ -664,6 +665,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/08/30/easy-pack/" rel="prev" title="受不了了，我要手撕webpack">
+                受不了了，我要手撕webpack <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -756,7 +761,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -833,7 +838,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标拆解"><span class="nav-number">2.</span> <span class="nav-text">目标拆解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-80-测试覆盖率"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 80%+测试覆盖率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-不使用template"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.不使用template</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-尽可能小的打包体积"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.尽可能小的打包体积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-支持按需加载"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.支持按需加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-主题定制"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.主题定制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-支持VSCode-Vetur"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.支持VSCode Vetur</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期望组件目录结构"><span class="nav-number">3.</span> <span class="nav-text">期望组件目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望打包结果"><span class="nav-number">4.</span> <span class="nav-text">期望打包结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望使用方式"><span class="nav-number">5.</span> <span class="nav-text">期望使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、按需引入（推荐）"><span class="nav-number">5.0.1.</span> <span class="nav-text">一、按需引入（推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、全部引入（不推荐）"><span class="nav-number">5.0.2.</span> <span class="nav-text">二、全部引入（不推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、CDN引入"><span class="nav-number">5.0.3.</span> <span class="nav-text">三、CDN引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据期望输入与输出构建脚本"><span class="nav-number">6.</span> <span class="nav-text">根据期望输入与输出构建脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于组件库命名"><span class="nav-number">7.</span> <span class="nav-text">关于组件库命名</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标拆解"><span class="nav-number">2.</span> <span class="nav-text">目标拆解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-80-测试覆盖率"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 80%+测试覆盖率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-不使用template"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.不使用template</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-尽可能小的打包体积"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.尽可能小的打包体积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-支持按需加载"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.支持按需加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-主题定制"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.主题定制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-支持VSCode-Vetur"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.支持VSCode Vetur</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期望组件目录结构"><span class="nav-number">3.</span> <span class="nav-text">期望组件目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望打包结果"><span class="nav-number">4.</span> <span class="nav-text">期望打包结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望使用方式"><span class="nav-number">5.</span> <span class="nav-text">期望使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、按需引入（推荐）"><span class="nav-number">5.0.1.</span> <span class="nav-text">一、按需引入（推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、全部引入（不推荐）"><span class="nav-number">5.0.2.</span> <span class="nav-text">二、全部引入（不推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、CDN引入"><span class="nav-number">5.0.3.</span> <span class="nav-text">三、CDN引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据期望输入与输出构建脚本"><span class="nav-number">6.</span> <span class="nav-text">根据期望输入与输出构建脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。"><span class="nav-number">6.0.1.</span> <span class="nav-text">到这里，组件的编译工作就正式结束了，这个过程我去了解了大量的组件库的编译流程，虽说百花齐放，但总的原理相通，这个过程没有人带的话还是需要踩许多坑的。接下来可以正式开始写组件了。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于组件库命名"><span class="nav-number">7.</span> <span class="nav-text">关于组件库命名</span></a></li></div>
             
 
           </div>
@@ -868,7 +873,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">17.7k</span>
+    <span title="Site words total count">20.5k</span>
   
 </div>
 
