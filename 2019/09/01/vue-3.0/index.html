@@ -130,16 +130,17 @@
 
 
 
-<meta name="description" content="前端杂谈">
-<meta property="og:type" content="website">
-<meta property="og:title" content="前端漫步">
-<meta property="og:url" content="https://tian0o0.github.io/archives/2018/06/index.html">
+<meta name="description" content="3.0设计目标 更小 更快 加强TypeScript支持 加强API设计一致性 提高自身可维护性 开放更多底层功能  如何更快？Object.defineProperty -&amp;gt; ProxyObject.defineProperty在改变对象属性这一操作上是相对昂贵的，因为js引擎在编译阶段是需要对代码做优化的，比如这个对象越稳定，可优化空间就越大。Object.defineProperty既">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Vue3.0浅谈前端框架的发展趋势">
+<meta property="og:url" content="https://tian0o0.github.io/2019/09/01/vue-3.0/index.html">
 <meta property="og:site_name" content="前端漫步">
-<meta property="og:description" content="前端杂谈">
+<meta property="og:description" content="3.0设计目标 更小 更快 加强TypeScript支持 加强API设计一致性 提高自身可维护性 开放更多底层功能  如何更快？Object.defineProperty -&amp;gt; ProxyObject.defineProperty在改变对象属性这一操作上是相对昂贵的，因为js引擎在编译阶段是需要对代码做优化的，比如这个对象越稳定，可优化空间就越大。Object.defineProperty既">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-01T15:06:30.895Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端漫步">
-<meta name="twitter:description" content="前端杂谈">
+<meta name="twitter:title" content="从Vue3.0浅谈前端框架的发展趋势">
+<meta name="twitter:description" content="3.0设计目标 更小 更快 加强TypeScript支持 加强API设计一致性 提高自身可维护性 开放更多底层功能  如何更快？Object.defineProperty -&amp;gt; ProxyObject.defineProperty在改变对象属性这一操作上是相对昂贵的，因为js引擎在编译阶段是需要对代码做优化的，比如这个对象越稳定，可优化空间就越大。Object.defineProperty既">
 
 
 
@@ -169,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://tian0o0.github.io/archives/2018/06/">
+  <link rel="canonical" href="https://tian0o0.github.io/2019/09/01/vue-3.0/">
 
 
 
 
 
-  <title>归档 | 前端漫步</title>
+  <title>从Vue3.0浅谈前端框架的发展趋势 | 前端漫步</title>
   
 
 
@@ -203,7 +204,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/tian0o0" class="github-corner" style="position:absolute;top:0;right:0;z-index:100;" aria-label="fork me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -339,72 +340,294 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 16 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tian0o0.github.io/2019/09/01/vue-3.0/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="谢天">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端漫步">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/06/18/全屏滚动/" itemprop="url">
-              
-                <span itemprop="name">原生Javascript实现全屏滚动效果</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">从Vue3.0浅谈前端框架的发展趋势</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-06-18T14:25:00+08:00" content="2018-06-18">
-          06-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-01T23:06:00+08:00">
+                2019-09-01
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/01/vue-3.0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/09/01/vue-3.0/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">pv
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,162
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h2 id="3-0设计目标"><a href="#3-0设计目标" class="headerlink" title="3.0设计目标"></a>3.0设计目标</h2><ul>
+<li>更小</li>
+<li><strong>更快</strong></li>
+<li><strong>加强TypeScript支持</strong></li>
+<li>加强API设计一致性</li>
+<li>提高自身可维护性</li>
+<li>开放更多底层功能</li>
+</ul>
+<h2 id="如何更快？"><a href="#如何更快？" class="headerlink" title="如何更快？"></a>如何更快？</h2><h3 id="Object-defineProperty-gt-Proxy"><a href="#Object-defineProperty-gt-Proxy" class="headerlink" title="Object.defineProperty -&gt; Proxy"></a>Object.defineProperty -&gt; Proxy</h3><p><code>Object.defineProperty</code>在改变对象属性这一操作上是相对昂贵的，因为js引擎在编译阶段是需要对代码做优化的，比如这个对象越稳定，可优化空间就越大。<code>Object.defineProperty</code>既然可以随意地修改对象属性，那么代码的可优化性将大大降低。而<code>Proxy</code>并不是简单地修改原来的对象，仅仅是在其之上做了一层代理：所有对该对象的访问和操作都需要通过这层proxy。因此，<code>Proxy</code>比<code>Object.defineProperty</code>性能更优。</p>
+<blockquote>
+<p>当然，IE11仍然不支持<code>Proxy</code>，Vue的做法是在不支持Proxy的浏览器中降级使用<code>Object.defineProperty</code>，因此Vue3.0仍然支持IE，只是如果要兼容IE的话就无法享受新语法带来的好处了。</p>
+</blockquote>
+<h3 id="Virtual-Dom-重构"><a href="#Virtual-Dom-重构" class="headerlink" title="Virtual Dom 重构"></a>Virtual Dom 重构</h3><p>3.0的<code>vdom</code>使用了<code>TypeScript</code>进行重构，组件启动速度比2.x提高了接近一倍</p>
+<h3 id="编译时优化"><a href="#编译时优化" class="headerlink" title="编译时优化"></a>编译时优化</h3><h4 id="Slot默认编译为函数"><a href="#Slot默认编译为函数" class="headerlink" title="Slot默认编译为函数"></a>Slot默认编译为函数</h4><p>使得父子组件之间更新时不存在强耦合的关系</p>
+<h4 id="Monomorphic-vnode-factory"><a href="#Monomorphic-vnode-factory" class="headerlink" title="Monomorphic vnode factory"></a>Monomorphic vnode factory</h4><p>重构生成vnode的工厂函数，使其函数参数更加一致化</p>
+<h4 id="Compiler-generated-flags-for-vnode-children-types"><a href="#Compiler-generated-flags-for-vnode-children-types" class="headerlink" title="Compiler-generated flags for vnode/children types"></a>Compiler-generated flags for vnode/children types</h4><p>编译时增加vnode及其children的类型信息</p>
+<p>以上的编译时优化，可以让3.0的runtime变得更快</p>
+<h2 id="传统vdom的性能瓶颈"><a href="#传统vdom的性能瓶颈" class="headerlink" title="传统vdom的性能瓶颈"></a>传统vdom的性能瓶颈</h2><p>以前我确实是对vdom存在一些误解，认为它能够很好地提高应用的运行效率。然而实际上却非如此，它是为了将开发者从手动操作dom中解放出来（并且它是平台无关的，可以让我们的应用跑在非浏览器端，比如：rn/weex/mpvue/nodejs等）。</p>
+<p>vdom赋予了更强的表达力，但是换来的代价是<code>性能问题</code>，没错，vdom在大部分情况下让开发者在无需操作dom的同时给予了应用还不错的性能，但在一些对性能要求极高的场景，它会拖慢我们的应用，比如前两年还很火的<code>atom</code>编辑器，由于使用了react重构后频频出现性能问题，如今已被彻底放弃。再比如<code>vscode</code>，它也是基于<code>electron</code>的，但为了性能只能完全手动去操作dom，这样在特殊场景可以做到针对性地极致优化，这是虚拟dom做不到的。</p>
+<p>为什么会这样呢，究其原因，就不得不提到<code>diff</code>了（关于diff有篇文章讲的很清楚：<a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">不可思议的 react diff</a><br>）。在vue或react里面，尽管能够保证组件粒度的更新，但是在单个组件内部却依然要去遍历组件的整个vdom树。这样看来，组件粒度的更新仍然显得有些粗糙，举个例子（vue）:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>aha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>aha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>aha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>aha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在这个模版里，只有一处是动态可改变的，尽管<code>diff</code>只比较同级的节点，但如果还是去遍历整个模版对应的vdom树，那就是浪费的。</p>
+<p>为什么vdom要用这种不高效的算法？那是因为vdom最初并不是从模版编译而来，而是jsx。而我们都知道jsx或者render function是完全动态的，这就导致在运行时可以用于优化的信息很少，比如上面模版对应的<code>render function</code>:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> children = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        children.push(<span class="string">'p'</span>, &#123;</span><br><span class="line">            class: 'text'</span><br><span class="line">        &#125;, i === <span class="number">3</span> ? <span class="keyword">this</span>.msg : <span class="string">'aha'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, &#123;</span><br><span class="line">        id: <span class="string">'content'</span></span><br><span class="line">    &#125;, children)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你很难像模版一样，在编译时去提取静态信息。</p>
+<p>react的解决方案是<code>time slicing</code>时间分片，意思就是我的应用在更新时可能会超过16ms，但是我每隔大约16ms都会去把控制权交给CPU而不会屏蔽用户的操作。对<code>react</code>而言，这算是不错解决方案。但是对于<code>vue</code>或者<code>svelte</code>而言，是有能力把更新做的足够快的。</p>
+<h3 id="svelte"><a href="#svelte" class="headerlink" title="svelte"></a>svelte</h3><p>最近来了个新的框架<code>svelte</code>，单就写法而言很像vue的template，但是，它走的是极致的编译路线：你只能使用模版。在 <code>svelte</code>里面，没有vdom，没有jsx等等。它将模版直接编译成最终代码，在更新时效率极高。当然有得必有失，只能使用模版在某些场景显得不够灵活。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="谢天 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="谢天 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    谢天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tian0o0.github.io/2019/09/01/vue-3.0/" title="从Vue3.0浅谈前端框架的发展趋势">https://tian0o0.github.io/2019/09/01/vue-3.0/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/30/easy-pack/" rel="next" title="受不了了，我要手撕webpack">
+                <i class="fa fa-chevron-left"></i> 受不了了，我要手撕webpack
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -412,6 +635,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -434,8 +668,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -519,6 +762,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-0设计目标"><span class="nav-number">1.</span> <span class="nav-text">3.0设计目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何更快？"><span class="nav-number">2.</span> <span class="nav-text">如何更快？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-defineProperty-gt-Proxy"><span class="nav-number">2.1.</span> <span class="nav-text">Object.defineProperty -&gt; Proxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtual-Dom-重构"><span class="nav-number">2.2.</span> <span class="nav-text">Virtual Dom 重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译时优化"><span class="nav-number">2.3.</span> <span class="nav-text">编译时优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Slot默认编译为函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">Slot默认编译为函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Monomorphic-vnode-factory"><span class="nav-number">2.3.2.</span> <span class="nav-text">Monomorphic vnode factory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compiler-generated-flags-for-vnode-children-types"><span class="nav-number">2.3.3.</span> <span class="nav-text">Compiler-generated flags for vnode/children types</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统vdom的性能瓶颈"><span class="nav-number">3.</span> <span class="nav-text">传统vdom的性能瓶颈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#svelte"><span class="nav-number">3.1.</span> <span class="nav-text">svelte</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -679,6 +938,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -726,6 +989,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'tian0o0',
+            repo: 'gitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1094b0968f3ec3e37e32715be769d7bcebcf7f49',
+            
+                client_id: '75c9eff77fa7eb9723d2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
@@ -1105,6 +1392,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 839862975@qq.com,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
 
