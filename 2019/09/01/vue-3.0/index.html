@@ -137,7 +137,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="3.0设计目标 更小 更快 加强TypeScript支持 加强API设计一致性 提高自身可维护性 开放更多底层功能  如何更快？Object.defineProperty -&amp;gt; ProxyObject.defineProperty在改变对象属性这一操作上是相对昂贵的，因为js引擎在编译阶段是需要对代码做优化的，这个对象越稳定，可优化空间就越大。Object.defineProperty既然可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-02T15:38:12.893Z">
+<meta property="og:updated_time" content="2019-09-03T01:39:23.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Vue3.0浅谈前端框架的发展趋势">
 <meta name="twitter:description" content="3.0设计目标 更小 更快 加强TypeScript支持 加强API设计一致性 提高自身可维护性 开放更多底层功能  如何更快？Object.defineProperty -&amp;gt; ProxyObject.defineProperty在改变对象属性这一操作上是相对昂贵的，因为js引擎在编译阶段是需要对代码做优化的，这个对象越稳定，可优化空间就越大。Object.defineProperty既然可">
@@ -453,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,146
+                  2,236
                 </span>
               
 
@@ -501,7 +501,16 @@
 <p>在这个模版里，只有一处是动态可改变的，尽管<code>diff</code>只比较同级的节点，但如果还是去遍历整个模版对应的vdom树，那就是浪费的。</p>
 <p>为什么vdom要用这种不高效的算法？那是因为vdom最初并不是从模版编译而来，而是jsx。而我们都知道jsx或者render function是完全动态的，这就导致在编译时可以用于优化的信息很少，比如上面模版对应的<code>render function</code>:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> children = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        children.push(<span class="string">'p'</span>, &#123;</span><br><span class="line">            class: 'text'</span><br><span class="line">        &#125;, i === <span class="number">3</span> ? <span class="keyword">this</span>.msg : <span class="string">'aha'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, &#123;</span><br><span class="line">        id: <span class="string">'content'</span></span><br><span class="line">    &#125;, children)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>你很难像模版一样，在编译时去提取静态信息。</p>
-<p>react的解决方案是<code>time slicing</code>时间分片，意思就是我的应用在更新时可能会超过16ms，但是我每隔大约16ms都会去把控制权交给CPU而不会屏蔽用户的操作。对<code>react</code>而言，这算是不错解决方案。但是对于<code>vue</code>或者<code>svelte</code>而言，是有能力把runtime做的足够轻量的，只要更新做的足够快，那么就不需要时间分片了。</p>
+<p>react的解决方案是<code>time slicing</code>时间分片:</p>
+<blockquote>
+<ul>
+<li>React 在渲染（render）的时候，不会阻塞现在的线程</li>
+<li>如果你的设备足够快，你会感觉渲染是同步的</li>
+<li>如果你设备非常慢，你会感觉还算是灵敏的</li>
+<li>虽然是异步渲染，但是你将会看到完整的渲染，而不是一个组件一行行的渲染出来</li>
+</ul>
+</blockquote>
+<p>简单来说就是我的应用在更新时可能会超过16ms，但是我每隔大约16ms都会去把控制权交给CPU而不会屏蔽用户的操作。对<code>react</code>而言，这算是不错解决方案。但是对于<code>vue</code>或者<code>svelte</code>而言，是有能力把runtime做的足够轻量的，只要更新做的足够快，那么就不需要时间分片了。</p>
 <h2 id="svelte"><a href="#svelte" class="headerlink" title="svelte"></a>svelte</h2><p>近来出现的一个新的框架<a href="https://github.com/sveltejs/svelte" target="_blank" rel="noopener"><code>svelte</code></a>，单就写法而言很像vue的template，但是我认为它的出现并不是为了跟三大框架抢市场，而是想在更加细分的领域杀出一条出路，那就是将complier做到极致：你只能使用模版。在 <code>svelte</code>里面，没有vdom，没有jsx等。它将模版直接编译成最终代码，在更新时效率极高。当然这是一把双刃剑，只能使用模版在某些场景显得不够灵活。而且对于相同的功能，编译出来的代码量大概是vue的5倍左右。</p>
 <h2 id="Function-based-API"><a href="#Function-based-API" class="headerlink" title="Function-based API"></a>Function-based API</h2><p>3.0采用了一套基于函数式的api，来看一个简单的demo：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>count is &#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>plusOne is &#123;&#123; plusOne &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"increment"</span>&gt;</span>count++<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; value, computed, watch, onMounted &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="javascript">    <span class="comment">// reactive state</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> count = value(<span class="number">0</span>)</span></span><br><span class="line"><span class="javascript">    <span class="comment">// computed state</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> plusOne = computed(<span class="function"><span class="params">()</span> =&gt;</span> count.value + <span class="number">1</span>)</span></span><br><span class="line"><span class="javascript">    <span class="comment">// method</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> increment = <span class="function"><span class="params">()</span> =&gt;</span> &#123; count.value++ &#125;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// watch</span></span></span><br><span class="line"><span class="javascript">    watch(<span class="function"><span class="params">()</span> =&gt;</span> count.value * <span class="number">2</span>, val =&gt; &#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">`count * 2 is <span class="subst">$&#123;val&#125;</span>`</span>)</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="comment">// lifecycle</span></span></span><br><span class="line"><span class="javascript">    onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">`mounted`</span>)</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="comment">// expose bindings on render context</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      count,</span><br><span class="line">      plusOne,</span><br><span class="line">      increment</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>关于为什么采用函数式的api，主要有以下优点：</p>
@@ -513,8 +522,9 @@
 <p>当mixins的数量逐渐增加，我们常常会有这样的疑惑：</p>
 <ul>
 <li>命名空间冲突</li>
-<li>模版数据来源不清晰<br>这时我们往往容易迷失在各个变量中，搞不清楚这个变量到底从何而来。</li>
+<li>模版数据来源不清晰</li>
 </ul>
+<p>这时我们往往容易迷失在各个变量中，搞不清楚这个变量到底从何而来。</p>
 <h4 id="Higher-order-Components的缺点"><a href="#Higher-order-Components的缺点" class="headerlink" title="Higher-order Components的缺点"></a>Higher-order Components的缺点</h4><p>高阶组件在react里面比较常用，在vue里面用的比较少：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Demo = withMousePosition(&#123;</span><br><span class="line">    props: [<span class="string">'x'</span>, <span class="string">'y'</span>],</span><br><span class="line">    template: <span class="string">`&lt;div&gt;Mouse position: x &#123;&#123;x&#125;&#125; / y &#123;&#123;y&#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>作为Mixin的替代品，它并不能很好地解决问题却又带来了新的问题：</p>
 <ul>
@@ -526,18 +536,9 @@
 <h4 id="Hooks的优点"><a href="#Hooks的优点" class="headerlink" title="Hooks的优点"></a>Hooks的优点</h4><p>将前面侦听鼠标位置的demo用hooks重写：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useMouse</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = value(<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> y = value(<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> update = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    x.value = e.pageX</span><br><span class="line">    y.value = e.pageY</span><br><span class="line">  &#125;</span><br><span class="line">  onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'mousemove'</span>, update)</span><br><span class="line">  &#125;)</span><br><span class="line">  onUnmounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.removeEventListener(<span class="string">'mousemove'</span>, update)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> &#123; x, y &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// in consuming component</span></span><br><span class="line"><span class="keyword">const</span> Component = &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; x, y &#125; = useMouse()</span><br><span class="line">    <span class="keyword">const</span> &#123; z &#125; = useOtherLogic()</span><br><span class="line">    <span class="keyword">return</span> &#123; x, y, z &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`&lt;div&gt;&#123;&#123; x &#125;&#125; &#123;&#123; y &#125;&#125; &#123;&#123; z &#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样一来解决了之前所有方案的缺陷：</p>
 <ul>
-<li>没有命名空间冲突<ul>
-<li>完全可以在解构使用时把<code>x</code>,<code>y</code>进行重命名</li>
-</ul>
-</li>
-<li>数据来源清晰<ul>
-<li>你很清楚<code>x</code>,<code>y</code>是从哪个hook而来</li>
-</ul>
-</li>
-<li>没有额外的组件性能消耗<ul>
-<li>用函数承载逻辑</li>
-</ul>
-</li>
+<li>没有命名空间冲突：完全可以在解构使用时把<code>x</code>,<code>y</code>进行重命名</li>
+<li>数据来源清晰：你很清楚<code>x</code>,<code>y</code>是从哪个<code>hook</code>而来</li>
+<li>没有额外的组件性能消耗：用函数承载逻辑</li>
 </ul>
 <p>乍一看与 React Hooks 很像，但是有两个区别：</p>
 <ul>
@@ -849,7 +850,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.7k</span>
+    <span title="Site words total count">22.8k</span>
   
 </div>
 
