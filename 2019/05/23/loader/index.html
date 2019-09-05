@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="前端漫步">
 <meta property="og:description" content="什么是loader？Loader可以理解为模块转换器，作用是将原内容按照一定的规则生成新内容 以处理.scss文件为例：  将.scss文件交给scss-loader处理，转化为.css文件 将.css文件交给css-loader处理，找出其中依赖的资源，压缩css等 将css-loader输出的css交给style-loader处理，转换成通过脚本加载的js代码  对应webpack配置如下：1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-05T03:39:36.028Z">
+<meta property="og:updated_time" content="2019-09-05T13:24:17.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="写一个webpack loader吧">
 <meta name="twitter:description" content="什么是loader？Loader可以理解为模块转换器，作用是将原内容按照一定的规则生成新内容 以处理.scss文件为例：  将.scss文件交给scss-loader处理，转化为.css文件 将.css文件交给css-loader处理，找出其中依赖的资源，压缩css等 将css-loader输出的css交给style-loader处理，转换成通过脚本加载的js代码  对应webpack配置如下：1">
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,465
+                  1,375
                 </span>
               
 
@@ -496,7 +496,7 @@
 <h3 id="本地loader的使用"><a href="#本地loader的使用" class="headerlink" title="本地loader的使用"></a>本地loader的使用</h3><p>在开发过程中，我们需要本地加载loader而不是把loader传到npm再使用。如何做到以<code>loader: &#39;xxx-loader&#39;</code>的形式使用而不是<code>loader: path.resolve(__dirname, &#39;./loaders/xxx-loader&#39;)</code>，这时候就需要<code>resolveLoader</code>选项了，它告诉webpack怎么去查找loader：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    resolveLoader: &#123;</span><br><span class="line">        <span class="comment">// 在哪里查找loader，有先后顺序</span></span><br><span class="line">        modules: [<span class="string">'node_modules'</span>, <span class="string">'./loaders'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>当然，除了上面的方式，通过<code>npm  link</code>将本地loader目录建立一个软连接到<code>node_modules</code>，也可以达到相同的目的。</p>
 <h3 id="以markerdown2vue-loader为例"><a href="#以markerdown2vue-loader为例" class="headerlink" title="以markerdown2vue-loader为例"></a>以markerdown2vue-loader为例</h3><blockquote>
-<p><a href="https://github.com/tian0o0/markdown2vue-loader" target="_blank" rel="noopener">markerdown2vue-loader</a>是我写的一个简单的loader，用于将markdown转为vue，当我们想用markdown来生成网站时特别有用。事实上，我的组件库文档<a href="https://tian0o0.github.io/uix">Uix</a>就是这么干的。</p>
+<p><a href="https://github.com/tian0o0/markdown2vue-loader" target="_blank" rel="noopener">markerdown2vue-loader</a>是我写的一个简单的loader，用于将markdown转为vue，当我们想用markdown来生成网站时特别有用。事实上，我的组件库文档就是这么干的。</p>
 </blockquote>
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
 <li>将.md转化为对应的dom结构（比如## -&gt; h2、### -&gt; h3等等）,这时候得到的dom结构十分扁平，所以暂且称之为<code>raw dom</code>, 这一过程中要处理一系列问题，如：语法高亮、锚点、解析emoji等</li>
@@ -517,7 +517,6 @@
 <p>wrapper函数如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapper</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">  content = cardWrapper(content);</span><br><span class="line">  content = <span class="built_in">encodeURIComponent</span>(content);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用v-once保证其只渲染一次</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;template&gt;</span></span><br><span class="line"><span class="string">    &lt;section v-html="decodeURIComponent(\`<span class="subst">$&#123;content&#125;</span>\`)" v-once /&gt;</span></span><br><span class="line"><span class="string">    &lt;/template&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>实际上到这里loader就写完了，使用的话就很简单了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        Md: () =&gt; import('./xxx.md')</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>我们假设有这样一个需求：在现有业务下加上一套错误监控与处理机制。我们可以尝试编写这样一个loader，为相应的代码块外面加上try…catch，这样在不修改原有代码的基础上还能实现我们的需求，简直再合适不过了。</p>
 
       
     </div>
@@ -797,7 +796,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是loader？"><span class="nav-number">1.</span> <span class="nav-text">什么是loader？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader的本质"><span class="nav-number">2.</span> <span class="nav-text">loader的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader-API"><span class="nav-number">3.</span> <span class="nav-text">loader API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-获取loader的options"><span class="nav-number">3.1.</span> <span class="nav-text">1. 获取loader的options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-返回其它结果"><span class="nav-number">3.2.</span> <span class="nav-text">2. 返回其它结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同步与异步"><span class="nav-number">3.3.</span> <span class="nav-text">3. 同步与异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-处理二进制数据"><span class="nav-number">3.4.</span> <span class="nav-text">4. 处理二进制数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地loader的使用"><span class="nav-number">4.</span> <span class="nav-text">本地loader的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以markerdown2vue-loader为例"><span class="nav-number">5.</span> <span class="nav-text">以markerdown2vue-loader为例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">5.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现"><span class="nav-number">5.2.</span> <span class="nav-text">具体实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">6.</span> <span class="nav-text">其它</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是loader？"><span class="nav-number">1.</span> <span class="nav-text">什么是loader？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader的本质"><span class="nav-number">2.</span> <span class="nav-text">loader的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader-API"><span class="nav-number">3.</span> <span class="nav-text">loader API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-获取loader的options"><span class="nav-number">3.1.</span> <span class="nav-text">1. 获取loader的options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-返回其它结果"><span class="nav-number">3.2.</span> <span class="nav-text">2. 返回其它结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同步与异步"><span class="nav-number">3.3.</span> <span class="nav-text">3. 同步与异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-处理二进制数据"><span class="nav-number">3.4.</span> <span class="nav-text">4. 处理二进制数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地loader的使用"><span class="nav-number">4.</span> <span class="nav-text">本地loader的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以markerdown2vue-loader为例"><span class="nav-number">5.</span> <span class="nav-text">以markerdown2vue-loader为例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">5.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现"><span class="nav-number">5.2.</span> <span class="nav-text">具体实现</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -832,7 +831,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.8k</span>
+    <span title="Site words total count">22.7k</span>
   
 </div>
 
